@@ -4,64 +4,70 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Trading journal</title>
+    <title>Trading Journal</title>
   </head>
   <body>
     <!-- <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script> -->
 
-    <header role="navigation">
-      <div>
-          <img src="" alt="Icon" loading="lazy">
-          <h2>Trading journal</h2>
+    <!-- The goal is to mockup all pages in HTML to after apply responsive style
+    Once done, I can break the code into components and containers to make them interactive with React -->
+
+    <header role="banner">
+      <div class="icon-title-container">
+          <img class="website-icon" src="" alt="Trading journal icon" loading="lazy">
+          <h2 class="website-title">Trading Journal</h2>
       </div>
 
+      <!-- TODO style when link is active -->
       <nav aria-label="Website navigation">
-        <a href="/">Dashboard</a>
-        <a href="/Journal">Journal</a>
-        <a href="/Analytics">Analytics</a>
+        <a href="/" aria-current="page" class="nav-link active">Dashboard</a>
+        <a href="/journal" class="nav-link">Journal</a>
+        <a href="/analytics" class="nav-link">Analytics</a>
       </nav>
 
-      <img src="" alt="User profile picture" loading="lazy">
+      <a href="/profile" class="profile-link" aria-label="View user profile">
+        <img class="profile-picture" src="" alt="User profile picture" loading="lazy">
+      </a>
     </header>
 
-    <main role="main">
-      <div>
+    <main>
+      <div class="main-heading">
         <h1>Dashboard</h1>
-        <p>Welcome David, here is a global overview of your performance</p>
+        <p class="main-heading-text">Welcome H, here is a global overview of your performance</p>
       </div>
 
-      <div>
-        <div>
-          <p>Total P/L</p>
-          <h3>15,150.25 $</h3>
+      <div class="performance-metrics-grid">
+        <div class="metric-container">
+          <h3>Total P/L</h3>
+          <p class="metric-value">15,150.25 $</p>
         </div>
 
-        <div>
-          <p>Win Rate</p>
-          <h3>75.2 %</h3>
+        <div class="metric-container">
+          <h3>Win Rate</h3>
+          <p class="metric-value">75.2 %</p>
         </div>
 
-        <div>
-          <p>Profit factor</p>
-          <h3>2.12</h3>
+        <div class="metric-container">
+          <h3>Profit factor</h3>
+          <p class="metric-value">2.12</p>
         </div>
       </div>
 
-      <div>
+      <div class="graphic-metrics-grid">
         <img src="" alt="Trade graphic" loading="lazy">
 
-        <div>
-          <p>Most traded asset</p>
-          <h3>XAU / USD</h3>
-          <p>48 Trades</p>
+        <div class="side-metric-container">
+          <h3>Most traded asset</h3>
+          <p class="asset-value">XAU / USD</p>
+          <p class="trade-count">48 Trades</p>
         </div>
 
-        <div>
-          <p>Upcoming red event</p>
-          <ul>
-            <li>Core PPI / 2  PM / USD</li>
-            <li>Retail sales / 2: 30PM / CHF</li>
+        <div class="side-metric-container">
+          <h3>Upcoming economic red events:</h3>
+          <ul class="economic-event-list">
+            <li class="economic-event-value">Core PPI / 2  PM / USD</li>
+            <li class="economic-event-value">Retail sales / 2: 30PM / CHF</li>
           </ul>
         </div>
       </div>
