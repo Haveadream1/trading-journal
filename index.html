@@ -10,6 +10,8 @@
     <!-- <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script> -->
 
+    <!-- TODO: Don't forget to add assigned width and height to image to improve performance -->
+
     <!-- The goal is to mockup all pages in HTML to after apply responsive style
     Once done, I can break the code into components and containers to make them interactive with React -->
 
@@ -19,7 +21,6 @@
           <h2 class="website-title">Trading Journal</h2>
       </div>
 
-      <!-- TODO style when link is active -->
       <nav aria-label="Website navigation">
         <a href="/" aria-current="page" class="nav-link active">Dashboard</a>
         <a href="/journal" class="nav-link">Journal</a>
@@ -32,46 +33,46 @@
     </header>
 
     <main>
-      <div class="main-heading">
-        <h1>Dashboard</h1>
+      <section class="main-heading-section" aria-labelledby="main-heading">
+        <h1 id="main-heading">Dashboard</h1>
         <p class="main-heading-text">Welcome H, here is a global overview of your performance</p>
-      </div>
+      </section>
 
       <div class="performance-metrics-grid">
-        <div class="metric-container">
-          <h3>Total P/L</h3>
+        <section class="metric-section" aria-labelledby="metric-heading-total-pl">
+          <h3 id="metric-heading-total-pl">Total P/L</h3>
           <p class="metric-value">15,150.25 $</p>
-        </div>
+        </section>
 
-        <div class="metric-container">
-          <h3>Win Rate</h3>
+        <section class="metric-section" aria-labelledby="metric-heading-win-rate">
+          <h3 id="metric-heading-win-rate">Win Rate</h3>
           <p class="metric-value">75.2 %</p>
-        </div>
+        </section>
 
-        <div class="metric-container">
-          <h3>Profit factor</h3>
+        <section class="metric-section" aria-labelledby="metric-heading-profit-factor">
+          <h3 id="metric-heading-profit-factor">Profit factor</h3>
           <p class="metric-value">2.12</p>
-        </div>
+        </section>
       </div>
 
       <div class="graphic-metrics-grid">
         <img src="" alt="Trade graphic" loading="lazy">
 
-        <div class="side-metric-container">
-          <h3>Most traded asset</h3>
+        <section class="side-metric-section" aria-labelledby="side-metric-heading-asset">
+          <h3 id="side-metric-heading-asset">Most traded asset</h3>
           <p class="asset-value">XAU / USD</p>
           <p class="trade-count">48 Trades</p>
-        </div>
+        </section>
 
-        <div class="side-metric-container">
-          <h3>Upcoming economic red events:</h3>
+        <section class="side-metric-section" aria-labelledby="side-metric-heading-economic-event">
+          <h3 id="side-metric-heading-economic-event">Upcoming economic red events:</h3>
           <ul class="economic-event-list">
             <li class="economic-event-value">Core PPI / 2  PM / USD</li>
             <li class="economic-event-value">Retail sales / 2: 30PM / CHF</li>
           </ul>
-        </div>
+        </section>
       </div>
+
     </main>
   </body>
 </html>
-
