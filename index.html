@@ -33,44 +33,55 @@
     </header>
 
     <main>
-      <section class="main-heading-section" aria-labelledby="main-heading">
-        <h1 id="main-heading">Trades journal</h1>
-        <p class="main-heading-text">A complete history of your recent trades</p>
+      <section class="main-heading-form-section" aria-labelledby="main-heading">
+        <h1 id="main-heading">Log a new trade</h1>
+        <p class="main-heading-text">Enter the details of your trade to save it in the journal</p>
       </section>
 
-      <table>
-        <thead>
-          <tr class="table-heading-row">
-            <th>Date</th>
-            <th>Asset</th>
-            <th>Direction</th>
-            <th>Outcome</th>
-            <th>Net P/L</th>
-          </tr>
-        </thead>
+      <form action="post">
+        <fieldset aria-labelledby="trade-details-legend">
+          <legend id="trade-details-legend">Trade details</legend>
+          
+          <div>
+            <label for="asset-symbol">Asset*</label>
+            <input type="text" name="asset-symbol" id="asset-symbol" placeholder="BTC/USD" aria-label="Asset symbol input" required>
+          </div>
 
-        <tbody>
-          <tr class="table-values-row">
-            <td class="table-date-value">24/05/2025</td>
-            <td class="table-asset-value">BTC / USD</td>
-            <td class="table-direction-value">BUY</td>
-            <td class="table-outcome-value">WIN</td>
-            <td class="table-net-pl-value">+2,505.20$</td>
-          </tr>
+          <div>
+            <label for="direction-select">Direction:*</label>
 
-          <tr class="table-values-row">
-            <td class="table-date-value">25/05/2025</td>
-            <td class="table-asset-value">ETH / USD</td>
-            <td class="table-direction-value">SELL</td>
-            <td class="table-outcome-value">WIN</td>
-            <td class="table-net-pl-value">+1,505.20$</td>
-          </tr>
-        </tbody>
-      </table>
+            <select name="direction-select" id="direction-select" aria-label="Directions select" required>
+              <option value="Buy">Buy (Long)</option>
+              <option value="Sell">Sell (Short)</option>
+            </select>
+          </div>
+          
+        </fieldset>
 
-      <button type="button" class="add-new-trade-button">
-        <img src="" alt="Add a new trade icon" aria-label="Add a new trade" loading="lazy">
-      </button>
+        <fieldset aria-labelledby="trade-outcome-legend">
+          <legend id="trade-outcome-legend">Trade outcome</legend>
+
+          <div>
+            <label for="trade-date">Date*</label>
+            <input type="date" name="trade-date" id="trade-date" aria-label="Trade date input" required>
+          </div>
+
+          <select name="outcome-select" id="outcome-select"  aria-label="Outcomes select" required>
+              <option value="Win">Win</option>
+              <option value="Loss">Loss</option>
+          </select>
+
+          <div>
+            <label for="net-pl">Net P/L*</label>
+            <input type="number" name="net-pnl" id="net-pnl" aria-label="Net P/L input" required>
+          </div>
+        </fieldset>
+
+        <div class="form-buttons">
+          <button type="submit" aria-label="Submit form">Save Trade</button>
+          <button type="button" aria-label="Cancel form">Cancel</button>
+        </div>
+      </form>
     </main>
   </body>
 </html>
@@ -117,4 +128,46 @@
           </ul>
         </section>
       </div>
+    </main> -->
+
+<!-- Journal page -->
+     <!-- <main>
+      <section class="main-heading-section" aria-labelledby="main-heading">
+        <h1 id="main-heading">Trades journal</h1>
+        <p class="main-heading-text">A complete history of your recent trades</p>
+      </section>
+
+      <table>
+        <thead>
+          <tr class="table-heading-row">
+            <th>Date</th>
+            <th>Asset</th>
+            <th>Direction</th>
+            <th>Outcome</th>
+            <th>Net P/L</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr class="table-values-row">
+            <td class="table-date-value">24/05/2025</td>
+            <td class="table-asset-value">BTC / USD</td>
+            <td class="table-direction-value">BUY</td>
+            <td class="table-outcome-value">WIN</td>
+            <td class="table-net-pl-value">+2,505.20$</td>
+          </tr>
+
+          <tr class="table-values-row">
+            <td class="table-date-value">25/05/2025</td>
+            <td class="table-asset-value">ETH / USD</td>
+            <td class="table-direction-value">SELL</td>
+            <td class="table-outcome-value">WIN</td>
+            <td class="table-net-pl-value">+1,505.20$</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <button type="button" class="add-new-trade-button">
+        <img src="" alt="Add a new trade icon" aria-label="Add a new trade" loading="lazy">
+      </button>
     </main> -->
