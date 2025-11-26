@@ -8,6 +8,9 @@
 
 :root {
   /* Colors */
+  --green: #11D473;
+  --light-green: #C7F0DC;
+  --light-white: #f2fbf6;
 
   /* Spacing */
   --space-xs: 0.5rem;
@@ -40,6 +43,9 @@ header {
   background-color: rgb(225, 81, 81);
 }
 
+.website-icon {
+  color: var(--green);
+}
 nav {
   display: flex;
   gap: var(--space-lg);
