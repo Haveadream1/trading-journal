@@ -19,3 +19,34 @@
 html {
   font-family: "Nunito Sans", sans-serif;
 }
+
+/* TODO: target the #root after finishing with html pseudocode*/
+body {
+  min-height: 100vh;
+  padding: var(--space-md);
+
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-sm);
+  gap: var(--space-sm);
+
+  background-color: rgb(225, 81, 81);
+}
+
+nav {
+  display: flex;
+  gap: var(--space-lg);
+}
+
+main {
+  display: grid;
+  grid-template-rows: auto 1fr 2fr;
+  gap: var(--space-md);
+}
