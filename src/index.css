@@ -50,3 +50,23 @@ main {
   grid-template-rows: auto 1fr 2fr;
   gap: var(--space-md);
 }
+.main-heading-section {
+  padding: var(--space-lg) 0;
+}
+
+.performance-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+}
+.metric-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0 auto;
+  width: 75%;
+  
+  background-color: aliceblue;
+}
