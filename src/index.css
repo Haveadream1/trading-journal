@@ -202,3 +202,17 @@ thead {
 .pnl-span-loss {
   color: var(--red);
 }
+
+.add-new-trade-button {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: none;
+  background-color: var(--light-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: flex-end;
+  align-self: center;
+  margin-right: var(--space-sm);
+}
