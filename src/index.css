@@ -9,7 +9,9 @@
 :root {
   /* Colors */
   --green: #11D473;
+  --red: #d41111;
   --light-green: #C7F0DC;
+  --light-red: #f0c7c7;
   --light-white: #f2fbf6;
 
   /* Spacing */
@@ -84,7 +86,7 @@ nav {
 }
 
 /* Main */
-main {
+.dashboard-page {
   display: grid;
   grid-template-rows: auto 1fr 2fr;
   gap: var(--space-md);
@@ -156,4 +158,47 @@ main {
     grid-template-columns: 1fr;
     grid-template-rows: repeat(3, 1fr);
   }
+}
+
+/* Journal page */
+.journal-page {
+  display: grid;
+  grid-template-rows: auto 2fr 1fr;
+  border-collapse: collapse
+}
+table {
+  border-collapse: collapse; /* To avoid having double borders */
+}
+thead {
+  background-color: var(--light-green);
+}
+.table-heading-row > th {
+  padding: var(--space-md);
+}
+
+.table-values-row {
+  border: solid 2px var(--light-green);
+  border-top: none; /* To avoid having borders overlapping each other*/
+}
+.table-values-row > td {
+  text-align: center; 
+}
+
+.outcome-span-win,
+.outcome-span-loss {
+  padding: var(--space-sm);
+  border-radius: 30%;
+}
+.outcome-span-win {
+  background-color: var(--light-green);
+}
+.outcome-span-loss {
+  background-color: var(--light-red);
+}
+
+.pnl-span-win {
+  color: var(--green);
+}
+.pnl-span-loss {
+  color: var(--red);
 }
