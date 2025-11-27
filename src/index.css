@@ -305,3 +305,44 @@ select:focus-visible {
     padding: var(--space-sm);
   }
 }
+
+/* Analytics page */
+.analytics-page {
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+.analytics-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: var(--space-md);
+}
+
+.analytics-sub-left-grid {
+  display: grid;
+  grid-template-rows: 2fr 1fr;
+  grid-template-columns: 2fr 1fr;
+  gap: var(--space-md);
+}
+.analytics-sub-left-grid > .analytic-section:nth-child(1) {
+  grid-column: 1 / span 2;
+  grid-row: 1;
+}
+
+.analytics-sub-right-grid {
+  display: grid;
+  grid-template-rows: 1fr 2fr;
+  gap: var(--space-md);
+}
+
+/* TODO same style as metrics => regroup */
+.analytic-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-sm);
+  text-align: center;
+  background-color: white;
+  border-radius: var(--space-sm);
+  border: solid 1px var(--green);
+} 
