@@ -164,7 +164,6 @@ nav {
 .journal-page {
   display: grid;
   grid-template-rows: auto 2fr 1fr;
-  border-collapse: collapse
 }
 table {
   border-collapse: collapse; /* To avoid having double borders */
@@ -182,6 +181,7 @@ thead {
 }
 .table-values-row > td {
   text-align: center; 
+  padding: var(--space-xs);
 }
 
 .outcome-span-win,
@@ -215,4 +215,12 @@ thead {
   justify-self: flex-end;
   align-self: center;
   margin-right: var(--space-sm);
+}
+
+/* Tablet styling */
+@media (max-width: 570px) {
+  table {
+    display: block;
+    overflow-x: auto;
+  }
 }
