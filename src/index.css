@@ -345,4 +345,12 @@ select:focus-visible {
   background-color: white;
   border-radius: var(--space-sm);
   border: solid 1px var(--green);
-} 
+}
+
+/* Phone styling */
+@media (max-width: 496px) {
+  .analytics-grid {
+    display: flex;
+    flex-direction: column;
+  }
+}
