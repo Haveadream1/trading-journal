@@ -142,6 +142,7 @@ main {
 /* Tablet styling */
 @media (max-width: 556px) {
   header {
+    display: flex;
     flex-direction: column;
   }
   nav {
