@@ -297,3 +297,11 @@ input:focus-visible,
 select:focus-visible {
   outline: solid 2px var(--green);
 }
+
+/* Tablet styling */
+@media (max-width: 570px) {
+  .form-buttons-container > button {
+    font-size: small;
+    padding: var(--space-sm);
+  }
+}
