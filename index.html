@@ -42,7 +42,60 @@
       </div>
     </header>
     
-    <main>
+    <main class="journal-page">
+      <section class="main-heading-section" aria-labelledby="main-heading">
+        <h1 id="main-heading">Trades journal</h1>
+        <p class="main-heading-text">A complete history of your recent trades</p>
+      </section>
+
+      <table>
+        <thead>
+          <tr class="table-heading-row">
+            <th>Date</th>
+            <th>Asset</th>
+            <th>Direction</th>
+            <th>Outcome</th>
+            <th>Net P/L</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr class="table-values-row">
+            <td class="table-date-value">24/05/2025</td>
+            <td class="table-asset-value">BTC / USD</td>
+            <td class="table-direction-value">BUY</td>
+            <td class="table-outcome-value">
+              <span class="outcome-span-win">Win</span>
+            </td>
+            <td class="table-pnl-value">
+              <span class="pnl-span-win">+2,505.20$</span>
+            </td>
+          </tr>
+
+          <tr class="table-values-row">
+            <td class="table-date-value">25/05/2025</td>
+            <td class="table-asset-value">ETH / USD</td>
+            <td class="table-direction-value">SELL</td>
+            <td class="table-outcome-value">
+              <span class="outcome-span-loss">Loss</span>
+            </td>
+            <td class="table-pnl-value">
+              <span class="pnl-span-loss">-1,204.05$</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <button type="button" class="add-new-trade-button">
+        <img src="" alt="Add a new trade icon" aria-label="Add a new trade" loading="lazy">
+      </button>
+    </main>
+  </body>
+</html>
+
+
+<!-- Dashboard Page -->
+<!-- <main class="dashboard-page">
       <section class="main-heading-section" aria-labelledby="main-heading">
         <h1 id="main-heading">Dashboard</h1>
         <p class="main-heading-text">Welcome H, here is a global overview of your performance</p>
@@ -67,52 +120,6 @@
 
       <div class="graphic-metrics-grid">
         <img class="trade-results-graphic" src="" alt="Trade graphic" loading="lazy">
-
-        <section class="side-metric-section" aria-labelledby="side-metric-heading-asset">
-          <h3 id="side-metric-heading-asset">Most traded asset</h3>
-          <p class="asset-value">XAU / USD</p>
-          <p class="trade-count">48 Trades</p>
-        </section>
-
-        <section class="side-metric-section" aria-labelledby="side-metric-heading-economic-event">
-          <h3 id="side-metric-heading-economic-event">Upcoming economic red events:</h3>
-          <ul class="economic-event-list">
-            <li class="economic-event-value">Core PPI / 2  PM / USD</li>
-            <li class="economic-event-value">Retail sales / 2: 30PM / CHF</li>
-          </ul>
-        </section>
-      </div>
-    </main>
-  </body>
-</html>
-
-
-<!-- Dashboard Page -->
-   <!-- <main>
-      <section class="main-heading-section" aria-labelledby="main-heading">
-        <h1 id="main-heading">Dashboard</h1>
-        <p class="main-heading-text">Welcome H, here is a global overview of your performance</p>
-      </section>
-
-      <div class="performance-metrics-grid">
-        <section class="metric-section" aria-labelledby="metric-heading-total-pnl">
-          <h3 id="metric-heading-total-pnl">Total P/L</h3>
-          <p class="metric-value">15,150.25 $</p>
-        </section>
-
-        <section class="metric-section" aria-labelledby="metric-heading-win-rate">
-          <h3 id="metric-heading-win-rate">Win Rate</h3>
-          <p class="metric-value">75.2 %</p>
-        </section>
-
-        <section class="metric-section" aria-labelledby="metric-heading-profit-factor">
-          <h3 id="metric-heading-profit-factor">Profit factor</h3>
-          <p class="metric-value">2.12</p>
-        </section>
-      </div>
-
-      <div class="graphic-metrics-grid">
-        <img src="" alt="Trade graphic" loading="lazy">
 
         <section class="side-metric-section" aria-labelledby="side-metric-heading-asset">
           <h3 id="side-metric-heading-asset">Most traded asset</h3>
