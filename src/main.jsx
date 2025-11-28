@@ -22,6 +22,10 @@ const router = createBrowserRouter([
     element: <JournalPage />,
   },
   {
+    path:"/tradeForm",
+    element: <TradeFormPage />,
+  },
+  {
     path:"/analytics",
     element: <AnalyticsPage />,
   },
