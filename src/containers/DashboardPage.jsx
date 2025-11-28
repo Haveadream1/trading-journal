@@ -1,4 +1,5 @@
 import MainHeading from "../components/MainHeading";
+import MetricSection from "../components/MetricSection";
 
 export default function DashboardPage({ }) {
     return (
@@ -9,20 +10,23 @@ export default function DashboardPage({ }) {
             />
 
             <div className="performance-metrics-grid">
-                <section className="metric-section" aria-labelledby="metric-heading-total-pnl">
-                    <h3 id="metric-heading-total-pnl">Total P/L</h3>
-                    <p className="metric-value">15,150.25 $</p>
-                </section>
+                <MetricSection 
+                    titleId="metric-heading-total-pnl" 
+                    titleValue="Total P/L" 
+                    text="15,150.25 $" 
+                />
 
-                <section className="metric-section" aria-labelledby="metric-heading-win-rate">
-                    <h3 id="metric-heading-win-rate">Win Rate</h3>
-                    <p className="metric-value">75.2 %</p>
-                </section>
+                <MetricSection 
+                    titleId="metric-heading-win-rate" 
+                    titleValue="Win Rate" 
+                    text="75.2 %" 
+                />
 
-                <section className="metric-section" aria-labelledby="metric-heading-profit-factor">
-                    <h3 id="metric-heading-profit-factor">Profit factor</h3>
-                    <p className="metric-value">2.12</p>
-                </section>
+                <MetricSection 
+                    titleId="metric-heading-profit-factor" 
+                    titleValue="Profit factor" 
+                    text="2.12" 
+                />
             </div>
 
             <div className="graphic-metrics-grid">
