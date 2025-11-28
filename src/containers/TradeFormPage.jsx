@@ -1,6 +1,17 @@
+import FieldsetDiv from "../components/FieldsetDiv";
 import MainHeading from "../components/MainHeading";
 
 export default function TradeFormPage() {
+    const directionOptions = [ // Passing an array of objects is easier than each values separately
+        {value: "buy", text: "Buy (Long)"},
+        {value: "sell", text: "Sell (Short)"},
+    ]
+    
+    const outcomeOptions = [
+        {value: "win", text: "Win"},
+        {value: "loss", text: "Loss"},
+    ]
+
     return (
         <main className="trade-form-page">
             <MainHeading 
@@ -11,43 +22,44 @@ export default function TradeFormPage() {
             <form action="post">
                 <fieldset aria-labelledby="trade-details-legend">
                     <legend id="trade-details-legend">Trade details</legend>
-                    
-                    <div>
-                        <label for="asset-symbol">Asset<span className="required">*</span></label>
-                        <input type="text" name="asset-symbol" id="asset-symbol" placeholder="BTC/USD" aria-label="Asset symbol input" required />
-                    </div>
-
-                    <div>
-                        <label for="direction-select">Direction<span className="required">*</span></label>
-
-                        <select name="direction-select" id="direction-select" aria-label="Directions select" required>
-                            <option value="Buy">Buy (Long)</option>
-                            <option value="Sell">Sell (Short)</option>
-                        </select>
-                    </div>
+                    <FieldsetDiv 
+                        id="asset-symbol"
+                        label="Asset"    
+                        type="text"
+                        placeholder="BTC/USD"
+                        ariaLabel="Asset symbol input"
+                    />
+                    <FieldsetDiv
+                        id="direction-select"
+                        label="Direction"
+                        type="select"
+                        ariaLabel="Directions select"
+                        options={directionOptions}
+                    />
                 </fieldset>
 
                 <fieldset aria-labelledby="trade-outcome-legend">
                     <legend id="trade-outcome-legend">Trade outcome</legend>
-
-                    <div>
-                        <label for="trade-date">Date<span className="required">*</span></label>
-                        <input type="date" name="trade-date" id="trade-date" aria-label="Trade date input" required />
-                    </div>
-
-                    <div>
-                        <label for="outcome-select">Outcome<span className="required">*</span></label>
-
-                        <select name="outcome-select" id="outcome-select"  aria-label="Outcomes select" required>
-                            <option value="Win">Win</option>
-                            <option value="Loss">Loss</option>
-                        </select>
-                    </div>
-
-                    <div>
-                        <label for="net-pl">Net P/L<span className="required">*</span></label>
-                        <input type="number" name="net-pnl" id="net-pnl" aria-label="Net P/L input" required />
-                    </div>
+                    <FieldsetDiv 
+                        id="trade-date"
+                        label="Date"    
+                        type="date"
+                        ariaLabel="Trade date input"
+                    />
+                    <FieldsetDiv
+                        id="outcome-select"
+                        label="Outcome"
+                        type="select"
+                        ariaLabel="Outcomes select"
+                        options={outcomeOptions}
+                    />
+                    <FieldsetDiv 
+                        id="net-pnl"
+                        label="Net P/L"    
+                        type="number"
+                        placeholder="2500.51"
+                        ariaLabel="Net P/L input"
+                    />
                 </fieldset>
 
                 <div className="form-buttons-container">
