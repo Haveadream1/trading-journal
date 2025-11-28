@@ -1,4 +1,5 @@
 import MainHeading from "../components/MainHeading";
+import TableRow from "../components/TableRow";
 
 export default function JournalPage() {
     return (
@@ -20,29 +21,20 @@ export default function JournalPage() {
                 </thead>
 
                 <tbody>
-                    <tr className="table-values-row">
-                        <td className="table-date-value">24/05/2025</td>
-                        <td className="table-asset-value">BTC / USD</td>
-                        <td className="table-direction-value">BUY</td>
-                        <td className="table-outcome-value">
-                            <span className="outcome-span-win">Win</span>
-                        </td>
-                        <td className="table-pnl-value">
-                            <span className="pnl-span-win">+2,505.20$</span>
-                        </td>
-                    </tr>
-
-                    <tr className="table-values-row">
-                        <td className="table-date-value">25/05/2025</td>
-                        <td className="table-asset-value">ETH / USD</td>
-                        <td className="table-direction-value">SELL</td>
-                        <td className="table-outcome-value">
-                            <span className="outcome-span-loss">Loss</span>
-                        </td>
-                        <td className="table-pnl-value">
-                            <span className="pnl-span-loss">-1,204.05$</span>
-                        </td>
-                    </tr>
+                    <TableRow
+                        date="24/05/2025"
+                        asset="BTC / USD"
+                        direction="BUY"
+                        outcome="Win"
+                        pnl="+2,505.20$"
+                    />
+                    <TableRow
+                        date="25/05/2025"
+                        asset="ETH / USD"
+                        direction="SELL"
+                        outcome="Loss"
+                        pnl="-1,204.05$"
+                    />
                 </tbody>
             </table>
 
