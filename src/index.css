@@ -272,7 +272,7 @@ select {
   justify-self: center;
   align-self: center;
 }
-.form-buttons-container > button {
+.form-buttons-container > * { /* Target all children, here a link and button*/
   align-self: center;
   justify-self: center;
   border: none;
@@ -288,6 +288,7 @@ select {
   background-color: var(--green);
 }
 .cancel-button {
+  color: black;
   background-color: var(--light-green);
 }
 
