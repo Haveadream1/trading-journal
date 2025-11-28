@@ -4,7 +4,7 @@ export default function TradeFormPage() {
     return (
         <main className="trade-form-page">
             <MainHeading 
-                h1="Log a new trade"
+                titleValue="Log a new trade"
                 text="Enter the details of your trade to save it in the journal"
             />
 

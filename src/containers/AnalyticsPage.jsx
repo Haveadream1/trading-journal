@@ -4,7 +4,7 @@ export default function AnalyticsPage() {
     return (
         <main className="analytics-page">
             <MainHeading 
-                h1="Analytics"
+                titleValue="Analytics"
                 text="Discover you results in a simple way"
             />
 

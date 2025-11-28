@@ -4,7 +4,7 @@ export default function JournalPage() {
     return (
         <main className="journal-page">
             <MainHeading 
-                h1="Trade journal"
+                titleValue="Trade journal"
                 text="A complete history of your recent trades"
             />
 

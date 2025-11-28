@@ -4,7 +4,7 @@ export default function DashboardPage({ }) {
     return (
         <main className="dashboard-page">
             <MainHeading 
-                h1="Dashboard"
+                titleValue="Dashboard"
                 text="Welcome H, here is a global overview of your performance"
             />
 
