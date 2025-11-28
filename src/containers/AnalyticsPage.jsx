@@ -1,3 +1,4 @@
+import AnalyticSection from "../components/AnalyticSection";
 import MainHeading from "../components/MainHeading";
 
 export default function AnalyticsPage() {
@@ -10,32 +11,34 @@ export default function AnalyticsPage() {
 
             <div className="analytics-grid">
                 <div className="analytics-sub-left-grid">
-                    <section className="analytic-section" aria-labelledby="monthly-results-heading">
-                        <h2 id="monthly-results-heading">Monthly results</h2>
-                        <img src="" alt="Monthly results graph" loading="lazy" />
-                    </section>
-
-                    <section className="analytic-section" aria-labelledby="weekly-results-heading">
-                        <h2 id="weekly-results-heading">Weekly results</h2>
-                        <img src="" alt="Weekly results graph" loading="lazy" />
-                    </section>
-
-                    <section className="analytic-section" aria-labelledby="biggest-win-heading">
-                        <h2 id="biggest-win-heading">Biggest win</h2>
-                        <img src="" alt="Biggest win graph" loading="lazy" />
-                    </section>
+                    <AnalyticSection
+                        titleId="monthly-results-heading"
+                        titleValue="Monthly results"
+                        alt="Monthly results graph"
+                    />
+                    <AnalyticSection
+                        titleId="weekly-results-heading"
+                        titleValue="Weekly results"
+                        alt="Weekly results graph"
+                    />
+                    <AnalyticSection
+                        titleId="biggest-win-heading"
+                        titleValue="Biggest win"
+                        alt="Biggest win graph"
+                    />
                 </div>
 
                 <div className="analytics-sub-right-grid">
-                    <section className="analytic-section" aria-labelledby="account-grow-heading">
-                        <h2 id="account-grow-heading">Account grow</h2>
-                        <img src="" alt="Account grow graph" loading="lazy" />
-                    </section>
-
-                    <section className="analytic-section" aria-labelledby="average-win-loss-heading">
-                        <h2 id="average-win-loss-heading">Average win/loss</h2>
-                        <img src="" alt="Average win/loss graph" loading="lazy" />
-                    </section>
+                    <AnalyticSection
+                        titleId="account-grow-heading"
+                        titleValue="Account grow"
+                        alt="Account grow graph"
+                    />
+                    <AnalyticSection
+                        titleId="average-win-loss-heading"
+                        titleValue="Average win/loss"
+                        alt="Average win/loss grap"
+                    />
                 </div>
             </div>
         </main>
