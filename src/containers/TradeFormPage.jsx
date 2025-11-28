@@ -64,7 +64,7 @@ export default function TradeFormPage() {
 
                 <div className="form-buttons-container">
                     <button className="save-button" type="submit" aria-label="Submit form">Save Trade</button>
-                    <button className="cancel-button" type="button" aria-label="Cancel form">Cancel</button>
+                    <a href="/journal" className="cancel-button" aria-label="Cancel form">Cancel</a>
                 </div>
             </form>
         </main>

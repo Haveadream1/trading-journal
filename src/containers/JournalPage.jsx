@@ -41,9 +41,9 @@ export default function JournalPage() {
                     </tbody>
                 </table>
 
-                <button type="button" className="add-new-trade-button">
-                    <span className="material-symbols-outlined" alt="Add a new trade icon" aria-label="Add a new trade" loading="lazy">add_2</span>
-                </button>
+                <a href="/tradeForm" className="add-new-trade-button" aria-label="Add a new trade">
+                    <span className="material-symbols-outlined">add_2</span>
+                </a>
             </main>
         </>
     );
