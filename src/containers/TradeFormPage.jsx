@@ -1,10 +1,12 @@
+import MainHeading from "../components/MainHeading";
+
 export default function TradeFormPage() {
     return (
         <main className="trade-form-page">
-            <section className="main-heading-section" aria-labelledby="main-heading">
-                <h1 id="main-heading">Log a new trade</h1>
-                <p className="main-heading-text">Enter the details of your trade to save it in the journal</p>
-            </section>
+            <MainHeading 
+                h1="Log a new trade"
+                text="Enter the details of your trade to save it in the journal"
+            />
 
             <form action="post">
                 <fieldset aria-labelledby="trade-details-legend">

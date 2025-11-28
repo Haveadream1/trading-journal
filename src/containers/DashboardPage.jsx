@@ -1,10 +1,12 @@
+import MainHeading from "../components/MainHeading";
+
 export default function DashboardPage({ }) {
     return (
         <main className="dashboard-page">
-            <section className="main-heading-section" aria-labelledby="main-heading">
-                <h1 id="main-heading">Dashboard</h1>
-                <p className="main-heading-text">Welcome H, here is a global overview of your performance</p>
-            </section>
+            <MainHeading 
+                h1="Dashboard"
+                text="Welcome H, here is a global overview of your performance"
+            />
 
             <div className="performance-metrics-grid">
                 <section className="metric-section" aria-labelledby="metric-heading-total-pnl">

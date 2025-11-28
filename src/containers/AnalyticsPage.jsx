@@ -1,10 +1,12 @@
+import MainHeading from "../components/MainHeading";
+
 export default function AnalyticsPage() {
     return (
         <main className="analytics-page">
-            <section className="main-heading-section" aria-labelledby="main-heading">
-                <h1 id="main-heading">Analytics</h1>
-                <p className="main-heading-text">Discover you results in a simple way</p>
-            </section>
+            <MainHeading 
+                h1="Analytics"
+                text="Discover you results in a simple way"
+            />
 
             <div className="analytics-grid">
                 <div className="analytics-sub-left-grid">

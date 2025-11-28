@@ -1,10 +1,12 @@
+import MainHeading from "../components/MainHeading";
+
 export default function JournalPage() {
     return (
         <main className="journal-page">
-            <section className="main-heading-section" aria-labelledby="main-heading">
-                <h1 id="main-heading">Trades journal</h1>
-                <p className="main-heading-text">A complete history of your recent trades</p>
-            </section>
+            <MainHeading 
+                h1="Trade journal"
+                text="A complete history of your recent trades"
+            />
 
             <table>
                 <thead>
