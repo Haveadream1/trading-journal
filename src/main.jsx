@@ -1,14 +1,22 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import './index.css'
-import Header from './components/Header'
+
+/* Router import */
+import { RouterProvider } from 'react-router'
+import { createBrowserRouter } from 'react-router'
+
+/* Pages import */
 import DashboardPage from './containers/DashboardPage'
 import JournalPage from './containers/JournalPage'
 import TradeFormPage from './containers/TradeFormPage'
 import AnalyticsPage from './containers/AnalyticsPage'
-import { RouterProvider } from 'react-router'
-import { createBrowserRouter } from 'react-router'
 
+/* Styles import */
+import './index.css'
+import './styles/AnalyticsStyle.css'
+import './styles/DashboardStyle.css'
+import './styles/JournalStyle.css'
+import './styles/TradeFormStyle.css'
 
 // Router will take care of the webiste navigation
 // TODO add errorElement
