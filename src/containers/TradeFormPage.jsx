@@ -1,7 +1,10 @@
 import FieldsetDiv from "../components/FieldsetDiv";
 import MainHeading from "../components/MainHeading";
+import { useForm } from "../data/FormContext";
 
 export default function TradeFormPage() {
+    const {formData} = useForm();
+
     const directionOptions = [ // Passing an array of objects is easier than each values separately
         {value: "buy", text: "Buy (Long)"},
         {value: "sell", text: "Sell (Short)"},
@@ -12,6 +15,13 @@ export default function TradeFormPage() {
         {value: "loss", text: "Loss"},
     ]
 
+    const handleFormSubmit = (e) => {
+        e.preventDefault();
+
+        console.log("Successfully saved the trade:", formData)
+    }
+
+
     return (
         <main className="trade-form-page">
             <MainHeading 
@@ -19,8 +29,8 @@ export default function TradeFormPage() {
                 text="Enter the details of your trade to save it in the journal"
             />
 
-            <form action="post">
-                <fieldset aria-labelledby="trade-details-legend">
+            <form action="post" onSubmit={handleFormSubmit}>
+                <fieldset id="trade-details" aria-labelledby="trade-details-legend">
                     <legend id="trade-details-legend">Trade details</legend>
                     <FieldsetDiv 
                         id="asset-symbol"
@@ -38,11 +48,11 @@ export default function TradeFormPage() {
                     />
                 </fieldset>
 
-                <fieldset aria-labelledby="trade-outcome-legend">
+                <fieldset id="trade-outcome" aria-labelledby="trade-outcome-legend">
                     <legend id="trade-outcome-legend">Trade outcome</legend>
                     <FieldsetDiv 
                         id="trade-date"
-                        label="Date"    
+                        label="Date"
                         type="date"
                         ariaLabel="Trade date input"
                     />
