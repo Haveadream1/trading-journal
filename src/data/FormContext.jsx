@@ -7,18 +7,32 @@ export default function FormProvider({ children }) {
 
     // Define the structure and give default values
     const [formData, setFormData] = useState({
-        tradeDetails: {
-            asset: "BTC/USD",
-            direction: ""
+        "trade-details": {  // fieldset
+            "asset-symbol": "BTC/USD", // label : value
+            "direction-select": "Buy (Long)"
         },
-        tradeOutcome: {
-            date: "",
-            outcome: "",
-            netPNL: "2500.51"
+        "trade-outcome": {
+            "trade-date": "",
+            "outcome-select": "",
+            "net-pnl": "2500.51"
         }
     })
+
+    // Pass the new data in the state without deleting data not targeted
+    const handleDataChange = (fieldset, label, value) => {
+        setFormData((prev) => ({
+            ...prev, // Conserve previous fieldset
+            [fieldset]: {
+                ...prev[fieldset], // Conserve previous label: value
+                [label]: value // Modify value
+            }
+        }));
+    }
     
-    const value = {};
+    const value = {
+        formData,
+        handleDataChange
+    };
 
     return (
         <FormContext.Provider value={value}>
