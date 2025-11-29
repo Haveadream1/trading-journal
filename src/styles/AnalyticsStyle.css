@@ -30,7 +30,7 @@
   border: solid 1px var(--green);
 }
 
-/* Phone styling */
+/* Mobile styling */
 @media (max-width: 496px) {
   .analytics-grid {
     display: flex;

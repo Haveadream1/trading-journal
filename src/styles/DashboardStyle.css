@@ -50,7 +50,7 @@
   border: solid 1px white;
 }
 
-/* Tablet styling */
+/* Mobile styling */
 @media (max-width: 556px) {
   header {
     display: flex;

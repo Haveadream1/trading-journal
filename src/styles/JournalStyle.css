@@ -55,7 +55,7 @@ thead {
   margin-right: var(--space-sm);
 }
 
-/* Tablet styling */
+/* Mobile styling */
 @media (max-width: 570px) {
   table {
     display: block;
