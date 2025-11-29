@@ -17,6 +17,7 @@ import './styles/AnalyticsStyle.css'
 import './styles/DashboardStyle.css'
 import './styles/JournalStyle.css'
 import './styles/TradeFormStyle.css'
+import FormProvider from './data/FormContext'
 
 // Router will take care of the webiste navigation
 // TODO add errorElement
@@ -41,7 +42,9 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router} /> 
-    {/* // we pass the defined path above as a value */}
+    <FormProvider>
+      <RouterProvider router={router} /> 
+    </FormProvider>
   </StrictMode>,
 )
+    {/* // we pass the defined path above as a value */}
