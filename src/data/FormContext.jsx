@@ -1,9 +1,22 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useState } from "react";
 
 const FormContext = createContext(null); 
 // Give default value for easier unit testing  
 
 export default function FormProvider({ children }) {
+
+    // Define the structure and give default values
+    const [formData, setFormData] = useState({
+        tradeDetails: {
+            asset: "BTC/USD",
+            direction: ""
+        },
+        tradeOutcome: {
+            date: "",
+            outcome: "",
+            netPNL: "2500.51"
+        }
+    })
     
     const value = {};
 
