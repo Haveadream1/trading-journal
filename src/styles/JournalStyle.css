@@ -1,0 +1,64 @@
+.journal-page {
+  display: grid;
+  grid-template-rows: auto 2fr 1fr;
+}
+table {
+  border-collapse: collapse; /* To avoid having double borders */
+}
+thead {
+  background-color: var(--light-green);
+}
+.table-heading-row > th {
+  padding: var(--space-md);
+}
+
+.table-values-row {
+  border: solid 2px var(--light-green);
+  border-top: none; /* To avoid having borders overlapping each other*/
+}
+.table-values-row > td {
+  text-align: center; 
+  padding: var(--space-xs);
+}
+
+.outcome-span-win,
+.outcome-span-loss {
+  padding: var(--space-sm);
+  border-radius: 30%;
+}
+.outcome-span-win {
+  background-color: var(--light-green);
+}
+.outcome-span-loss {
+  background-color: var(--light-red);
+}
+
+.pnl-span-win {
+  color: var(--green);
+}
+.pnl-span-loss {
+  color: var(--red);
+}
+
+.add-new-trade-button {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  color: black;
+  border: none;
+  background-color: var(--light-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: flex-end;
+  align-self: center;
+  margin-right: var(--space-sm);
+}
+
+/* Tablet styling */
+@media (max-width: 570px) {
+  table {
+    display: block;
+    overflow-x: auto;
+  }
+}

@@ -1,0 +1,50 @@
+header {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  padding: var(--space-sm);
+  gap: var(--space-sm);
+
+  border-bottom: solid 2px var(--green);
+}
+
+.icon-title-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--space-xs);
+}
+.website-icon {
+  color: var(--green);
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-lg);
+}
+a {
+  text-decoration: none;
+}
+.nav-link {
+  color: black;
+  font-weight: 600;
+}
+.nav-link[aria-current="page"] {
+  color: var(--green);
+}
+
+.profile-container {
+  display: flex;
+  justify-content: flex-end;
+}
+.profile-link {
+  width: 50px;
+  height: 50px;
+  min-width: 50px;
+  border-radius: 50%;
+  background-color: var(--light-green);
+}
+.profile-picture {
+  object-fit: contain;
+}
