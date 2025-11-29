@@ -68,7 +68,7 @@ a {
   color: black;
   font-weight: 600;
 }
-.nav-link-active {
+.nav-link[aria-current="page"] {
   color: var(--green);
 }
 
