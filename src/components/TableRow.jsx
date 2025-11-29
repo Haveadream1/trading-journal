@@ -11,14 +11,14 @@ export default function TableRow({
             <td className="table-asset-value">{asset}</td>
             <td className="table-direction-value">{direction}</td>
             <td className="table-outcome-value">
-                {outcome === "Loss" ? (
+                {outcome === "loss" ? (
                     <span className="outcome-span-loss">Loss</span>
                 ):(
                     <span className="outcome-span-win">Win</span>
                 )}
             </td>
             <td className="table-pnl-value">
-                {outcome === "Loss" ? (
+                {outcome === "loss" ? (
                     <span className="pnl-span-loss">{pnl}</span>
                 ):(
                     <span className="pnl-span-win">{pnl}</span>
