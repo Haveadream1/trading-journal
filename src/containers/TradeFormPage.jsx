@@ -2,9 +2,10 @@ import { useEffect } from "react";
 import FieldsetDiv from "../components/FieldsetDiv";
 import MainHeading from "../components/MainHeading";
 import { useForm } from "../data/FormContext";
-import { Link } from "react-router";
+import { Link, Navigate, useNavigate } from "react-router";
 
 export default function TradeFormPage() {
+    const navigate = useNavigate();
     const {formData, pushTradeToHistory, tradeHistory} = useForm();
 
     const directionOptions = [ // Passing an array of objects is easier than each values separately
@@ -19,8 +20,14 @@ export default function TradeFormPage() {
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
+
         pushTradeToHistory(formData); // Store the submited trade
         console.log("Successfully saved the trade:", formData)
+
+        // Time out to make sure data is saved before we switch of pages
+        setTimeout(() => {
+            navigate("/journal"); // Redirect to journal page
+        }, 1000)
     }
 
     useEffect(() => {
