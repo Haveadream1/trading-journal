@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "../data/FormContext";
 
 export default function FieldsetDiv({
@@ -10,22 +10,23 @@ export default function FieldsetDiv({
     options
 }) {
     const {formData, handleDataChange} = useForm();
+    const [valid, setValid] = useState(false); // Use state to render the validity of an input
 
     // Form verification:
         // Date cannot be in the future
         // PNL cannot be 0
 
-    const showSuccess = (element) => {
-        element.classList.remove("invalid");
-        element.classList.add("valid");
+    // Asset input cannot be empty
+    const checkAsset = (asset) => {
+        if (asset === "") {
+            setValid(false)
+        } else {
+            setValid(true);
+        }
     }
 
-    const showError = (element) => {
-        element.classList.add("invalid");
-        element.classList.remove("valid");
-    }
-
-    const checkDate = (chosendDate, element) => {
+    // Date cannot be in the future
+    const checkDate = (chosendDate) => {
         const currentDate = new Date().toLocaleDateString();
         const currentFormatedDate = currentDate.split(". ").join("-").slice(0, -1); // YYYY MM DD
 
@@ -33,33 +34,36 @@ export default function FieldsetDiv({
         const chosenFormatedDate = chosenDate.split(". ").join("-").slice(0, -1);
 
         if (chosenFormatedDate > currentFormatedDate) {
-            showError(element);
+            setValid(false)
         } else {
-            showSuccess(element);
+            setValid(true)
         }
     }
 
-    const checkPNL = (pnl, element) => {
+    // PNL input cannot be set at 0
+    const checkPNL = (pnl) => {
         if (pnl === "0") {
-            showError(element);
+            setValid(false)
         } else {
-            showSuccess(element);
+            setValid(true)
         }
     }
 
     const onChangeHandler = (e) => {
-        const element = e.target
         const value = e.target.value;
         const label = e.target.id;
         const fieldset = e.target.parentElement.parentElement.id;
 
         // Handle only the input that need a verification
         switch (label) {
+            case "asset-symbol":
+                checkAsset(value);
+                break;
             case "net-pnl":
-                checkPNL(value, element);
+                checkPNL(value);
                 break;
             case "trade-date":
-                checkDate(value, element);
+                checkDate(value);
                 break;
         }
 
@@ -87,7 +91,7 @@ export default function FieldsetDiv({
                     }
                 </select>
             ):(
-                <input type={type} name={id} id={id} placeholder={placeholder} aria-label={ariaLabel} onChange={onChangeHandler} required />
+                <input type={type} name={id} id={id} className={valid ? "valid" : "invalid"} placeholder={placeholder} aria-label={ariaLabel} onChange={onChangeHandler} required />
             )}
         </div>
     );
