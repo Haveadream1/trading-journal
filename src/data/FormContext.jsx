@@ -4,6 +4,7 @@ const FormContext = createContext(null);
 // Give default value for easier unit testing  
 
 export default function FormProvider({ children }) {
+    const [tradeHistory, setTradeHistory] = useState([]); // Array to store trades
 
     // Define the structure and give default values
     const [formData, setFormData] = useState({
@@ -28,10 +29,19 @@ export default function FormProvider({ children }) {
             }
         }));
     }
+
+    // Define a method to store temporary the trades with react
+    const pushTradeToHistory = (trade) => {
+        setTradeHistory(prev => {
+            return [...prev, trade];
+        })
+    }
     
     const value = {
         formData,
-        handleDataChange
+        handleDataChange,
+        tradeHistory,
+        pushTradeToHistory,
     };
 
     return (
