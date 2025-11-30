@@ -1,8 +1,16 @@
 import MainHeading from "../components/MainHeading";
 import TableRow from "../components/TableRow";
 import Header from "../components/Header";
+import { useForm } from "../data/FormContext";
+import { useEffect } from "react";
 
 export default function JournalPage() {
+    const {tradeHistory, formData} = useForm();
+
+    // useEffect(() => {
+    //     console.log(tradeHistory, formData);
+    // }, [tradeHistory, formData]);
+
     return (
         <>
             <Header />
@@ -24,20 +32,24 @@ export default function JournalPage() {
                     </thead>
 
                     <tbody>
-                        <TableRow
-                            date="24/05/2025"
-                            asset="BTC / USD"
-                            direction="BUY"
-                            outcome="Win"
-                            pnl="+2,505.20$"
-                        />
-                        <TableRow
-                            date="25/05/2025"
-                            asset="ETH / USD"
-                            direction="SELL"
-                            outcome="Loss"
-                            pnl="-1,204.05$"
-                        />
+                        {/* // For now use the data stored in the context before switching to SQL and Node.js */}
+                        {tradeHistory.length > 0 ? (
+                            tradeHistory.map((trade, index) =>  
+                                <TableRow
+                                    key={index}
+                                    date={trade["trade-outcome"]["trade-date"]}
+                                    asset={trade["trade-details"]["asset-symbol"]}
+                                    direction={trade["trade-details"]["direction-select"]}
+                                    outcome={trade["trade-outcome"]["outcome-select"]}
+                                    pnl={trade["trade-outcome"]["net-pnl"]}
+                                />
+                            )
+                        ):(
+                            <tr>
+                                <td>No saved trades yet</td>
+                                {/* or TODO: display some default trades for ie  */}
+                            </tr>
+                        )}
                     </tbody>
                 </table>
 
