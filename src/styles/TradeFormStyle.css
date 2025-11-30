@@ -63,8 +63,16 @@ select {
   background-color: var(--light-green);
 }
 
+.valid {
+  border: solid 2px var(--light-green);
+}
+.invalid {
+  border: solid 2px var(--light-red);
+}
+
 input:focus-visible,
 select:focus-visible {
+  border: solid 2px white;   /* To avoid to clash with the outline when on focus */
   outline: solid 2px var(--green);
 }
 
