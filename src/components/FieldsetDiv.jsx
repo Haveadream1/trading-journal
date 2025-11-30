@@ -11,17 +11,16 @@ export default function FieldsetDiv({
 }) {
     const {formData, handleDataChange} = useForm();
     const [valid, setValid] = useState(false); // Use state to render the validity of an input
-
-    // Form verification:
-        // Date cannot be in the future
-        // PNL cannot be 0
+    const [errorMessage, setErrorMessage] = useState(); // Allow to display an error message depending of the input
 
     // Asset input cannot be empty
     const checkAsset = (asset) => {
         if (asset === "") {
-            setValid(false)
+            setValid(false);
+            setErrorMessage("Please enter a valid asset name");
         } else {
             setValid(true);
+            setErrorMessage("");
         }
     }
 
@@ -34,18 +33,22 @@ export default function FieldsetDiv({
         const chosenFormatedDate = chosenDate.split(". ").join("-").slice(0, -1);
 
         if (chosenFormatedDate > currentFormatedDate) {
-            setValid(false)
+            setValid(false);
+            setErrorMessage("Please enter a date earlier or equal to today");
         } else {
-            setValid(true)
+            setValid(true);
+            setErrorMessage("");
         }
     }
 
     // PNL input cannot be set at 0
     const checkPNL = (pnl) => {
         if (pnl === "0") {
-            setValid(false)
+            setValid(false);
+            setErrorMessage("Please enter a value different than zero");
         } else {
-            setValid(true)
+            setValid(true);
+            setErrorMessage("");
         }
     }
 
@@ -67,16 +70,16 @@ export default function FieldsetDiv({
                 break;
         }
 
-        handleDataChange(fieldset, label, value)
+        handleDataChange(fieldset, label, value);
     }
 
     useEffect(() => {
         if (options) {
             options.map((value) => {
-                console.log(value)
+                console.log(value);
             })
         }
-    }, [])
+    }, []);
 
     return (
         <div>
@@ -92,6 +95,11 @@ export default function FieldsetDiv({
                 </select>
             ):(
                 <input type={type} name={id} id={id} className={valid ? "valid" : "invalid"} placeholder={placeholder} aria-label={ariaLabel} onChange={onChangeHandler} required />
+            )}
+            {valid ? (
+                <small></small>
+            ):(
+                <small>{errorMessage}</small>
             )}
         </div>
     );
