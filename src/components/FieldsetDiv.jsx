@@ -15,15 +15,17 @@ export default function FieldsetDiv({
         // Date cannot be in the future
         // PNL cannot be 0
 
-    const showSuccess = () => {
-
+    const showSuccess = (element) => {
+        element.classList.remove("invalid");
+        element.classList.add("valid");
     }
 
-    const showError = () => {
-
+    const showError = (element) => {
+        element.classList.add("invalid");
+        element.classList.remove("valid");
     }
 
-    const checkDate = (chosendDate) => {
+    const checkDate = (chosendDate, element) => {
         const currentDate = new Date().toLocaleDateString();
         const currentFormatedDate = currentDate.split(". ").join("-").slice(0, -1); // YYYY MM DD
 
@@ -31,19 +33,22 @@ export default function FieldsetDiv({
         const chosenFormatedDate = chosenDate.split(". ").join("-").slice(0, -1);
 
         if (chosenFormatedDate > currentFormatedDate) {
-            console.log("error")
+            showError(element);
         } else {
-            console.log("success");
+            showSuccess(element);
         }
     }
 
-    const checkPNL = (pnl) => {
+    const checkPNL = (pnl, element) => {
         if (pnl === "0") {
-            console.error("P/L value is 0, please input a correct value");
+            showError(element);
+        } else {
+            showSuccess(element);
         }
     }
 
     const onChangeHandler = (e) => {
+        const element = e.target
         const value = e.target.value;
         const label = e.target.id;
         const fieldset = e.target.parentElement.parentElement.id;
@@ -51,10 +56,10 @@ export default function FieldsetDiv({
         // Handle only the input that need a verification
         switch (label) {
             case "net-pnl":
-                checkPNL(value);
+                checkPNL(value, element);
                 break;
             case "trade-date":
-                checkDate(value);
+                checkDate(value, element);
                 break;
         }
 
