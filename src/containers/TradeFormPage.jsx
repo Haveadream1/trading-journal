@@ -1,9 +1,11 @@
+import { useEffect } from "react";
 import FieldsetDiv from "../components/FieldsetDiv";
 import MainHeading from "../components/MainHeading";
 import { useForm } from "../data/FormContext";
+import { Link } from "react-router";
 
 export default function TradeFormPage() {
-    const {formData} = useForm();
+    const {formData, pushTradeToHistory, tradeHistory} = useForm();
 
     const directionOptions = [ // Passing an array of objects is easier than each values separately
         {value: "buy", text: "Buy (Long)"},
@@ -17,10 +19,13 @@ export default function TradeFormPage() {
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
-
+        pushTradeToHistory(formData); // Store the submited trade
         console.log("Successfully saved the trade:", formData)
     }
 
+    useEffect(() => {
+        console.log(tradeHistory);
+    }, [tradeHistory])
 
     return (
         <main className="trade-form-page">
@@ -74,7 +79,7 @@ export default function TradeFormPage() {
 
                 <div className="form-buttons-container">
                     <button className="save-button" type="submit" aria-label="Submit form">Save Trade</button>
-                    <a href="/journal" className="cancel-button" aria-label="Cancel form">Cancel</a>
+                    <Link to="/journal" className="cancel-button" aria-label="Cancel form">Cancel</Link>
                 </div>
             </form>
         </main>
