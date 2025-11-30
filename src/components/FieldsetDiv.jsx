@@ -11,11 +11,53 @@ export default function FieldsetDiv({
 }) {
     const {formData, handleDataChange} = useForm();
 
+    // Form verification:
+        // Date cannot be in the future
+        // PNL cannot be 0
+
+    const showSuccess = () => {
+
+    }
+
+    const showError = () => {
+
+    }
+
+    const checkDate = (chosendDate) => {
+        const currentDate = new Date().toLocaleDateString();
+        const currentFormatedDate = currentDate.split(". ").join("-").slice(0, -1); // YYYY MM DD
+
+        const chosenDate = new Date(chosendDate).toLocaleDateString();
+        const chosenFormatedDate = chosenDate.split(". ").join("-").slice(0, -1);
+
+        if (chosenFormatedDate > currentFormatedDate) {
+            console.log("error")
+        } else {
+            console.log("success");
+        }
+    }
+
+    const checkPNL = (pnl) => {
+        if (pnl === "0") {
+            console.error("P/L value is 0, please input a correct value");
+        }
+    }
+
     const onChangeHandler = (e) => {
         const value = e.target.value;
         const label = e.target.id;
         const fieldset = e.target.parentElement.parentElement.id;
-        console.log(fieldset, label, value)
+
+        // Handle only the input that need a verification
+        switch (label) {
+            case "net-pnl":
+                checkPNL(value);
+                break;
+            case "trade-date":
+                checkDate(value);
+                break;
+        }
+
         handleDataChange(fieldset, label, value)
     }
 
