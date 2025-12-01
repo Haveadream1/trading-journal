@@ -7,7 +7,11 @@ export default function FieldsetDiv({
     type,
     placeholder,
     ariaLabel,
-    options
+    options,
+    select, 
+    input,
+    datalist,
+    listId
 }) {
     const {formData, handleDataChange, modifyInputValidity} = useForm();
     const [valid, setValid] = useState(false); // Use state to render the validity of an input
@@ -91,7 +95,7 @@ export default function FieldsetDiv({
         <div>
             <label htmlFor={id}>{label}<span className="required">*</span></label>
             {/* Conditional rendering */}
-            {type === "select" ? (
+            {select && (
                 <select name={id} id={id} aria-label={ariaLabel} onChange={onChangeHandler} required>
                     {options && 
                         options.map((obj, index) => { // Loop through the passed object, and display an option element for each
@@ -99,8 +103,15 @@ export default function FieldsetDiv({
                         })
                     }
                 </select>
-            ):(
-                <input type={type} name={id} id={id} className={valid ? "valid" : "invalid"} placeholder={placeholder} aria-label={ariaLabel} onChange={onChangeHandler} required />
+            )}
+            {input && (
+                <input type={type} list={listId} name={id} id={id} className={valid ? "valid" : "invalid"} placeholder={placeholder} aria-label={ariaLabel} onChange={onChangeHandler} required />
+            )}
+            {datalist && (
+                <datalist id={listId}>
+                    <option value="tset"></option>
+                    <option value="abc"></option>
+                </datalist>
             )}
             {valid ? (
                 <small></small>
