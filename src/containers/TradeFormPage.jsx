@@ -6,7 +6,7 @@ import { Link, Navigate, useNavigate } from "react-router";
 
 export default function TradeFormPage() {
     const navigate = useNavigate();
-    const {formData, pushTradeToHistory, tradeHistory} = useForm();
+    const {formData, pushTradeToHistory, tradeHistory, validity} = useForm();
 
     const directionOptions = [ // Passing an array of objects is easier than each values separately
         {value: "buy", text: "Buy (Long)"},
@@ -21,6 +21,13 @@ export default function TradeFormPage() {
     const handleFormSubmit = (e) => {
         e.preventDefault();
 
+        // Loop through the objects to check that all inputs are valid
+        for (let i in validity) {
+            if (!validity[i]) {
+                console.log("Some inputs are still not valid to save the trade")
+                return
+            }
+        }
         pushTradeToHistory(formData); // Store the submited trade
         console.log("Successfully saved the trade:", formData)
 
