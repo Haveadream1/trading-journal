@@ -9,17 +9,19 @@ export default function FieldsetDiv({
     ariaLabel,
     options
 }) {
-    const {formData, handleDataChange} = useForm();
+    const {formData, handleDataChange, modifyInputValidity} = useForm();
     const [valid, setValid] = useState(false); // Use state to render the validity of an input
     const [errorMessage, setErrorMessage] = useState(); // Allow to display an error message depending of the input
 
     // Asset input cannot be empty
     const checkAsset = (asset) => {
         if (asset === "") {
-            setValid(false);
+            setValid(false); // Locally defined state, used to conditionally render the element
+            modifyInputValidity("asset-symbol", false); // Global state defined in the context to check the all form validity
             setErrorMessage("Please enter a valid asset name");
         } else {
             setValid(true);
+            modifyInputValidity("asset-symbol", true);
             setErrorMessage("");
         }
     }
@@ -34,9 +36,11 @@ export default function FieldsetDiv({
 
         if (chosenFormatedDate > currentFormatedDate) {
             setValid(false);
+            modifyInputValidity("trade-date", false);
             setErrorMessage("Please enter a date earlier or equal to today");
         } else {
             setValid(true);
+            modifyInputValidity("trade-date", true);
             setErrorMessage("");
         }
     }
@@ -45,9 +49,11 @@ export default function FieldsetDiv({
     const checkPNL = (pnl) => {
         if (pnl === "0") {
             setValid(false);
+            modifyInputValidity("net-pnl", false);
             setErrorMessage("Please enter a value different than zero");
         } else {
             setValid(true);
+            modifyInputValidity("net-pnl", true);
             setErrorMessage("");
         }
     }
