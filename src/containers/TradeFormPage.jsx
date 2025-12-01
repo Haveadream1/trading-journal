@@ -53,16 +53,18 @@ export default function TradeFormPage() {
                     <legend id="trade-details-legend">Trade details</legend>
                     <FieldsetDiv 
                         id="asset-symbol"
-                        label="Asset"    
-                        type="text"
-                        placeholder="BTC/USD"
-                        ariaLabel="Asset symbol input"
+                        listId="assets"
+                        label="Asset"
+                        input="true"
+                        datalist="true"
+                        ariaLabel="Asset symbol datalist"
                     />
                     <FieldsetDiv
                         id="direction-select"
                         label="Direction"
                         type="select"
                         ariaLabel="Directions select"
+                        select="true"
                         options={directionOptions}
                     />
                 </fieldset>
@@ -73,6 +75,7 @@ export default function TradeFormPage() {
                         id="trade-date"
                         label="Date"
                         type="date"
+                        input="true"
                         ariaLabel="Trade date input"
                     />
                     <FieldsetDiv
@@ -80,6 +83,7 @@ export default function TradeFormPage() {
                         label="Outcome"
                         type="select"
                         ariaLabel="Outcomes select"
+                        select="true"
                         options={outcomeOptions}
                     />
                     <FieldsetDiv 
@@ -87,6 +91,7 @@ export default function TradeFormPage() {
                         label="Net P/L"    
                         type="number"
                         placeholder="2500.51"
+                        input="true"
                         ariaLabel="Net P/L input"
                     />
                 </fieldset>
