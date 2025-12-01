@@ -5,6 +5,11 @@ const FormContext = createContext(null);
 
 export default function FormProvider({ children }) {
     const [tradeHistory, setTradeHistory] = useState([]); // Array to store trades
+    const [validity, setValidity] = useState({
+        "asset-symbol": false,
+        "trade-date": false,
+        "net-pnl": false,
+    })
 
     // Define the structure and give default values
     const [formData, setFormData] = useState({
@@ -36,12 +41,22 @@ export default function FormProvider({ children }) {
             return [...prev, trade];
         })
     }
+
+    // Define a method to modify the boolean value depending on validity
+    const modifyInputValidity = (label, bool) => {
+        setValidity((prev) => ({
+            ...prev,
+            [label]: bool
+        }))
+    }
     
     const value = {
         formData,
         handleDataChange,
         tradeHistory,
         pushTradeToHistory,
+        validity,
+        modifyInputValidity,
     };
 
     return (
