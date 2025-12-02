@@ -8,6 +8,14 @@ export default function TradeFormPage() {
     const navigate = useNavigate();
     const {formData, pushTradeToHistory, tradeHistory, validity} = useForm();
 
+    // List of top 5 stocks, forex, commodities, crypto,
+    const assetOptions = [
+        "NVDA", "APPL", "AMZN", "TSLA", "GOOGL",
+        "EUR/USD", "USD/JPY", "GBP/USD", "USD/CHF", "AUD/USD",
+        "CL", "GC", "HG", "SL", "KC",
+        "BTC", "ETH", "USDT", "BNB", "USD coin",
+    ]
+
     const directionOptions = [ // Passing an array of objects is easier than each values separately
         {value: "buy", text: "Buy (Long)"},
         {value: "sell", text: "Sell (Short)"},
@@ -57,6 +65,8 @@ export default function TradeFormPage() {
                         label="Asset"
                         input="true"
                         datalist="true"
+                        options={assetOptions}
+                        placeholder="GBP/USD"
                         ariaLabel="Asset symbol datalist"
                     />
                     <FieldsetDiv
