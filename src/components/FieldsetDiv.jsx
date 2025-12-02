@@ -109,8 +109,11 @@ export default function FieldsetDiv({
             )}
             {datalist && (
                 <datalist id={listId}>
-                    <option value="tset"></option>
-                    <option value="abc"></option>
+                    {options &&
+                        options.map((asset, index) => {
+                            return <option key={index} value={asset}></option>
+                        })
+                    }
                 </datalist>
             )}
             {valid ? (
