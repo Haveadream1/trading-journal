@@ -42,7 +42,7 @@ export default function TradeFormPage() {
         // Time out to make sure data is saved before we switch of pages
         setTimeout(() => {
             navigate("/journal"); // Redirect to journal page
-        }, 1000)
+        }, 200);
     }
 
     useEffect(() => {
