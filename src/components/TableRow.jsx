@@ -5,6 +5,8 @@ export default function TableRow({
     outcome,
     pnl
 }) {
+    // TODO add a button to remove the trade from the journal
+    
     return (
         <tr className="table-values-row">
             <td className="table-date-value">{date}</td>
@@ -19,9 +21,9 @@ export default function TableRow({
             </td>
             <td className="table-pnl-value">
                 {outcome === "loss" ? (
-                    <span className="pnl-span-loss">{pnl}</span>
+                    <span className="pnl-span-loss">{pnl} €</span>
                 ):(
-                    <span className="pnl-span-win">{pnl}</span>
+                    <span className="pnl-span-win">{pnl} €</span>
                 )}
             </td>
         </tr>
