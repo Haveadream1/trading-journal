@@ -48,3 +48,14 @@ a {
 .profile-picture {
   object-fit: contain;
 }
+
+/* Mobile styling */
+@media (max-width: 556px) {
+  header {
+    display: flex;
+    flex-direction: column;
+  }
+  nav {
+    gap: var(--space-sm);
+  }
+}
