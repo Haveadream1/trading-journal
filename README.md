@@ -12,6 +12,11 @@ Create a dataContext to handle the form
 (Temporary) Display stored data from context
 Add form verifications
 Add conditional form submit
+Install recharts library
+Setup the charts with example data
+Setup the cell with example data
+
+Create a data context for trade statistics
 
 <!-- TODO: remove the loading lazy of the span el and pass the aria to the a el -->
 <!-- TODO: Heading elements are not in a sequentially-descending order h1 - h2, currently h1-h3 -->
