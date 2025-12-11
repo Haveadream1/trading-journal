@@ -22,6 +22,7 @@
   justify-content: center;
   padding: var(--space-sm);
   text-align: center;
+  gap: var(--space-sm);
   border-radius: var(--space-sm);
 }
 
@@ -41,6 +42,7 @@
   grid-row: 1 / span 2 ;
   grid-column: 1;
   object-fit: contain;
+  padding: var(--space-xs);
   border-radius: var(--space-sm);
   background-color: var(--light-green);
 }
@@ -52,13 +54,6 @@
 
 /* Mobile styling */
 @media (max-width: 556px) {
-  header {
-    display: flex;
-    flex-direction: column;
-  }
-  nav {
-    gap: var(--space-sm);
-  }
   .performance-metrics-grid {
     grid-template-rows: repeat(3, 1fr);
     grid-template-columns: none;
