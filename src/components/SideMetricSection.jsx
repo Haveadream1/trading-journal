@@ -5,7 +5,8 @@ export default function SideMetricSection({
     titleValue,
     graphMetric,
     assetMetric,
-    economicMetric
+    articleMetric,
+    data
 }) {
     const trades = [
         { id: 1, asset: 'AAPL', direction: 'Buy', outcome: 'Win', date: '2024-01-15', netPNL: 200},
@@ -35,10 +36,13 @@ export default function SideMetricSection({
                     <p className="trade-count">48 Trades</p>
                 </>
             )}
-            {economicMetric && (
-                <ul className="economic-event-list">
-                    <li className="economic-event-value">Core PPI / 2  PM / USD</li>
-                    <li className="economic-event-value">Retail sales / 2: 30PM / CHF</li>
+            {articleMetric && (
+                <ul className="articles-list">
+                    {data.map((article, key) => (  // Loop through the fetched data to display the latest articles
+                        <li key={key}>
+                            <a href={article.link} className="article-link" target="_blank" rel="noopener noreferrer">{article.tickers}</a>
+                        </li>
+                    ))}
                 </ul>
             )}
         </section>
