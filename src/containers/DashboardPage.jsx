@@ -2,8 +2,11 @@ import MainHeading from "../components/MainHeading";
 import MetricSection from "../components/MetricSection";
 import Header from "../components/Header";
 import SideMetricSection from "../components/SideMetricSection";
+import { useData } from "../data/DataContext";
 
-export default function DashboardPage({ }) {
+export default function DashboardPage() {
+    const articles = useData();
+
     return (
         <>
             <Header />
@@ -47,9 +50,10 @@ export default function DashboardPage({ }) {
                     />
 
                     <SideMetricSection 
-                        titleId="side-metric-heading-economic-even" 
-                        titleValue="Upcoming economic red events:" 
-                        economicMetric="true" 
+                        titleId="side-metric-heading-articles" 
+                        titleValue="Recent financial articles:"
+                        data={articles} 
+                        articleMetric="true" 
                     />
                 </div>
             </main>
