@@ -4,16 +4,16 @@
 
 import { createContext, useContext, useEffect, useState } from "react";
 
-const DataContext = createContext();
+const DataContext = createContext(null);
 
 export function DataProvider({ children }) {
-    const [articles, setArticles] = useState(null);
+    const [articles, setArticles] = useState([]); // Avoid NULL as default when fetching data
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 // ! Do not push API key to github
-                const response = await fetch("");
+                const response = await fetch();
                 if (!response.ok) {
                     throw new Error("Failed to fetch data", error);
                 }
