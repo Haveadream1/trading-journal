@@ -15,12 +15,13 @@ Add conditional form submit
 Install recharts library
 Setup the charts with example data
 Setup the cell with example data
-
-Create a data context for trade statistics
+Create a data context for latest articles
+Fetch Data and display it
 
 <!-- TODO: remove the loading lazy of the span el and pass the aria to the a el -->
 <!-- TODO: Heading elements are not in a sequentially-descending order h1 - h2, currently h1-h3 -->
 <!-- TODO: render a lightHouse -->
+<!-- TODO: make sure all internal link are using LINK of the react router -->
 
 Ideas:
 * maybe do an API call to retrieve common assets and display it like a search bar in the input
