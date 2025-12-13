@@ -55,9 +55,21 @@
 }
 
 .side-metric-section {
-  list-style-position: inside; /* To make sure the bullets points will be part of the text */
   background-color: var(--light-green);
   border: solid 1px white;
+}
+
+.articles-list {
+  display: table;
+  margin: 0 auto;
+  text-align: justify;
+  list-style-position: inside; /* To make sure the bullets points will be part of the text */
+}
+.article-link{
+  color: black;
+}
+.article-link:hover {
+  opacity: 60%;
 }
 
 /* Mobile styling */
