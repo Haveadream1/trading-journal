@@ -22,6 +22,7 @@ Fetch Data and display it
 <!-- TODO: Heading elements are not in a sequentially-descending order h1 - h2, currently h1-h3 -->
 <!-- TODO: render a lightHouse -->
 <!-- TODO: make sure all internal link are using LINK of the react router -->
+<!-- Do something for the profile icon, it currently redirects to nothing -->
 
 Ideas:
 * maybe do an API call to retrieve common assets and display it like a search bar in the input
