@@ -20,7 +20,7 @@ import './styles/TradeFormStyle.css'
 import FormProvider from './data/FormContext'
 import { DataProvider } from './data/DataContext'
 
-// Router will take care of the webiste navigation
+// Router will take care of the website navigation
 // TODO add errorElement
 const router = createBrowserRouter([
   {
@@ -50,4 +50,4 @@ createRoot(document.getElementById('root')).render(
     </DataProvider>
   </StrictMode>,
 )
-    {/* // we pass the defined path above as a value */}
+{/* // we pass the defined path above as a value */}
