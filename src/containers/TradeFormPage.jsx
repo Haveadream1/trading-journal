@@ -36,7 +36,7 @@ export default function TradeFormPage() {
                 return
             }
         }
-        pushTradeToHistory(formData); // Store the submited trade
+        pushTradeToHistory(formData); // Store the submitted trade
         console.log("Successfully saved the trade:", formData)
 
         // Time out to make sure data is saved before we switch of pages
