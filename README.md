@@ -25,6 +25,7 @@ Fetch Data and display it
 <!-- TODO: render a lightHouse -->
 <!-- TODO: make sure all internal link are using LINK of the react router -->
 <!-- TODO: Don't forget to add assigned width and height to image to improve performance -->
+<!-- TODO: Place the website icon into the "assets" directory and remove "react.svg" -->
 <!-- Do something for the profile icon, it currently redirects to nothing -->
 
 ## Project ideas
