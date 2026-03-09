@@ -24,6 +24,7 @@ Fetch Data and display it
 <!-- TODO: Heading elements are not in a sequentially-descending order h1 - h2, currently h1-h3 -->
 <!-- TODO: render a lightHouse -->
 <!-- TODO: make sure all internal link are using LINK of the react router -->
+<!-- TODO: Don't forget to add assigned width and height to image to improve performance -->
 <!-- Do something for the profile icon, it currently redirects to nothing -->
 
 ## Project ideas
