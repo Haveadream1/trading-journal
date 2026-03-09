@@ -57,4 +57,4 @@ export default function AnalyticSection({
         </section>
     );
 }
-{/*  Assign key to identify elements with REACT, follor fill as recharts docs */}
+{/*  Assign key to identify elements with REACT, fill attribute documentation on recharts */}
