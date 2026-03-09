@@ -31,14 +31,14 @@ export default function FieldsetDiv({
     }
 
     // Date cannot be in the future
-    const checkDate = (chosendDate) => {
+    const checkDate = (userPickedDate) => {
         const currentDate = new Date().toLocaleDateString();
-        const currentFormatedDate = currentDate.split(". ").join("-").slice(0, -1); // YYYY MM DD
+        const currentFormattedDate = currentDate.split(". ").join("-").slice(0, -1); // YYYY MM DD
 
-        const chosenDate = new Date(chosendDate).toLocaleDateString();
-        const chosenFormatedDate = chosenDate.split(". ").join("-").slice(0, -1);
+        const chosenDate = new Date(userPickedDate).toLocaleDateString();
+        const chosenFormattedDate = chosenDate.split(". ").join("-").slice(0, -1);
 
-        if (chosenFormatedDate > currentFormatedDate) {
+        if (chosenFormattedDate > currentFormattedDate) {
             setValid(false);
             modifyInputValidity("trade-date", false);
             setErrorMessage("Please enter a date earlier or equal to today");
