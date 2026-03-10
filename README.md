@@ -31,3 +31,8 @@ Fetch Data and display it
 ## Project ideas
 Ideas:
 * maybe do an API call to retrieve common assets and display it like a search bar in the input
+
+## README structure
+Include stack used
+Create a small documentation step by steps to clone the repo
+Deployment link
