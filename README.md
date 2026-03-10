@@ -34,5 +34,11 @@ Ideas:
 
 ## README structure
 Include stack used
+Short summary and presentation of the project/website
+Sub-points to explain the different features
+Personal self-reflection (things that I learn, tested, feeling and motivation, ....)
 Create a small documentation step by steps to clone the repo
 Deployment link
+Add screenshots of the projects
+Credits (image, icons, graphs provider, etc...)
+License ? Need to check
