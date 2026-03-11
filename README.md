@@ -29,6 +29,8 @@ Fetch Data and display it
 <!-- Do something for the profile icon, it currently redirects to nothing --> 
 <!-- TODO: When we fetch data from the database, create conditional rendering for when we don't have data yet -> loading
 Or when the database is empty then display a message -->
+<!-- TODO: use the primary key value as a key attribute when we map through the data  -->
+<!-- TODO: add defaultProps if needed -->
 
 ## Project ideas
 Ideas:
