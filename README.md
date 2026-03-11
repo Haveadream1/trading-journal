@@ -26,7 +26,9 @@ Fetch Data and display it
 <!-- TODO: make sure all internal link are using LINK of the react router -->
 <!-- TODO: Don't forget to add assigned width and height to image to improve performance -->
 <!-- TODO: Place the website icon into the "assets" directory and remove "react.svg" -->
-<!-- Do something for the profile icon, it currently redirects to nothing -->
+<!-- Do something for the profile icon, it currently redirects to nothing --> 
+<!-- TODO: When we fetch data from the database, create conditional rendering for when we don't have data yet -> loading
+Or when the database is empty then display a message -->
 
 ## Project ideas
 Ideas:
