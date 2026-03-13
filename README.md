@@ -31,6 +31,7 @@ Fetch Data and display it
 Or when the database is empty then display a message -->
 <!-- TODO: use the primary key value as a key attribute when we map through the data  -->
 <!-- TODO: add defaultProps if needed -->
+<!-- TODO: when we use useEffect, check if we need a clean up function -->
 
 ## Project ideas
 Ideas:
