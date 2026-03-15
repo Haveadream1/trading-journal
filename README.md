@@ -32,7 +32,9 @@ Or when the database is empty then display a message -->
 <!-- TODO: use the primary key value as a key attribute when we map through the data  -->
 <!-- TODO: add defaultProps if needed -->
 <!-- TODO: when we use useEffect, check if we need a clean up function -->
-<!-- TODO: check if the use of useEffect is necessary to avoid performance issues -->
+<!-- TODO: check if the use of useEffect is necessary to avoid performance issues 
+Not to use to transform data when rendering or not to handle user events-->
+<!-- TODO: add errorPage in router -->
 
 ## Project ideas
 Ideas:
