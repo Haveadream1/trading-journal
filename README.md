@@ -35,6 +35,7 @@ Or when the database is empty then display a message -->
 <!-- TODO: check if the use of useEffect is necessary to avoid performance issues 
 Not to use to transform data when rendering or not to handle user events-->
 <!-- TODO: add errorPage in router -->
+<!-- TODO: create a graph to visualize the database -->
 
 ## Project ideas
 Ideas:
