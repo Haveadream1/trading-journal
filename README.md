@@ -23,7 +23,7 @@ Create a server directory to separate the front and backend
 Init package json
 Install express to the server
 Install PostgreSQL (RDBMS)
-Creating the project in Neon (open-source PostgreSQL DBMS)
+Creating the project in Neon (open-source serverless based PostgreSQL DBMS)
 Fetch the connection string
 Create a environment file in our server directory
 Define a constant and assign to it our connection string
@@ -46,6 +46,9 @@ Or when the database is empty then display a message -->
 Not to use to transform data when rendering or not to handle user events-->
 <!-- TODO: add errorPage in router -->
 <!-- TODO: create a graph to visualize the database -->
+<!-- TODO: render formatting and linter tool (Prettier, ESlint) -->
+
+<!-- CHECK: if I can remove the pushed node_modules from the cache, because it's not supposed to be pushed, but placed in .gitignore-->
 
 ## Project ideas
 Ideas:
