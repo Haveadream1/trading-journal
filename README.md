@@ -19,6 +19,10 @@ Setup the cell with example data
 Create a data context for latest articles
 Fetch Data and display it
 Create a branch feature/backend to work safely on the backend
+Create a server directory to separate the front and backend
+Init package json
+Install express to the server
+Install PostgreSQL
 
 ## To-do
 <!-- TODO: remove the loading lazy of the span el and pass the aria to the a el -->
