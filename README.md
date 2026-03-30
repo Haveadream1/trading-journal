@@ -22,7 +22,12 @@ Create a branch feature/backend to work safely on the backend
 Create a server directory to separate the front and backend
 Init package json
 Install express to the server
-Install PostgreSQL
+Install PostgreSQL (RDBMS)
+Creating the project in Neon (open-source PostgreSQL DBMS)
+Fetch the connection string
+Create a environment file in our server directory
+Define a constant and assign to it our connection string
+Specify the env file in our gitignore file to protect it from being seeing by others
 
 ## To-do
 <!-- TODO: remove the loading lazy of the span el and pass the aria to the a el -->
