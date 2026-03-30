@@ -24,10 +24,14 @@ Init package json
 Install express to the server
 Install PostgreSQL (RDBMS)
 Creating the project in Neon (open-source serverless based PostgreSQL DBMS)
+  * Allow us to avoid hosting the database in our computer and easier to deploy later
 Fetch the connection string
 Create a environment file in our server directory
 Define a constant and assign to it our connection string
 Specify the env file in our gitignore file to protect it from being seeing by others
+Define the data schema in Neon
+  * Specify attributes and conditions
+  * Provide default values
 
 ## To-do
 <!-- TODO: remove the loading lazy of the span el and pass the aria to the a el -->
