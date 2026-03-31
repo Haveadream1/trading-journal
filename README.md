@@ -31,7 +31,11 @@ Define a constant and assign to it our connection string
 Specify the env file in our gitignore file to protect it from being seeing by others
 Define the data schema in Neon
   * Specify attributes and conditions
-  * Provide default values
+Create a file to easily access the data schema of our database
+Install dotenv
+  * to be able to securely fetch env variables
+Install cors
+  * to allow React to interact with express with ports
 
 ## To-do
 <!-- TODO: remove the loading lazy of the span el and pass the aria to the a el -->
@@ -51,6 +55,7 @@ Not to use to transform data when rendering or not to handle user events-->
 <!-- TODO: add errorPage in router -->
 <!-- TODO: create a graph to visualize the database -->
 <!-- TODO: render formatting and linter tool (Prettier, ESlint) -->
+  <!-- SUB-TODO: check all double or single quotes -->
 
 <!-- CHECK: if I can remove the pushed node_modules from the cache, because it's not supposed to be pushed, but placed in .gitignore-->
 
