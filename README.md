@@ -36,6 +36,9 @@ Install dotenv
   * to be able to securely fetch env variables
 Install cors
   * to allow React to interact with express with ports
+Create server.js file 
+  * to initialize the express server
+(Push to github due to change of pc operating system)
 
 ## To-do
 <!-- TODO: remove the loading lazy of the span el and pass the aria to the a el -->
