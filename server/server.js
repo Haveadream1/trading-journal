@@ -6,3 +6,7 @@ const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`Server is UP !`);
 });
+
+// Set up middleware
+// Create connection with database from env URL
+// Set up routes
