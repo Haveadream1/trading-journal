@@ -26,7 +26,7 @@ Install PostgreSQL (RDBMS)
 Creating the project in Neon (open-source serverless based PostgreSQL DBMS)
   * Allow us to avoid hosting the database in our computer and easier to deploy later
 Fetch the connection string
-Create a environment file in our server directory
+Create a .env file (environment) in our server directory
 Define a constant and assign to it our connection string
 Specify the env file in our gitignore file to protect it from being seeing by others
 Define the data schema in Neon
