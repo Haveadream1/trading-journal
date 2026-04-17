@@ -2,6 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 
+require('dotenv').config(); // Tool used to load env variables
+
 // Fetch from env file or provide default port
 const PORT = process.env.PORT || 3000;
 
