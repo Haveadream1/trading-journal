@@ -44,6 +44,8 @@ Create a database file that will contain the connection pool
   * allow to reuse database connection (+ for performance)
   * test connection
   * run/start server with 'node server.js' command
+Set up the routes
+  * perform health check with /api/health
 
 ## To-do
 <!-- TODO: remove the loading lazy of the span el and pass the aria to the a el -->
@@ -64,6 +66,7 @@ Not to use to transform data when rendering or not to handle user events-->
 <!-- TODO: create a graph to visualize the database -->
 <!-- TODO: render formatting and linter tool (Prettier, ESlint) -->
   <!-- SUB-TODO: check all double or single quotes -->
+<!--TODO: treat and check data for database to avoid injections -->
 
 <!-- CHECK: if I can remove the pushed node_modules from the cache, because it's not supposed to be pushed, but placed in .gitignore-->
 
