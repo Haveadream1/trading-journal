@@ -39,6 +39,11 @@ Install cors
 Create server.js file 
   * to initialize the express server
 (Push to github due to change of pc operating system)
+Import and set up middlewares in server file
+Create a database file that will contain the connection pool
+  * allow to reuse database connection (+ for performance)
+  * test connection
+  * run/start server with 'node server.js' command
 
 ## To-do
 <!-- TODO: remove the loading lazy of the span el and pass the aria to the a el -->
