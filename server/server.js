@@ -1,8 +1,9 @@
+require('dotenv').config(); // Tool used to load env variables, must be at the top
+
 const express = require('express');
 const cors = require('cors');
 const app = express();
-
-require('dotenv').config(); // Tool used to load env variables
+const pool = require('./database'); // Import the database connection pool
 
 // Fetch from env file or provide default port
 const PORT = process.env.PORT || 3000;
