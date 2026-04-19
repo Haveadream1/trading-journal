@@ -5,6 +5,10 @@ const cors = require('cors');
 const app = express();
 const pool = require('./database'); // Import the database connection pool
 
+// Set up middleware, act as a bridge for communication between Frontend and Backend
+app.use(cors()); // Enable React to communicate with the server
+app.use(express.json());  // Enable the server to parse(read) JSON data from React
+
 // Fetch from env file or provide default port
 const PORT = process.env.PORT || 3000;
 
@@ -12,10 +16,6 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is UP !`);
 });
-
-// Set up middleware, act as a bridge for communication between Frontend and Backend
-app.use(cors()); // Enable React to communicate with the server
-app.use(express.json());  // Enable the server to parse(read) JSON data from React
 
 // Create connection with database from env URL
 // Set up routes
