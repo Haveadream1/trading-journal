@@ -46,6 +46,10 @@ Create a database file that will contain the connection pool
   * run/start server with 'node server.js' command
 Set up the routes
   * perform health check with /api/health
+  * GET route
+    * read, fetch data from the database (like all trades for ie)
+  * POST route
+    * insert data to the database
 
 ## To-do
 <!-- TODO: remove the loading lazy of the span el and pass the aria to the a el -->
