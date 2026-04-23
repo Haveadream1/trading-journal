@@ -26,24 +26,64 @@ export default function TradeFormPage() {
         {value: "loss", text: "Loss"},
     ]
 
-    const handleFormSubmit = (e) => {
+    // const handleFormSubmit = (e) => {
+    //     e.preventDefault();
+
+    //     // Loop through the objects to check that all inputs are valid
+    //     for (let i in validity) {
+    //         if (!validity[i]) {
+    //             console.log("Some inputs are still not valid to save the trade")
+    //             return
+    //         }
+    //     }
+    //     pushTradeToHistory(formData); // Store the submitted trade
+    //     console.log("Successfully saved the trade:", formData);
+
+    //     // Time out to make sure data is saved before we switch of pages
+    //     setTimeout(() => {
+    //         navigate("/journal"); // Redirect to journal page
+    //     }, 200);
+    // }
+
+    // TODO: check if we need to handle here with a onSubmit and put the handle in the form context
+    const handleFormSubmit = async (e) => {
         e.preventDefault();
 
-        // Loop through the objects to check that all inputs are valid
+        // Validity check for all inputs before sending data to API
         for (let i in validity) {
             if (!validity[i]) {
-                console.log("Some inputs are still not valid to save the trade")
-                return
+                console.error("Some inputs are still invalid !");
+                return;
             }
         }
-        pushTradeToHistory(formData); // Store the submitted trade
-        console.log("Successfully saved the trade:", formData)
 
-        // Time out to make sure data is saved before we switch of pages
-        setTimeout(() => {
-            navigate("/journal"); // Redirect to journal page
-        }, 200);
-    }
+        try {
+            // Send the form data to API to save it in the database
+            const response = await fetch('/api/trades', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json' // Metadata affilied to request to indicate the data type to server
+                },
+                body: JSON.stringify(formData) // Send form values as JSON
+            });
+
+            const data = await response.json(); // Parse the JSON response from server
+
+            if (response.ok) {
+                pushTradeToHistory(data); // Store the submitted trade
+                console.log("Successfully saved the trade:", data);
+
+                // Time out to make sure data is saved before we switch of pages
+                setTimeout(() => {
+                    navigate("/journal"); // Redirect to journal page
+                }, 200);
+            } else {
+                console.error("Failed to save the trade", data.error);
+            }
+        } catch (err) {
+            console.error("Error submitting the trade", err.message);
+        }
+    };
 
     useEffect(() => {
         console.log(tradeHistory);
