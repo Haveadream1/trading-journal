@@ -35,7 +35,9 @@ export default function FormProvider({ children }) {
         }));
     }
 
-    // Define a method to store temporary the trades with react
+    // Define a method to store locally the trades with state
+        // Like that the UI update faster than waiting from the server response
+        // Improve UX (user experience) and reduce the number of fetch
     const pushTradeToHistory = (trade) => {
         setTradeHistory(prev => {
             return [...prev, trade];
