@@ -7,9 +7,35 @@ import { useEffect } from "react";
 export default function JournalPage() {
     const {tradeHistory, formData} = useForm();
 
+    const [trades, setTrades] = useState([]);
+
     // useEffect(() => {
     //     console.log(tradeHistory, formData);
     // }, [tradeHistory, formData]);
+
+    // Fetch the trades from database
+    const fetchTrades = async () => {
+        try {
+            const response = await fetch('/api/trades'); // Simplier form because GET don't need to send data in body
+            const data = await response.json();
+            
+            if (response.ok) {
+                console.log('Successfully fetched trades');
+                setTrades(data);
+            } else {
+                console.error('Failed to fetch trades', data.error);
+            }
+
+        } catch (err) {
+            console.error('Error fetching trades from database', err.message);
+        }
+    }
+
+    // Only fetch when the component is mounted
+        // TODO: test
+    useEffect(() => {
+        fetchTrades();
+    }, [])
 
     return (
         <>
@@ -33,15 +59,16 @@ export default function JournalPage() {
 
                     <tbody>
                         {/* // For now use the data stored in the context before switching to SQL and Node.js */}
-                        {tradeHistory.length > 0 ? (
-                            tradeHistory.map((trade, index) =>  
+                        {trades.length > 0 ? (
+                            // Map each fetched trade as a TableRow component
+                            trades.map((trade) =>  
                                 <TableRow
-                                    key={index}
-                                    date={trade["trade-outcome"]["trade-date"]}
-                                    asset={trade["trade-details"]["asset-symbol"]}
-                                    direction={trade["trade-details"]["direction-select"]}
-                                    outcome={trade["trade-outcome"]["outcome-select"]}
-                                    pnl={trade["trade-outcome"]["net-pnl"]}
+                                    key={trade.id} // Use the primary from the database as key index
+                                    date={trade.trade_date} // Refer to the column name in database
+                                    asset={trade.asset}
+                                    direction={trade.direction}
+                                    outcome={trade.outcome}
+                                    pnl={trade.net_pnl}
                                 />
                             )
                         ):(
