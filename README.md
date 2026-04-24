@@ -76,7 +76,10 @@ Not to use to transform data when rendering or not to handle user events-->
 <!-- TODO: create a graph to visualize the database -->
 <!-- TODO: render formatting and linter tool (Prettier, ESlint) -->
   <!-- SUB-TODO: check all double or single quotes -->
-<!--TODO: treat and check data for database to avoid injections -->
+<!-- TODO: treat and check data for database to avoid injections -->
+<!-- TODO: check displayed trades, some inputs are differ from others, issues with the value -->
+<!-- TODO: refactor the loading while we wait for the server response>
+<!-- TODO: refactor the styling of the Win/Loss button>
 
 <!-- CHECK: if I can remove the pushed node_modules from the cache, because it's not supposed to be pushed, but placed in .gitignore-->
 
