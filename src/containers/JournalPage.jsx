@@ -1,14 +1,15 @@
 import MainHeading from "../components/MainHeading";
 import TableRow from "../components/TableRow";
 import Header from "../components/Header";
-import { useForm } from "../data/FormContext";
-import { useEffect } from "react";
+// import { useForm } from "../data/FormContext";
+import { useEffect, useState } from "react";
 
 export default function JournalPage() {
-    const {tradeHistory, formData} = useForm();
+    // const {tradeHistory, formData} = useForm();
 
     const [trades, setTrades] = useState([]);
 
+    // TODO: check with tradeHistory if it should be displayed in case of no load
     // useEffect(() => {
     //     console.log(tradeHistory, formData);
     // }, [tradeHistory, formData]);
@@ -64,7 +65,7 @@ export default function JournalPage() {
                             trades.map((trade) =>  
                                 <TableRow
                                     key={trade.id} // Use the primary from the database as key index
-                                    date={trade.trade_date} // Refer to the column name in database
+                                    date={trade.trade_date?.slice(0, 10)} // Refer to the column name in database
                                     asset={trade.asset}
                                     direction={trade.direction}
                                     outcome={trade.outcome}
