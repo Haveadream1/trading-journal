@@ -8,6 +8,22 @@ const DataContext = createContext(null);
 export function DataProvider({ children }) {
     const [stats, setStats] = useState([]);
 
+    const fetchStatistics = async () => {
+        try {
+            const response = await fetch('/api/statistics');
+            const data = await response.json();
+
+            if (response.ok) {
+                console.log('Successfully fetched statistics data');
+                setStats(data);
+            } else {
+                console.error('Failed to fetch statistics data', data.error);
+            }
+        } catch (err) {
+            console.error('Error fetching analytics from database', err.message);
+        }
+    }
+
     return (
         <DataContext.Provider value={stats}>
             {children}
