@@ -56,6 +56,12 @@ Refactor the form submit
   * store new trades in the database with the POST route
 Refactor the display of trades
   * fetch stored trades from the database with the GET route
+Create a route for analytics/dashboard
+  * so we can easily fetch corresponding columns
+  * define aggregate functions
+  * perform js calculations on data that cannot be retrieved in database
+Create a dataContext for analytics
+  * enable to access shared data from the route on dashboard/analytics page
 
 ## To-do
 <!-- TODO: remove the loading lazy of the span el and pass the aria to the a el -->
@@ -80,6 +86,7 @@ Not to use to transform data when rendering or not to handle user events-->
 <!-- TODO: check displayed trades, some inputs are differ from others, issues with the value -->
 <!-- TODO: refactor the loading while we wait for the server response>
 <!-- TODO: refactor the styling of the Win/Loss button>
+<!-- TODO: implement CRUD operations on trade -->
 
 <!-- CHECK: if I can remove the pushed node_modules from the cache, because it's not supposed to be pushed, but placed in .gitignore-->
 
