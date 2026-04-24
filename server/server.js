@@ -34,6 +34,46 @@ app.get('/api/trades', async (req, res) => {
   }
 });
 
+// total_trades: count all trades
+// total_pnl: sum all net_pnl
+// avg_win: average net_pnl when winning
+// avg_loss: average net_pnl when losing
+// biggest_win: max of net_pnl when winning
+// biggest_loss: min of net_pnl when losing
+// nbr_wins: count the number of winning trades
+// nbr_losses: count the number of losing trades
+// total_winning_pnl: sum of winning pnl
+// total_losing_pnl: sum of losing pnl
+
+// win_rate: (number of wins / numbers of trades) * 100
+// profit_factor: sum of winning net_pnl / sum of losing net_pnl
+// most_traded_asset: asset that appears the most
+// most_traded_asset_count: number of trades for most traded asset
+
+app.get('/api/analytics', async (req, res) => {
+  try {
+    const analyticsData = await pool.query(`
+      SELECT  
+        COUNT(*) as total_trades,
+        SUM(net_pnl) as total_pnl,
+        AVG(CASE WHEN outcome = 'Win' THEN net_pnl END) as avg_win,
+        AVG(CASE WHEN outcome = 'Loss' THEN net_pnl END) as avg_loss,
+        MAX(CASE WHEN outcome = 'Win' THEN net_pnl END) as biggest_win,
+        MIN(CASE WHEN outcome = 'Loss' THEN net_pnl END) as biggest_loss,
+        COUNT(CASE WHEN outcome = 'Win' THEN 1 END) as nbr_wins,
+        COUNT(CASE WHEN outcome = 'Loss' THEN 1 END) as nbr_losses,
+        SUM(CASE WHEN outcome = 'Win' THEN net_pnl END) as total_winning_pnl,
+        SUM(CASE WHEN outcome = 'Loss' THEN net_pnl END) as total_losing_pnl
+      FROM trades
+      WHERE COUNT(*) > 0;
+    `);
+
+  } catch (err) {
+    console.error('Failed to fetch aggregate data', err.message);
+    res.status(500).json({ error: 'Error with aggregate functions in database'});
+  }
+})
+
 // Set up POST route
 app.post('/api/trades', async (req, res) => {
   try {
