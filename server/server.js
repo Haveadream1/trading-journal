@@ -46,7 +46,7 @@ app.get('/api/trades', async (req, res) => {
 // total_losing_pnl: sum of losing pnl
 
 // win_rate: (number of wins / numbers of trades) * 100
-// profit_factor: sum of winning net_pnl / sum of losing net_pnl
+// profit_factor: total winning net_pnl / total losing net_pnl
 // most_traded_asset: asset that appears the most
 // most_traded_asset_count: number of trades for most traded asset
 
@@ -67,6 +67,17 @@ app.get('/api/analytics', async (req, res) => {
       FROM trades
       WHERE COUNT(*) > 0;
     `);
+
+    // aggregate function only return one row
+    const firstRow = analyticsData.rows[0];
+
+    // format the JSON to be sent for easier access later
+    res.json({
+      totalTrades: firstRow.total_trades,
+      totalPnl: parseFloat(firstRow.total_pnl),
+      winRate: (firstRow.nbr_wins / firstRow.total_trades) * 100,
+      profitFactor: firstRow.total_winning_pnl / firstRow.total_losing_pnl,
+    });
 
   } catch (err) {
     console.error('Failed to fetch aggregate data', err.message);
