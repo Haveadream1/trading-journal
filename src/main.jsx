@@ -18,7 +18,8 @@ import './styles/DashboardStyle.css'
 import './styles/JournalStyle.css'
 import './styles/TradeFormStyle.css'
 import FormProvider from './data/FormContext'
-import { DataProvider } from './data/DataContext'
+import DataProvider from './data/DataContext'
+import StatisticsProvider from './data/StatisticsContext'
 
 // Router will take care of the website navigation
 // TODO add errorElement
@@ -45,7 +46,9 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <DataProvider>
       <FormProvider>
-        <RouterProvider router={router} /> 
+        <StatisticsProvider>
+          <RouterProvider router={router} /> 
+        </StatisticsProvider>
       </FormProvider>
     </DataProvider>
   </StrictMode>,
