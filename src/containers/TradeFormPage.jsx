@@ -57,14 +57,26 @@ export default function TradeFormPage() {
             }
         }
 
+        // TODO: check if we should refactor the naming of the formData from FormContext
         try {
+            // Format data and assign them to the same name as the database columns
+            const formattedData = {
+                trade_date: formData['trade-outcome']['trade-date'],
+                asset: formData['trade-details']['asset-symbol'],
+                direction: formData['trade-details']['direction-select'],
+                outcome: formData['trade-outcome']['outcome-select'],
+                net_pnl: parseFloat(formData['trade-outcome']['net-pnl']),
+            }
+            // TODOD: remove after (debugging)
+            console.log(formattedData);
+            
             // Send the form data to API to save it in the database
             const response = await fetch('/api/trades', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json' // Metadata affilied to request to indicate the data type to server
                 },
-                body: JSON.stringify(formData) // Send form values as JSON
+                body: JSON.stringify(formattedData) // Send form values as JSON
             });
 
             const data = await response.json(); // Parse the JSON response from server
@@ -85,6 +97,7 @@ export default function TradeFormPage() {
         }
     };
 
+    // TODO: check if we remove after (debugging)
     useEffect(() => {
         console.log(tradeHistory);
     }, [tradeHistory])
