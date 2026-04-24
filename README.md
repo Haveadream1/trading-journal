@@ -50,6 +50,12 @@ Set up the routes
     * read, fetch data from the database (like all trades for ie)
   * POST route
     * insert data to the database
+Configure vite.config to avoid CORS issues
+  * by adding relative path, the browser will treat it as 'same-origin'
+Refactor the form submit
+  * store new trades in the database with the POST route
+Refactor the display of trades
+  * fetch stored trades from the database with the GET route
 
 ## To-do
 <!-- TODO: remove the loading lazy of the span el and pass the aria to the a el -->
