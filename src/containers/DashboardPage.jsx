@@ -56,7 +56,9 @@ export default function DashboardPage() {
                     <SideMetricSection 
                         titleId="side-metric-heading-asset" 
                         titleValue="Most traded asset" 
-                        assetMetric="true" 
+                        assetMetric="true"
+                        textAsset={`${stats.mostTradedAsset}`}
+                        textCount={`${stats.mostTradedAssetCount} trades`}
                     />
 
                     <SideMetricSection 
