@@ -44,39 +44,57 @@ app.get('/api/trades', async (req, res) => {
 // nbr_losses: count the number of losing trades
 // total_winning_pnl: sum of winning pnl
 // total_losing_pnl: sum of losing pnl
-
 // win_rate: (number of wins / numbers of trades) * 100
 // profit_factor: total winning net_pnl / total losing net_pnl
+
 // most_traded_asset: asset that appears the most
 // most_traded_asset_count: number of trades for most traded asset
 
-app.get('/api/analytics', async (req, res) => {
+const formatData = (type, value) => {
+  const num = Number(value) // Avoid error with JS about retrieved type from PostgreSQL
+  if (type === 'int') {
+    return parseInt(num);
+  } else {
+    return parseFloat(num.toFixed(2));
+  }
+}
+
+// ! FIX: the actual value is 'loss' and should be 'Loss', correct it in REACT
+app.get('/api/statistics', async (req, res) => {
   try {
-    const analyticsData = await pool.query(`
+    const statisticsData = await pool.query(`
       SELECT  
         COUNT(*) as total_trades,
         SUM(net_pnl) as total_pnl,
         AVG(CASE WHEN outcome = 'Win' THEN net_pnl END) as avg_win,
-        AVG(CASE WHEN outcome = 'Loss' THEN net_pnl END) as avg_loss,
+        AVG(CASE WHEN outcome = 'loss' THEN net_pnl END) as avg_loss,
         MAX(CASE WHEN outcome = 'Win' THEN net_pnl END) as biggest_win,
-        MIN(CASE WHEN outcome = 'Loss' THEN net_pnl END) as biggest_loss,
+        MIN(CASE WHEN outcome = 'loss' THEN net_pnl END) as biggest_loss,
         COUNT(CASE WHEN outcome = 'Win' THEN 1 END) as nbr_wins,
-        COUNT(CASE WHEN outcome = 'Loss' THEN 1 END) as nbr_losses,
+        COUNT(CASE WHEN outcome = 'loss' THEN 1 END) as nbr_losses,
         SUM(CASE WHEN outcome = 'Win' THEN net_pnl END) as total_winning_pnl,
-        SUM(CASE WHEN outcome = 'Loss' THEN net_pnl END) as total_losing_pnl
+        SUM(CASE WHEN outcome = 'loss' THEN net_pnl END) as total_losing_pnl
       FROM trades
-      WHERE COUNT(*) > 0;
+      HAVING COUNT(*) > 0;
     `);
 
     // aggregate function only return one row
-    const firstRow = analyticsData.rows[0];
+    const firstRow = statisticsData.rows[0];
 
     // format the JSON to be sent for easier access later
     res.json({
-      totalTrades: firstRow.total_trades,
-      totalPnl: parseFloat(firstRow.total_pnl),
-      winRate: (firstRow.nbr_wins / firstRow.total_trades) * 100,
-      profitFactor: firstRow.total_winning_pnl / firstRow.total_losing_pnl,
+      totalTrades: formatData('int', firstRow.total_trades),
+      totalPnl: formatData('float', firstRow.total_pnl),
+      avgWin: formatData('float', firstRow.avg_win),
+      avgLoss: formatData('float', firstRow.avg_loss),
+      biggestWin: formatData('float', firstRow.biggest_win),
+      biggestLoss: formatData('float',firstRow.biggest_loss),
+      nbrWins: formatData('int', firstRow.nbr_wins),
+      nbr_losses: formatData('int',firstRow.nbr_losses),
+      totalWinningPnl: formatData('float', firstRow.total_winning_pnl),
+      totalLosingPnl: formatData('float', firstRow.total_losing_pnl),
+      winRate: formatData('float', (firstRow.nbr_wins / firstRow.total_trades) * 100),
+      profitFactor: formatData('float', firstRow.total_winning_pnl / firstRow.total_losing_pnl),
     });
 
   } catch (err) {
