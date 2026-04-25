@@ -6,7 +6,9 @@ export default function SideMetricSection({
     graphMetric,
     assetMetric,
     articleMetric,
-    data
+    data,
+    textAsset,
+    textCount
 }) {
     const trades = [
         { id: 1, asset: 'AAPL', direction: 'Buy', outcome: 'Win', date: '2024-01-15', netPNL: 200},
@@ -32,8 +34,8 @@ export default function SideMetricSection({
             )}
             {assetMetric && (
                 <>
-                    <p className="asset-value">XAU / USD</p>
-                    <p className="trade-count">48 Trades</p>
+                    <p className="asset-value">{textAsset}</p>
+                    <p className="trade-count">{textCount}</p>
                 </>
             )}
             {articleMetric && (
