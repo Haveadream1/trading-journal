@@ -62,6 +62,8 @@ Create a route for analytics/dashboard
   * perform js calculations on data that cannot be retrieved in database
 Create a dataContext for analytics
   * enable to access shared data from the route on dashboard/analytics page
+Each time creating a new route either GET/POST, test it with Postman
+Fetch statistics data from context and display them on page
 
 ## To-do
 <!-- TODO: remove the loading lazy of the span el and pass the aria to the a el -->
@@ -78,7 +80,7 @@ Or when the database is empty then display a message -->
 <!-- TODO: when we use useEffect, check if we need a clean up function -->
 <!-- TODO: check if the use of useEffect is necessary to avoid performance issues 
 Not to use to transform data when rendering or not to handle user events-->
-<!-- TODO: add errorPage in router -->
+<!-- TODO: add errorPage/error element in router -->
 <!-- TODO: create a graph to visualize the database -->
 <!-- TODO: render formatting and linter tool (Prettier, ESlint) -->
   <!-- SUB-TODO: check all double or single quotes -->
@@ -87,7 +89,10 @@ Not to use to transform data when rendering or not to handle user events-->
 <!-- TODO: refactor the loading while we wait for the server response>
 <!-- TODO: refactor the styling of the Win/Loss button>
 <!-- TODO: implement CRUD operations on trade -->
-
+<!-- TODO: add loader when fetching>
+<!-- TODO: modify name of DataContext to API (finnancial)>
+<!-- TODO: add a loading stats from fetched data also>
+<!-- TODO: make the average win/loss be about pnl not winRate>
 <!-- CHECK: if I can remove the pushed node_modules from the cache, because it's not supposed to be pushed, but placed in .gitignore-->
 
 ## Project ideas
