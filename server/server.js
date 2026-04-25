@@ -46,6 +46,7 @@ app.get('/api/trades', async (req, res) => {
 // total_losing_pnl: sum of losing pnl
 // win_rate: (number of wins / numbers of trades) * 100
 // profit_factor: total winning net_pnl / total losing net_pnl
+// weekly_pnl: sum of the net_pnl over a span of 7 days
 
 // most_traded_asset: asset that appears the most
 // most_traded_asset_count: number of trades for most traded asset
@@ -62,7 +63,7 @@ const formatData = (type, value) => {
 // ! FIX: the actual value is 'loss' and should be 'Loss', correct it in REACT
 app.get('/api/statistics', async (req, res) => {
   try {
-    const statisticsData = await pool.query(`
+    const baseQuery = `
       SELECT  
         COUNT(*) as total_trades,
         SUM(net_pnl) as total_pnl,
@@ -76,25 +77,40 @@ app.get('/api/statistics', async (req, res) => {
         SUM(CASE WHEN outcome = 'loss' THEN net_pnl END) as total_losing_pnl
       FROM trades
       HAVING COUNT(*) > 0;
-    `);
+    `;
+
+    const weeklyQuery = `
+      SELECT 
+        SUM(net_pnl) as weekly_pnl
+      FROM trades
+      WHERE trade_date >= CURRENT_DATE - INTERVAL '7 days';
+    `;
+
+    // Enabled to run multiple asynchronous query in parallel
+    const [baseResult, weeklyResult] = await Promise.all([
+      pool.query(baseQuery),
+      pool.query(weeklyQuery)
+    ]);
 
     // aggregate function only return one row
-    const firstRow = statisticsData.rows[0];
+    const baseRow = baseResult.rows[0];
+    const weeklyRow = weeklyResult.rows[0]
 
     // format the JSON to be sent for easier access later
     res.json({
-      totalTrades: formatData('int', firstRow.total_trades),
-      totalPnl: formatData('float', firstRow.total_pnl),
-      avgWin: formatData('float', firstRow.avg_win),
-      avgLoss: formatData('float', firstRow.avg_loss),
-      biggestWin: formatData('float', firstRow.biggest_win),
-      biggestLoss: formatData('float',firstRow.biggest_loss),
-      nbrWins: formatData('int', firstRow.nbr_wins),
-      nbr_losses: formatData('int',firstRow.nbr_losses),
-      totalWinningPnl: formatData('float', firstRow.total_winning_pnl),
-      totalLosingPnl: formatData('float', firstRow.total_losing_pnl),
-      winRate: formatData('float', (firstRow.nbr_wins / firstRow.total_trades) * 100),
-      profitFactor: formatData('float', firstRow.total_winning_pnl / firstRow.total_losing_pnl),
+      totalTrades: formatData('int', baseRow.total_trades),
+      totalPnl: formatData('float', baseRow.total_pnl),
+      avgWin: formatData('float', baseRow.avg_win),
+      avgLoss: formatData('float', baseRow.avg_loss),
+      biggestWin: formatData('float', baseRow.biggest_win),
+      biggestLoss: formatData('float',baseRow.biggest_loss),
+      nbrWins: formatData('int', baseRow.nbr_wins),
+      nbr_losses: formatData('int',baseRow.nbr_losses),
+      totalWinningPnl: formatData('float', baseRow.total_winning_pnl),
+      totalLosingPnl: formatData('float', baseRow.total_losing_pnl),
+      winRate: formatData('float', (baseRow.nbr_wins / baseRow.total_trades) * 100),
+      profitFactor: formatData('float', baseRow.total_winning_pnl / baseRow.total_losing_pnl),
+      weeklyPnl: formatData('float', weeklyRow.weekly_pnl)
     });
 
   } catch (err) {
