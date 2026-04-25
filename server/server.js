@@ -86,15 +86,26 @@ app.get('/api/statistics', async (req, res) => {
       WHERE trade_date >= CURRENT_DATE - INTERVAL '7 days';
     `;
 
+    const mostTradedQuery = `
+      SELECT
+        asset, COUNT(*) as trade_count
+      FROM trades
+      GROUP BY asset
+      ORDER BY trade_count DESC
+      LIMIT 1;
+    `;
+
     // Enabled to run multiple asynchronous query in parallel
-    const [baseResult, weeklyResult] = await Promise.all([
+    const [baseResult, weeklyResult, mostTradedResult] = await Promise.all([
       pool.query(baseQuery),
-      pool.query(weeklyQuery)
+      pool.query(weeklyQuery),
+      pool.query(mostTradedQuery)
     ]);
 
     // aggregate function only return one row
     const baseRow = baseResult.rows[0];
     const weeklyRow = weeklyResult.rows[0]
+    const mostTradedRow = mostTradedResult.rows[0];
 
     // format the JSON to be sent for easier access later
     res.json({
@@ -110,7 +121,9 @@ app.get('/api/statistics', async (req, res) => {
       totalLosingPnl: formatData('float', baseRow.total_losing_pnl),
       winRate: formatData('float', (baseRow.nbr_wins / baseRow.total_trades) * 100),
       profitFactor: formatData('float', baseRow.total_winning_pnl / baseRow.total_losing_pnl),
-      weeklyPnl: formatData('float', weeklyRow.weekly_pnl)
+      weeklyPnl: formatData('float', weeklyRow.weekly_pnl),
+      mostTradedAsset: mostTradedRow.asset, // string
+      mostTradedAssetCount: formatData('int', mostTradedRow.trade_count)
     });
 
   } catch (err) {
