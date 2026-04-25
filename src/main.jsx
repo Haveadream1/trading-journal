@@ -18,8 +18,8 @@ import './styles/DashboardStyle.css'
 import './styles/JournalStyle.css'
 import './styles/TradeFormStyle.css'
 import FormProvider from './data/FormContext'
-import DataProvider from './data/DataContext'
-import StatisticsProvider from './data/StatisticsContext'
+import { DataProvider } from './data/DataContext'
+import { StatisticsProvider } from './data/StatisticsContext'
 
 // Router will take care of the website navigation
 // TODO add errorElement
