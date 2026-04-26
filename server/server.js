@@ -47,9 +47,10 @@ app.get('/api/trades', async (req, res) => {
 // win_rate: (number of wins / numbers of trades) * 100
 // profit_factor: total winning net_pnl / total losing net_pnl
 // weekly_pnl: sum of the net_pnl over a span of 7 days
-
 // most_traded_asset: asset that appears the most
 // most_traded_asset_count: number of trades for most traded asset
+
+// trades: the list of all sorted trades by date
 
 const formatData = (type, value) => {
   const num = Number(value) // Avoid error with JS about retrieved type from PostgreSQL
@@ -95,17 +96,29 @@ app.get('/api/statistics', async (req, res) => {
       LIMIT 1;
     `;
 
+    // Sum trades where the date is the same
+    const tradeListQuery = `
+      SELECT 
+        trade_date,
+        SUM(net_pnl) as net_pnl
+      FROM trades
+      GROUP BY trade_date
+      ORDER BY trade_date ASC;
+    `;
+
     // Enabled to run multiple asynchronous query in parallel
-    const [baseResult, weeklyResult, mostTradedResult] = await Promise.all([
+    const [baseResult, weeklyResult, mostTradedResult, tradeListResult] = await Promise.all([
       pool.query(baseQuery),
       pool.query(weeklyQuery),
-      pool.query(mostTradedQuery)
+      pool.query(mostTradedQuery),
+      pool.query(tradeListQuery)
     ]);
 
     // aggregate function only return one row
     const baseRow = baseResult.rows[0];
     const weeklyRow = weeklyResult.rows[0]
     const mostTradedRow = mostTradedResult.rows[0];
+    const tradeListRow = tradeListResult.rows;
 
     // format the JSON to be sent for easier access later
     res.json({
@@ -121,9 +134,13 @@ app.get('/api/statistics', async (req, res) => {
       totalLosingPnl: formatData('float', baseRow.total_losing_pnl),
       winRate: formatData('float', (baseRow.nbr_wins / baseRow.total_trades) * 100),
       profitFactor: formatData('float', baseRow.total_winning_pnl / baseRow.total_losing_pnl),
+
       weeklyPnl: formatData('float', weeklyRow.weekly_pnl),
+
       mostTradedAsset: mostTradedRow.asset, // string
-      mostTradedAssetCount: formatData('int', mostTradedRow.trade_count)
+      mostTradedAssetCount: formatData('int', mostTradedRow.trade_count),
+
+      tradeList: tradeListRow
     });
 
   } catch (err) {
