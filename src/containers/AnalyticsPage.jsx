@@ -27,7 +27,7 @@ export default function AnalyticsPage() {
                         <AnalyticSection
                             titleId="weekly-results-heading"
                             titleValue="Weekly results"
-                            text="+856,40 €"
+                            // text="+856,40 €"
                             text={`+ ${stats.weeklyPnl} €`}
                         />
 
