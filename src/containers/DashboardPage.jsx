@@ -10,8 +10,24 @@ export default function DashboardPage() {
     const articles = useData();
     const stats = useStatistics();
 
+    // TODO: net_pnl should take the previous value and add up
+    // TODO: need to consider also negative values
+    const formatDate = (tradeList) => {
+        // To avoid errors when we wait for data
+        if (!tradeList) {
+            return []; 
+        }
+
+        // Loop through each object and format the trade date
+        return tradeList.map(trade => ({
+            ...trade,
+            trade_date: trade.trade_date?.slice(0, 10)
+        }));
+    }
+
     useEffect(() => {
-        console.log(stats);
+        console.log(stats.tradeList);
+        //formatDate(stats.tradeList);
     }, [])
 
     return (
@@ -50,7 +66,8 @@ export default function DashboardPage() {
                     <SideMetricSection 
                         titleId="metric-heading-graph" 
                         titleValue="Trades graphic" 
-                        graphMetric="true" 
+                        graphMetric="true"
+                        trades={formatDate(stats.tradeList)}
                     />
 
                     <SideMetricSection 
