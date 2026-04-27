@@ -21,9 +21,21 @@ export default function AnalyticsPage() {
             trade_count: parseInt(trade.trade_count)
         }));
     }
-    
+
+    const createAverageDataObj = (avgWin, avgLoss) => {
+        if (!avgWin || !avgLoss) {
+            return [];
+        }
+
+        const avgData = [
+            {name: 'Average win', value: avgWin},
+            {name: 'Average loss', value: avgLoss}
+        ];
+        return avgData;
+    }
+
     useEffect(() => {
-        console.log(formatDate(stats.tradeList))
+        console.log(formatDate(stats.tradeList), stats.avgWin, stats.avgLoss);
     }, []);
 
     // TODO: if we keep total number of trades, then need to check in the code if we need to replace account-grow
@@ -78,6 +90,7 @@ export default function AnalyticsPage() {
                             titleId="average-graph-heading"
                             titleValue="Average Win/Loss"
                             averageGraph="true"
+                            avgData={createAverageDataObj(stats.avgWin, stats.avgLoss)}
                         />
                     </div>
                 </div>
