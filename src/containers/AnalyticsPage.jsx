@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import AnalyticSection from "../components/AnalyticSection";
 import Header from "../components/Header";
 import MainHeading from "../components/MainHeading";
@@ -5,6 +6,25 @@ import { useStatistics } from "../data/StatisticsContext";
 
 export default function AnalyticsPage() {
     const stats = useStatistics();
+
+    const formatDate = (tradeList) => {
+        // To avoid errors when we wait for data
+        if (!tradeList) {
+            return []; 
+        }
+
+        // Loop through each object and format the trade date
+        return tradeList.map(trade => ({
+            ...trade,
+            net_pnl: parseFloat(trade.net_pnl),
+            trade_date: trade.trade_date?.slice(0, 10),
+            trade_count: parseInt(trade.trade_count)
+        }));
+    }
+    
+    useEffect(() => {
+        console.log(formatDate(stats.tradeList))
+    }, []);
 
     // TODO: if we keep total number of trades, then need to check in the code if we need to replace account-grow
     return (
@@ -16,12 +36,14 @@ export default function AnalyticsPage() {
                     text="Discover you results in a simple way"
                 />
 
+                {/* // ! change ID and class name of monthly */}
                 <div className="analytics-grid">
                     <div className="analytics-sub-left-grid">
                         <AnalyticSection
                             titleId="monthly-graph-heading"
-                            titleValue="Monthly PNL"
+                            titleValue="Numbers of trades per date"
                             monthlyGraph="true"
+                            trades={formatDate(stats.tradeList)}
                         />
 
                         <AnalyticSection
