@@ -5,16 +5,17 @@ export default function AnalyticSection({
     titleValue,
     text,
     monthlyGraph,
-    averageGraph
+    averageGraph,
+    trades
 }) {
-    const trades = [
-        { id: 1, asset: 'AAPL', direction: 'Buy', outcome: 'Win', date: '2024-01-15', netPNL: 200},
-        { id: 2, asset: 'NVDA', direction: 'Sell', outcome: 'Loss', date: '2024-01-16', netPNL: -100},
-        { id: 3, asset: 'AUD/USD', direction: 'Buy', outcome: 'Win', date: '2024-01-17', netPNL: 150},
-        { id: 4, asset: 'ETH', direction: 'Sell', outcome: 'Win', date: '2024-01-18', netPNL: 350},
-        { id: 5, asset: 'BTC', direction: 'Buy', outcome: 'Loss', date: '2024-01-19', netPNL: -200},
-        { id: 6, asset: 'USD coin', direction: 'Sell', outcome: 'Loss', date: '2024-01-20', netPNL: -150},
-    ];
+    // const trades = [
+    //     { id: 1, asset: 'AAPL', direction: 'Buy', outcome: 'Win', date: '2024-01-15', netPNL: 200},
+    //     { id: 2, asset: 'NVDA', direction: 'Sell', outcome: 'Loss', date: '2024-01-16', netPNL: -100},
+    //     { id: 3, asset: 'AUD/USD', direction: 'Buy', outcome: 'Win', date: '2024-01-17', netPNL: 150},
+    //     { id: 4, asset: 'ETH', direction: 'Sell', outcome: 'Win', date: '2024-01-18', netPNL: 350},
+    //     { id: 5, asset: 'BTC', direction: 'Buy', outcome: 'Loss', date: '2024-01-19', netPNL: -200},
+    //     { id: 6, asset: 'USD coin', direction: 'Sell', outcome: 'Loss', date: '2024-01-20', netPNL: -150},
+    // ];
 
     const PNLtrades = [
         { id: 1, asset: 'AAPL', direction: 'Buy', outcome: 'Win', date: '2024-01-15', netPNL: 200, fill: '#00C49F'},
@@ -37,9 +38,9 @@ export default function AnalyticSection({
             {monthlyGraph && (
                 <ResponsiveContainer>
                     <BarChart responsive data={trades}>
-                        <XAxis dataKey="date" />
-                        <YAxis dataKey="netPNL"/>
-                        <Bar dataKey="netPNL" fill="#82ca9d" />
+                        <XAxis dataKey="trade_date" />
+                        <YAxis dataKey="trade_count"/>
+                        <Bar dataKey="trade_count" fill="#82ca9d" />
                     </BarChart>
                 </ResponsiveContainer>
             )}
