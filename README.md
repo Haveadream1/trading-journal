@@ -64,6 +64,7 @@ Create a dataContext for analytics
   * enable to access shared data from the route on dashboard/analytics page
 Each time creating a new route either GET/POST, test it with Postman
 Fetch statistics data from context and display them on page
+Fetch data, treat it and display in the corresponding metric section
 
 ## To-do
 <!-- TODO: remove the loading lazy of the span el and pass the aria to the a el -->
@@ -93,6 +94,10 @@ Not to use to transform data when rendering or not to handle user events-->
 <!-- TODO: modify name of DataContext to API (finnancial)>
 <!-- TODO: add a loading stats from fetched data also>
 <!-- TODO: make the average win/loss be about pnl not winRate>
+<!-- TODO: check if lost trade should have a negative pnl value or we handle with the outcome>
+<!-- TODO: limit the number of trades/data fetched for the graphic to see clear data>
+
+<!-- ! There is two different ways referenced in the pages P/L and PNL, need to choose>
 <!-- CHECK: if I can remove the pushed node_modules from the cache, because it's not supposed to be pushed, but placed in .gitignore-->
 
 ## Project ideas
