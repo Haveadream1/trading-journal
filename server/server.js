@@ -36,8 +36,8 @@ app.get('/api/trades', async (req, res) => {
 
 // total_trades: count all trades
 // total_pnl: sum all net_pnl
-// avg_winning_pnl: average net_pnl when winning
-// avg_losing_pnl: average net_pnl when losing
+// avg_win: sum of all winning trades / number of winning trades or by using avg
+// avg_loss: sum of all losing trades / number of losing trades or by using avg
 // biggest_win: max of net_pnl when winning
 // biggest_loss: min of net_pnl when losing
 // nbr_wins: count the number of winning trades
@@ -68,8 +68,8 @@ app.get('/api/statistics', async (req, res) => {
       SELECT  
         COUNT(*) as total_trades,
         SUM(net_pnl) as total_pnl,
-        AVG(CASE WHEN outcome = 'Win' THEN net_pnl END) as avg_winning_pnl,
-        AVG(CASE WHEN outcome = 'loss' THEN net_pnl END) as avg_losing_pnl,
+        AVG(CASE WHEN outcome = 'Win' THEN net_pnl END) as avg_win,
+        AVG(CASE WHEN outcome = 'loss' THEN net_pnl END) as avg_loss,
         MAX(CASE WHEN outcome = 'Win' THEN net_pnl END) as biggest_win,
         MIN(CASE WHEN outcome = 'loss' THEN net_pnl END) as biggest_loss,
         COUNT(CASE WHEN outcome = 'Win' THEN 1 END) as nbr_wins,
@@ -97,15 +97,15 @@ app.get('/api/statistics', async (req, res) => {
     `;
 
     // Sum trades where the date is the same
-      const tradeListQuery = `
-        SELECT 
-          COUNT(*) as trade_count,
-          trade_date,
-          SUM(net_pnl) as net_pnl
-        FROM trades
-        GROUP BY trade_date
-        ORDER BY trade_date ASC;
-      `;
+    const tradeListQuery = `
+      SELECT 
+        COUNT(*) as trade_count,
+        trade_date,
+        SUM(net_pnl) as net_pnl
+      FROM trades
+      GROUP BY trade_date
+      ORDER BY trade_date ASC;
+    `;
 
     // Enabled to run multiple asynchronous query in parallel
     const [baseResult, weeklyResult, mostTradedResult, tradeListResult] = await Promise.all([
@@ -125,8 +125,8 @@ app.get('/api/statistics', async (req, res) => {
     res.json({
       totalTrades: formatData('int', baseRow.total_trades),
       totalPnl: formatData('float', baseRow.total_pnl),
-      avgWinningPnl: formatData('float', baseRow.avg_win),
-      avgLosingPnl: formatData('float', baseRow.avg_loss),
+      avgWin: formatData('float', baseRow.avg_win),
+      avgLoss: formatData('float', baseRow.avg_loss),
       biggestWin: formatData('float', baseRow.biggest_win),
       biggestLoss: formatData('float',baseRow.biggest_loss),
       nbrWins: formatData('int', baseRow.nbr_wins),
