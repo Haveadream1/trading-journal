@@ -10,8 +10,11 @@ export default function DashboardPage() {
     const articles = useData();
     const stats = useStatistics();
 
+    //  ! NOTE: maybe the first graph should be the number of trades
+
     // TODO: net_pnl should take the previous value and add up
     // TODO: need to consider also negative values
+    // !: dashboardPage and analyticsPage share this function, -> put in context ?
     const formatDate = (tradeList) => {
         // To avoid errors when we wait for data
         if (!tradeList) {
@@ -21,6 +24,7 @@ export default function DashboardPage() {
         // Loop through each object and format the trade date
         return tradeList.map(trade => ({
             ...trade,
+            net_pnl: parseFloat(trade.net_pnl),
             trade_date: trade.trade_date?.slice(0, 10)
         }));
     }
@@ -42,7 +46,7 @@ export default function DashboardPage() {
                 <div className="performance-metrics-grid">
                     <MetricSection 
                         titleId="metric-heading-total-pnl" 
-                        titleValue="Total P/L" 
+                        titleValue="Total PnL" 
                         // text="15,150.25 €" 
                         text={`${stats.totalPnl} €`}
                     />
@@ -65,7 +69,7 @@ export default function DashboardPage() {
                 <div className="graphic-metrics-grid">
                     <SideMetricSection 
                         titleId="metric-heading-graph" 
-                        titleValue="Trades graphic" 
+                        titleValue="PnL Over time" 
                         graphMetric="true"
                         trades={formatDate(stats.tradeList)}
                     />
