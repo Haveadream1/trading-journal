@@ -6,7 +6,8 @@ export default function AnalyticSection({
     text,
     monthlyGraph,
     averageGraph,
-    trades
+    trades,
+    avgData 
 }) {
     // const trades = [
     //     { id: 1, asset: 'AAPL', direction: 'Buy', outcome: 'Win', date: '2024-01-15', netPNL: 200},
@@ -23,10 +24,11 @@ export default function AnalyticSection({
     ];
 
     // Look at example from recharts if we need to change the type of graphs
-    const data = [
-        { name: 'Average win', value: 70 }, // represents percents
-        { name: 'Average loss', value: 30 },
-    ];
+    // const data = [
+    //     { name: 'Average win', value: 70 }, // represents percents
+    //     { name: 'Average loss', value: 30 },
+    // ];
+    // ? Different colors betweeb the charts but it doesn't look good when they have the same 
     const COLORS = ['#00C49F', '#c41a00ff'];
 
     return (
@@ -47,8 +49,8 @@ export default function AnalyticSection({
             {averageGraph && (
                 <ResponsiveContainer>
                     <PieChart responsive>
-                        <Pie data={data} label="name" dataKey="value">
-                            {data.map((key, index) => (
+                        <Pie data={avgData} label="name" dataKey="value">
+                            {avgData.map((key, index) => (
                                 <Cell key={key} fill={COLORS[index % COLORS.length]} />
                             ))}
                         </Pie>
