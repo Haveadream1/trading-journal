@@ -65,9 +65,10 @@ Create a dataContext for analytics
 Each time creating a new route either GET/POST, test it with Postman
 Fetch statistics data from context and display them on page
 Fetch data, treat it and display in the corresponding metric section
+Handle and add fixes from the to-dos list
 
 ## To-do
-<!-- TODO: remove the loading lazy of the span el and pass the aria to the a el -->
+<!-- TODO: pass the aria to the a el -->
 <!-- TODO: Heading elements are not in a sequentially-descending order h1 - h2, currently h1-h3 -->
 <!-- TODO: render a lightHouse -->
 <!-- TODO: make sure all internal link are using LINK of the react router -->
@@ -83,8 +84,10 @@ Or when the database is empty then display a message -->
 Not to use to transform data when rendering or not to handle user events-->
 <!-- TODO: add errorPage/error element in router -->
 <!-- TODO: create a graph to visualize the database -->
+
 <!-- TODO: render formatting and linter tool (Prettier, ESlint) -->
   <!-- SUB-TODO: check all double or single quotes -->
+  
 <!-- TODO: treat and check data for database to avoid injections -->
 <!-- TODO: check displayed trades, some inputs are differ from others, issues with the value -->
 <!-- TODO: refactor the loading while we wait for the server response>
@@ -96,6 +99,10 @@ Not to use to transform data when rendering or not to handle user events-->
 <!-- TODO: make the average win/loss be about pnl not winRate>
 <!-- TODO: check if lost trade should have a negative pnl value or we handle with the outcome>
 <!-- TODO: limit the number of trades/data fetched for the graphic to see clear data>
+<!-- TODO: refactor the structure of the project with a client directory>
+<!-- TODO: component should be DUMB while container SMART>
+<!-- TODO: if the outcome is set to loss then we can input only negative values, opposite with win>
+<!-- TODO: add a general state to handle the colors for charts, so in the future everything can be more easily changed>
 
 <!-- ! There is two different ways referenced in the pages P/L and PNL, need to choose>
 <!-- CHECK: if I can remove the pushed node_modules from the cache, because it's not supposed to be pushed, but placed in .gitignore-->
