@@ -11,16 +11,6 @@ export default function SideMetricSection({
     textAsset,
     textCount
 }) {
-    // const trades = [
-    //     { id: 1, asset: 'AAPL', direction: 'Buy', outcome: 'Win', date: '2024-01-15', netPNL: 200},
-    //     { id: 2, asset: 'NVDA', direction: 'Sell', outcome: 'Loss', date: '2024-01-16', netPNL: -100},
-    //     { id: 3, asset: 'AUD/USD', direction: 'Buy', outcome: 'Win', date: '2024-01-17', netPNL: 150},
-    //     { id: 4, asset: 'ETH', direction: 'Sell', outcome: 'Win', date: '2024-01-18', netPNL: 350},
-    //     { id: 5, asset: 'BTC', direction: 'Buy', outcome: 'Loss', date: '2024-01-19', netPNL: -200},
-    //     { id: 6, asset: 'USD coin', direction: 'Sell', outcome: 'Loss', date: '2024-01-20', netPNL: -150},
-    // ];
-
-    // ! 2 issues data is not ordered, negative values are not represented
     return (
         <section className={graphMetric ? ("trade-results-graphic") : ("side-metric-section")} aria-labelledby={titleId}>
             <h3 id={titleId}>{titleValue}</h3>
@@ -42,8 +32,10 @@ export default function SideMetricSection({
             )}
             {articleMetric && (
                 <ul className="articles-list">
-                    {data.map((article, key) => (  // Loop through the fetched data to display the latest articles
+                    {/* Loop through the fetched data to display the latest articles */}
+                    {data.map((article, key) => (
                         <li key={key}>
+                            {/* Good practice with external links, use noopener and noreferrer for (security/performance) */}
                             <a href={article.link} className="article-link" target="_blank" rel="noopener noreferrer">{article.tickers}</a>
                         </li>
                     ))}
