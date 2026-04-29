@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import FieldsetDiv from "../components/FieldsetDiv";
 import MainHeading from "../components/MainHeading";
 import { useForm } from "../data/FormContext";
@@ -6,7 +5,7 @@ import { Link, Navigate, useNavigate } from "react-router";
 
 export default function TradeFormPage() {
     const navigate = useNavigate();
-    const {formData, pushTradeToHistory, tradeHistory, validity} = useForm();
+    const {formData, pushTradeToHistory, validity} = useForm();
 
     // List of top 5 stocks, forex, commodities, crypto,
     const assetOptions = [
@@ -16,7 +15,8 @@ export default function TradeFormPage() {
         "BTC", "ETH", "USDT", "BNB", "USD coin",
     ]
 
-    const directionOptions = [ // Passing an array of objects is easier than each values separately
+    // Passing an array of objects is easier than each values separately
+    const directionOptions = [
         {value: "buy", text: "Buy (Long)"},
         {value: "sell", text: "Sell (Short)"},
     ]
@@ -26,26 +26,6 @@ export default function TradeFormPage() {
         {value: "loss", text: "Loss"},
     ]
 
-    // const handleFormSubmit = (e) => {
-    //     e.preventDefault();
-
-    //     // Loop through the objects to check that all inputs are valid
-    //     for (let i in validity) {
-    //         if (!validity[i]) {
-    //             console.log("Some inputs are still not valid to save the trade")
-    //             return
-    //         }
-    //     }
-    //     pushTradeToHistory(formData); // Store the submitted trade
-    //     console.log("Successfully saved the trade:", formData);
-
-    //     // Time out to make sure data is saved before we switch of pages
-    //     setTimeout(() => {
-    //         navigate("/journal"); // Redirect to journal page
-    //     }, 200);
-    // }
-
-    // TODO: check if we need to handle here with a onSubmit and put the handle in the form context
     const handleFormSubmit = async (e) => {
         e.preventDefault();
 
@@ -57,7 +37,6 @@ export default function TradeFormPage() {
             }
         }
 
-        // TODO: check if we should refactor the naming of the formData from FormContext
         try {
             // Format data and assign them to the same name as the database columns
             const formattedData = {
@@ -67,8 +46,6 @@ export default function TradeFormPage() {
                 outcome: formData['trade-outcome']['outcome-select'],
                 net_pnl: parseFloat(formData['trade-outcome']['net-pnl']),
             }
-            // TODOD: remove after (debugging)
-            console.log(formattedData);
             
             // Send the form data to API to save it in the database
             const response = await fetch('/api/trades', {
@@ -88,7 +65,7 @@ export default function TradeFormPage() {
                 // Time out to make sure data is saved before we switch of pages
                 setTimeout(() => {
                     navigate("/journal"); // Redirect to journal page
-                }, 200);
+                }, 125);
             } else {
                 console.error("Failed to save the trade", data.error);
             }
@@ -97,10 +74,10 @@ export default function TradeFormPage() {
         }
     };
 
-    // TODO: check if we remove after (debugging)
-    useEffect(() => {
-        console.log(tradeHistory);
-    }, [tradeHistory])
+    // Debugging purpose
+    // useEffect(() => {
+    //     console.log(tradeHistory);
+    // }, [tradeHistory])
 
     return (
         <main className="trade-form-page">
@@ -151,11 +128,11 @@ export default function TradeFormPage() {
                     />
                     <FieldsetDiv 
                         id="net-pnl"
-                        label="Net P/L"    
+                        label="Net PnL"    
                         type="number"
                         placeholder="2500.51"
                         input="true"
-                        ariaLabel="Net P/L input"
+                        ariaLabel="Net PnL input"
                     />
                 </fieldset>
 
