@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import AnalyticSection from "../components/AnalyticSection";
 import Header from "../components/Header";
 import MainHeading from "../components/MainHeading";
@@ -13,7 +12,7 @@ export default function AnalyticsPage() {
             return []; 
         }
 
-        // Loop through each object and format the trade date
+        // Loop through each object and format the attributes
         return tradeList.map(trade => ({
             ...trade,
             net_pnl: parseFloat(trade.net_pnl),
@@ -23,22 +22,22 @@ export default function AnalyticsPage() {
     }
 
     const createAverageDataObj = (avgWin, avgLoss) => {
-        if (!avgWin || !avgLoss) {
+        // this check allows 0 values, contrary to !avgWin
+        if (avgWin === undefined || avgLoss === undefined) {
             return [];
         }
 
-        const avgData = [
+        return [
             {name: 'Average win', value: avgWin},
             {name: 'Average loss', value: avgLoss}
         ];
-        return avgData;
     }
 
-    useEffect(() => {
-        console.log(formatDate(stats.tradeList), stats.avgWin, stats.avgLoss);
-    }, []);
+    // Debuggin purpose
+    // useEffect(() => {
+    //     console.log(formatDate(stats.tradeList), stats.avgWin, stats.avgLoss);
+    // }, []);
 
-    // TODO: if we keep total number of trades, then need to check in the code if we need to replace account-grow
     return (
         <>
             <Header />
@@ -48,43 +47,34 @@ export default function AnalyticsPage() {
                     text="Discover you results in a simple way"
                 />
 
-                {/* // ! change ID and class name of monthly */}
                 <div className="analytics-grid">
                     <div className="analytics-sub-left-grid">
                         <AnalyticSection
-                            titleId="monthly-graph-heading"
-                            titleValue="Numbers of trades per date"
-                            monthlyGraph="true"
-                            trades={formatDate(stats.tradeList)}
+                            titleId="number-trades-per-date-heading"
+                            titleValue="Number of trades per date"
+                            numberTradesPerDateGraph="true"
+                            tradesData={formatDate(stats.tradeList)}
                         />
 
                         <AnalyticSection
                             titleId="weekly-results-heading"
                             titleValue="Weekly results"
-                            // text="+856,40 €"
                             text={`+ ${stats.weeklyPnl} €`}
                         />
 
                         <AnalyticSection
                             titleId="biggest-win-heading"
                             titleValue="Biggest win"
-                            // text="250,24 €"
                             text={`${stats.biggestWin} €`}
                         />
                     </div>
 
                     <div className="analytics-sub-right-grid">
-                        {/* <AnalyticSection
-                            titleId="account-grow-heading"
-                            titleValue="Monthly account grow"
-                            text="+32%"
-                        /> */}
                         <AnalyticSection
                             titleId="total-number-trades-heading"
                             titleValue="Total number of trades"
                             text={`${stats.totalTrades}`}
                         />
-
 
                         <AnalyticSection
                             titleId="average-graph-heading"
