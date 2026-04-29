@@ -4,22 +4,7 @@ import MainHeading from "../components/MainHeading";
 import { useStatistics } from "../data/StatisticsContext";
 
 export default function AnalyticsPage() {
-    const stats = useStatistics();
-
-    const formatDate = (tradeList) => {
-        // To avoid errors when we wait for data
-        if (!tradeList) {
-            return []; 
-        }
-
-        // Loop through each object and format the attributes
-        return tradeList.map(trade => ({
-            ...trade,
-            net_pnl: parseFloat(trade.net_pnl),
-            trade_date: trade.trade_date?.slice(0, 10),
-            trade_count: parseInt(trade.trade_count)
-        }));
-    }
+    const {stats, formatDate} = useStatistics();
 
     const createAverageDataObj = (avgWin, avgLoss) => {
         // this check allows 0 values, contrary to !avgWin
