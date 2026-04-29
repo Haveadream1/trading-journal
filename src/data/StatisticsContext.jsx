@@ -27,8 +27,28 @@ export function StatisticsProvider({ children }) {
         fetchStatistics();
     }, [])
 
+    const formatDate = (tradeList) => {
+        // To avoid errors when we wait for data
+        if (!tradeList) {
+            return []; 
+        }
+
+        // Loop through each object and format the attributes
+        return tradeList.map(trade => ({
+            ...trade,
+            net_pnl: parseFloat(trade.net_pnl),
+            trade_date: trade.trade_date?.slice(0, 10),
+            trade_count: parseInt(trade.trade_count)
+        }));
+    }
+
+    const value = {
+        stats,
+        formatDate
+    }
+
     return (
-        <DataContext.Provider value={stats}>
+        <DataContext.Provider value={value}>
             {children}
         </DataContext.Provider>
     );
