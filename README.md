@@ -66,6 +66,8 @@ Each time creating a new route either GET/POST, test it with Postman
 Fetch statistics data from context and display them on page
 Fetch data, treat it and display in the corresponding metric section
 Refactor and add fixes from the to-dos list
+Separate server.js file into more meaningfull sections/files to improve code readability
+  * create queries.js to store PostgreSQL queries
 
 ## To-do
 <!-- TODO: pass the aria to the a el -->
