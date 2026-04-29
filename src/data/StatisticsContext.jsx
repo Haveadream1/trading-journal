@@ -1,5 +1,5 @@
 // Data context for statistics (both dashboard and analytics page)
-// Avoid having to fetch data from the road on 2 different pages
+    // Avoid having to fetch data from the route on 2 different pages
 
 import { createContext, useState, useContext, useEffect } from "react";
 
