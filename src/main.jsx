@@ -17,12 +17,14 @@ import './styles/AnalyticsStyle.css'
 import './styles/DashboardStyle.css'
 import './styles/JournalStyle.css'
 import './styles/TradeFormStyle.css'
+
+/* Provider import */
 import FormProvider from './data/FormContext'
 import { DataProvider } from './data/DataContext'
 import { StatisticsProvider } from './data/StatisticsContext'
 
 // Router will take care of the website navigation
-// TODO add errorElement
+  // Depending on the path, the corresponding page will be rendered
 const router = createBrowserRouter([
   {
     path:"/",
@@ -53,4 +55,3 @@ createRoot(document.getElementById('root')).render(
     </DataProvider>
   </StrictMode>,
 )
-{/* // we pass the defined path above as a value */}
