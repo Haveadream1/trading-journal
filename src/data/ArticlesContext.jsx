@@ -1,4 +1,4 @@
-// Fetch the a list of recent financial news from the *Financial Modeling Prep API*
+// Fetch the a list of recent financial articles from the *Financial Modeling Prep API*
     // We need to make sure we have only one call when the entire page refresh, put a limit too
 
 import { createContext, useContext, useEffect, useState } from "react";
