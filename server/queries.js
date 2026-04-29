@@ -2,7 +2,7 @@
     // Contains the PostgreSQL queries
 
 const statisticsQueries = {
-    baseQuery = `
+    base: `
       SELECT  
         COUNT(*) as total_trades,
         SUM(net_pnl) as total_pnl,
@@ -18,14 +18,14 @@ const statisticsQueries = {
       HAVING COUNT(*) > 0;
     `,
 
-    weekly = `
+    weekly: `
       SELECT 
         SUM(net_pnl) as weekly_pnl
       FROM trades
       WHERE trade_date >= CURRENT_DATE - INTERVAL '7 days';
     `,
 
-    mostTraded = `
+    mostTraded: `
       SELECT
         asset, COUNT(*) as trade_count
       FROM trades
@@ -35,7 +35,7 @@ const statisticsQueries = {
     `,
 
     // Sum trades where the date is the same
-    orderedTradeList = `
+    orderedTradeList: `
       SELECT 
         COUNT(*) as trade_count,
         trade_date,
@@ -45,4 +45,5 @@ const statisticsQueries = {
       ORDER BY trade_date ASC;
     `
 };
-export default statisticsQueries;
+
+module.exports = statisticsQueries;
