@@ -108,6 +108,24 @@ Not to use to transform data when rendering or not to handle user events-->
 <!-- ! There is two different ways referenced in the pages P/L and PNL, need to choose>
 <!-- ! 2 issues data is not ordered, negative values are not represented -->
 
+## Queries documentation
+// total_trades: count all trades
+// total_pnl: sum all net_pnl
+// avg_win: sum of all winning trades / number of winning trades or by using avg
+// avg_loss: sum of all losing trades / number of losing trades or by using avg
+// biggest_win: max of net_pnl when winning
+// biggest_loss: min of net_pnl when losing
+// nbr_wins: count the number of winning trades
+// nbr_losses: count the number of losing trades
+// total_winning_pnl: sum of winning pnl
+// total_losing_pnl: sum of losing pnl
+// win_rate: (number of wins / numbers of trades) * 100
+// profit_factor: total winning net_pnl / total losing net_pnl
+// weekly_pnl: sum of the net_pnl over a span of 7 days
+// most_traded_asset: asset that appears the most
+// most_traded_asset_count: number of trades for most traded asset
+
+// trades: the list of all sorted trades by date
 
 ## Project ideas
 Ideas:
