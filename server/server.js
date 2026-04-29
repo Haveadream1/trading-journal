@@ -4,6 +4,7 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 const pool = require('./database'); // Import the database connection pool
+const statisticsQueries = require('./queries');
 
 // Fetch from env file or provide default port
 const PORT = process.env.PORT || 3000;
@@ -34,24 +35,6 @@ app.get('/api/trades', async (req, res) => {
   }
 });
 
-// total_trades: count all trades
-// total_pnl: sum all net_pnl
-// avg_win: sum of all winning trades / number of winning trades or by using avg
-// avg_loss: sum of all losing trades / number of losing trades or by using avg
-// biggest_win: max of net_pnl when winning
-// biggest_loss: min of net_pnl when losing
-// nbr_wins: count the number of winning trades
-// nbr_losses: count the number of losing trades
-// total_winning_pnl: sum of winning pnl
-// total_losing_pnl: sum of losing pnl
-// win_rate: (number of wins / numbers of trades) * 100
-// profit_factor: total winning net_pnl / total losing net_pnl
-// weekly_pnl: sum of the net_pnl over a span of 7 days
-// most_traded_asset: asset that appears the most
-// most_traded_asset_count: number of trades for most traded asset
-
-// trades: the list of all sorted trades by date
-
 const formatData = (type, value) => {
   const num = Number(value) // Avoid error with JS about retrieved type from PostgreSQL
   if (type === 'int') {
@@ -64,62 +47,19 @@ const formatData = (type, value) => {
 // ! FIX: the actual value is 'loss' and should be 'Loss', correct it in REACT
 app.get('/api/statistics', async (req, res) => {
   try {
-    const baseQuery = `
-      SELECT  
-        COUNT(*) as total_trades,
-        SUM(net_pnl) as total_pnl,
-        AVG(CASE WHEN outcome = 'Win' THEN net_pnl END) as avg_win,
-        AVG(CASE WHEN outcome = 'loss' THEN net_pnl END) as avg_loss,
-        MAX(CASE WHEN outcome = 'Win' THEN net_pnl END) as biggest_win,
-        MIN(CASE WHEN outcome = 'loss' THEN net_pnl END) as biggest_loss,
-        COUNT(CASE WHEN outcome = 'Win' THEN 1 END) as nbr_wins,
-        COUNT(CASE WHEN outcome = 'loss' THEN 1 END) as nbr_losses,
-        SUM(CASE WHEN outcome = 'Win' THEN net_pnl END) as total_winning_pnl,
-        SUM(CASE WHEN outcome = 'loss' THEN net_pnl END) as total_losing_pnl
-      FROM trades
-      HAVING COUNT(*) > 0;
-    `;
-
-    const weeklyQuery = `
-      SELECT 
-        SUM(net_pnl) as weekly_pnl
-      FROM trades
-      WHERE trade_date >= CURRENT_DATE - INTERVAL '7 days';
-    `;
-
-    const mostTradedQuery = `
-      SELECT
-        asset, COUNT(*) as trade_count
-      FROM trades
-      GROUP BY asset
-      ORDER BY trade_count DESC
-      LIMIT 1;
-    `;
-
-    // Sum trades where the date is the same
-    const tradeListQuery = `
-      SELECT 
-        COUNT(*) as trade_count,
-        trade_date,
-        SUM(net_pnl) as net_pnl
-      FROM trades
-      GROUP BY trade_date
-      ORDER BY trade_date ASC;
-    `;
-
     // Enabled to run multiple asynchronous query in parallel
-    const [baseResult, weeklyResult, mostTradedResult, tradeListResult] = await Promise.all([
-      pool.query(baseQuery),
-      pool.query(weeklyQuery),
-      pool.query(mostTradedQuery),
-      pool.query(tradeListQuery)
+    const [baseResult, weeklyResult, mostTradedResult, orderedTradeListResult] = await Promise.all([
+      pool.query(statisticsQueries.base),
+      pool.query(statisticsQueries.weekly),
+      pool.query(statisticsQueries.mostTraded),
+      pool.query(statisticsQueries.orderedTradeList)
     ]);
 
     // aggregate function only return one row
     const baseRow = baseResult.rows[0];
     const weeklyRow = weeklyResult.rows[0]
     const mostTradedRow = mostTradedResult.rows[0];
-    const tradeListRow = tradeListResult.rows;
+    const orderedTradeListRow = orderedTradeListResult.rows;
 
     // format the JSON to be sent for easier access later
     res.json({
@@ -141,7 +81,7 @@ app.get('/api/statistics', async (req, res) => {
       mostTradedAsset: mostTradedRow.asset, // string
       mostTradedAssetCount: formatData('int', mostTradedRow.trade_count),
 
-      tradeList: tradeListRow
+      tradeList: orderedTradeListRow
     });
 
   } catch (err) {
@@ -187,6 +127,3 @@ app.listen(PORT, () => {
   console.log(`Server is UP on http://localhost:${PORT}/api/trades`);
   console.log(`Test route is UP on http://localhost:${PORT}/api/health`);
 });
-
-// Create connection with database from env URL
-// Set up routes
