@@ -5,7 +5,7 @@ import MainHeading from "../components/MainHeading";
 import MetricSection from "../components/MetricSection";
 import Header from "../components/Header";
 import SideMetricSection from "../components/SideMetricSection";
-import { useData } from "../data/DataContext";
+import { useData } from "../data/ArticlesContext";
 import { useStatistics } from '../data/StatisticsContext'
 
 export default function DashboardPage() {

@@ -10,7 +10,7 @@ import AnalyticsPage from './containers/AnalyticsPage'
 
 /* Provider import */
 import FormProvider from './data/FormContext'
-import { DataProvider } from './data/DataContext'
+import { DataProvider } from './data/ArticlesContext'
 import { StatisticsProvider } from './data/StatisticsContext'
 
 // Router will take care of the website navigation
