@@ -4,35 +4,15 @@ import Header from "../components/Header";
 import SideMetricSection from "../components/SideMetricSection";
 import { useData } from "../data/DataContext";
 import { useStatistics } from '../data/StatisticsContext'
-import { useEffect } from "react";
 
 export default function DashboardPage() {
     const articles = useData();
-    const stats = useStatistics();
+    const {stats, formatDate} = useStatistics();
 
-    //  ! NOTE: maybe the first graph should be the number of trades
-
-    // TODO: net_pnl should take the previous value and add up
-    // TODO: need to consider also negative values
-    // !: dashboardPage and analyticsPage share this function, -> put in context ?
-    const formatDate = (tradeList) => {
-        // To avoid errors when we wait for data
-        if (!tradeList) {
-            return []; 
-        }
-
-        // Loop through each object and format the trade date
-        return tradeList.map(trade => ({
-            ...trade,
-            net_pnl: parseFloat(trade.net_pnl),
-            trade_date: trade.trade_date?.slice(0, 10)
-        }));
-    }
-
-    useEffect(() => {
-        console.log(stats.tradeList);
-        //formatDate(stats.tradeList);
-    }, [])
+    // Debugging purpose
+    // useEffect(() => {
+    //     console.log(stats.tradeList);
+    // }, [])
 
     return (
         <>
@@ -47,28 +27,25 @@ export default function DashboardPage() {
                     <MetricSection 
                         titleId="metric-heading-total-pnl" 
                         titleValue="Total PnL" 
-                        // text="15,150.25 €" 
                         text={`${stats.totalPnl} €`}
                     />
 
                     <MetricSection 
                         titleId="metric-heading-win-rate" 
                         titleValue="Win Rate" 
-                        // text="75.2 %" 
                         text={`${stats.winRate} %`}
                     />
 
                     <MetricSection 
                         titleId="metric-heading-profit-factor" 
                         titleValue="Profit factor" 
-                        // text="2.12" 
                         text={`${stats.profitFactor}`}
                     />
                 </div>
 
                 <div className="graphic-metrics-grid">
                     <SideMetricSection 
-                        titleId="metric-heading-graph" 
+                        titleId="metric-heading-graph"
                         titleValue="PnL Over time" 
                         graphMetric="true"
                         trades={formatDate(stats.tradeList)}
