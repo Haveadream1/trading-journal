@@ -18,13 +18,13 @@ thead {
 }
 .table-values-row > td {
   text-align: center; 
-  padding: var(--space-xs);
+  padding: var(--space-sm);
 }
 
 .outcome-span-win,
 .outcome-span-loss {
-  padding: var(--space-sm);
   border-radius: 30%;
+  padding: var(--space-xs);
 }
 .outcome-span-win {
   background-color: var(--light-green);
