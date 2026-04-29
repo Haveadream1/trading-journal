@@ -1,6 +1,5 @@
-// Fetch the data from the *Financial Modeling Prep API*
-// Only need one call and we can they use the data
-// The current goal is to fetch a list of recent news for our dataList
+// Fetch the a list of recent financial news from the *Financial Modeling Prep API*
+    // We need to make sure we have only one call when the entire page refresh, put a limit too
 
 import { createContext, useContext, useEffect, useState } from "react";
 
@@ -36,7 +35,7 @@ export function DataProvider({ children }) {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                // ! Do not push API key to github
+                // TODO: put API key in .env and fetch to it
                 // const response = await fetch("");
                 // if (!response.ok) {
                 //     throw new Error("Failed to fetch data", error);
