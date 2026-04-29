@@ -1,3 +1,6 @@
+/* Style import */
+import '../styles/DashboardStyle.css'
+
 import MainHeading from "../components/MainHeading";
 import MetricSection from "../components/MetricSection";
 import Header from "../components/Header";

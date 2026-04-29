@@ -1,3 +1,6 @@
+/* Style import */
+import '../styles/TradeFormStyle.css'
+
 import FieldsetDiv from "../components/FieldsetDiv";
 import MainHeading from "../components/MainHeading";
 import { useForm } from "../data/FormContext";

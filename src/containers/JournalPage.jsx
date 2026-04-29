@@ -1,3 +1,6 @@
+/* Style import */
+import '../styles/JournalStyle.css'
+
 import MainHeading from "../components/MainHeading";
 import TableRow from "../components/TableRow";
 import Header from "../components/Header";

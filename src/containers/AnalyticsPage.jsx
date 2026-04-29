@@ -1,3 +1,6 @@
+/* Style import */
+import '../styles/AnalyticsStyle.css'
+
 import AnalyticSection from "../components/AnalyticSection";
 import Header from "../components/Header";
 import MainHeading from "../components/MainHeading";
