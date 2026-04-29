@@ -8,12 +8,6 @@ import JournalPage from './containers/JournalPage'
 import TradeFormPage from './containers/TradeFormPage'
 import AnalyticsPage from './containers/AnalyticsPage'
 
-/* Styles import */
-import './styles/AnalyticsStyle.css'
-import './styles/DashboardStyle.css'
-import './styles/JournalStyle.css'
-import './styles/TradeFormStyle.css'
-
 /* Provider import */
 import FormProvider from './data/FormContext'
 import { DataProvider } from './data/DataContext'
