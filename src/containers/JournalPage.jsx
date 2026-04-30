@@ -65,7 +65,7 @@ export default function JournalPage() {
                                     key={trade.id} // Use the primary key from the database as key index
                                     date={trade.trade_date?.slice(0, 10)}
                                     asset={trade.asset} // Refer to the column name in database
-                                    direction={trade.direction}
+                                    direction={trade.direction === 'buy' ? 'Buy (Long)' : 'Sell (Short)'}
                                     outcome={trade.outcome}
                                     pnl={trade.net_pnl}
                                 />
