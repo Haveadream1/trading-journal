@@ -6,13 +6,13 @@ const statisticsQueries = {
     SELECT  
       COUNT(*) as total_trades,
       SUM(net_pnl) as total_pnl,
-      AVG(CASE WHEN outcome = 'Win' THEN net_pnl END) as avg_win,
+      AVG(CASE WHEN outcome = 'win' THEN net_pnl END) as avg_win,
       AVG(CASE WHEN outcome = 'loss' THEN net_pnl END) as avg_loss,
-      MAX(CASE WHEN outcome = 'Win' THEN net_pnl END) as biggest_win,
+      MAX(CASE WHEN outcome = 'win' THEN net_pnl END) as biggest_win,
       MIN(CASE WHEN outcome = 'loss' THEN net_pnl END) as biggest_loss,
-      COUNT(CASE WHEN outcome = 'Win' THEN 1 END) as nbr_wins,
+      COUNT(CASE WHEN outcome = 'win' THEN 1 END) as nbr_wins,
       COUNT(CASE WHEN outcome = 'loss' THEN 1 END) as nbr_losses,
-      SUM(CASE WHEN outcome = 'Win' THEN net_pnl END) as total_winning_pnl,
+      SUM(CASE WHEN outcome = 'win' THEN net_pnl END) as total_winning_pnl,
       SUM(CASE WHEN outcome = 'loss' THEN net_pnl END) as total_losing_pnl
     FROM trades
   `,
