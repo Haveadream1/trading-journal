@@ -1,0 +1,22 @@
+.error-header {
+    display: grid;
+    padding: var(--space-sm);
+    gap: var(--space-sm);
+    border-bottom: solid 2px var(--green);
+    grid-template-columns: none;
+}
+
+.error-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.error-button {
+    border: none;
+    color: white;
+    font-weight: 600;
+    font-size: medium;
+    padding: var(--space-md);
+    background-color: var(--green);
+    border-radius: var(--space-sm);
+}
