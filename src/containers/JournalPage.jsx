@@ -71,9 +71,14 @@ export default function JournalPage() {
                                 />
                             )
                         ):(
-                            <tr>
-                                <td>No saved trades yet</td>
-                            </tr>
+                            <>
+                                <tr>
+                                    <td>No saved trades yet</td> 
+                                </tr>
+                                <tr>
+                                    <td>(Demo data displayed on Dashboard and analytics page)</td>
+                                </tr>
+                            </>
                         )}
                     </tbody>
                 </table>
