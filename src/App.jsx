@@ -7,6 +7,7 @@ import DashboardPage from './containers/DashboardPage'
 import JournalPage from './containers/JournalPage'
 import TradeFormPage from './containers/TradeFormPage'
 import AnalyticsPage from './containers/AnalyticsPage'
+import ErrorPage from './containers/ErrorPage'
 
 /* Provider import */
 import FormProvider from './data/FormContext'
@@ -19,6 +20,7 @@ const router = createBrowserRouter([
   {
     path:"/",
     element: <DashboardPage />,
+    errorElement: <ErrorPage />
   },
   {
     path:"/journal",
