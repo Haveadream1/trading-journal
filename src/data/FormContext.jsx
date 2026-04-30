@@ -15,11 +15,11 @@ export default function FormProvider({ children }) {
     const [formData, setFormData] = useState({
         "trade-details": {  // fieldset
             "asset-symbol": "", // label : value
-            "direction-select": ""
+            "direction-select": "buy"
         },
         "trade-outcome": {
             "trade-date": "",
-            "outcome-select": "",
+            "outcome-select": "win",
             "net-pnl": ""
         }
     })
