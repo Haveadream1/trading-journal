@@ -9,13 +9,13 @@ export const getDemoTradeList = () => [
     },
     {
         trade_date: '2026-04-17',
-        trade_count: 2,
-        net_pnl: 825.50
+        trade_count: 1,
+        net_pnl: 150.25 // Losing day
     },
     {
         trade_date: '2026-04-20',
-        trade_count: 1,
-        net_pnl: 150.25 // Losing day
+        trade_count: 2,
+        net_pnl: 825.50
     },
 ];
 
