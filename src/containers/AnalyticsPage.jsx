@@ -32,7 +32,7 @@ export default function AnalyticsPage() {
             <main className="analytics-page">
                 <MainHeading 
                     titleValue="Analytics"
-                    text="Discover you results in a simple way"
+                    text="Discover your results in a simple way"
                 />
 
                 <div className="analytics-grid">
