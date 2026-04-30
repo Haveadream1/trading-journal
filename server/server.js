@@ -46,6 +46,16 @@ const formatData = (type, value) => {
 
 // ! FIX: the actual value is 'loss' and should be 'Loss', correct it in REACT
 app.get('/api/statistics', async (req, res) => {
+  // Handle the case when no trades are stored yet
+  const totalResult = await pool.query(`SELECT COUNT(*) as total FROM trades`);
+  const totalTrades = formatData('int', totalResult.rows[0].total);
+
+  if (totalTrades === 0) {
+    return res.json({
+      totalTrades: 0
+    });
+  }
+
   try {
     // Enabled to run multiple asynchronous query in parallel
     const [baseResult, weeklyResult, mostTradedResult, orderedTradeListResult] = await Promise.all([
