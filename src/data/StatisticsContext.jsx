@@ -2,6 +2,7 @@
     // Avoid having to fetch data from the route on 2 different pages
 
 import { createContext, useState, useContext, useEffect } from "react";
+import { getDemoStatistics } from "./DemoData";
 
 const DataContext = createContext(null);
 
@@ -14,13 +15,19 @@ export function StatisticsProvider({ children }) {
                 const response = await fetch('/api/statistics');
                 const data = await response.json();
 
-                if (response.ok) {
-                    console.log('Successfully fetched statistics data');
-                    setStats(data);
+                if (data.totalTrades === 0) {
+                    console.log("Database table is empty, we display demo trades");
+                    setStats(getDemoStatistics());
                 } else {
-                    console.error('Failed to fetch statistics data', data.error);
+                    if (response.ok) {
+                        console.log('Successfully fetched statistics data');
+                        setStats(data);
+                    } else {
+                        console.error('Failed to fetch statistics data', data.error);
+                        setStats(getDemoStatistics());
+                    }
                 }
-            } catch (err) {
+            } catch (err) { 
                 console.error('Error fetching analytics from database', err.message);
             }
         }
