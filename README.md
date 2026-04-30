@@ -68,46 +68,40 @@ Fetch data, treat it and display in the corresponding metric section
 Refactor and add fixes from the to-dos list
 Separate server.js file into more meaningfull sections/files to improve code readability
   * create queries.js to store PostgreSQL queries
+Import each styles into the page instead of importing everything inside the App.jsx
+  * improve performance has it only loads the css needed 
+Create an archive directory to keep the old html
+  * the html file that was used to create the structure and provide for css before creating the React components
+Handle when the database table is empty
+  * display demo data
+  * create a file, that contains examples trades
 
 ## To-do
+<!-- TODO: Do something for the profile icon, it currently redirects to nothing --> 
+<!-- TODO: create a graph to visualize the database -->
+<!-- TODO: implement CRUD operations on trade -->
+<!-- TODO: add testing ?>
+<!-- TODO: component should be DUMB while container SMART>
+
 <!-- TODO: pass the aria to the a el -->
-<!-- TODO: Heading elements are not in a sequentially-descending order h1 - h2, currently h1-h3 -->
 <!-- TODO: render a lightHouse -->
-<!-- TODO: make sure all internal link are using LINK of the react router -->
-<!-- TODO: Don't forget to add assigned width and height to image to improve performance -->
-<!-- TODO: Place the website icon into the "assets" directory and remove "react.svg" -->
-<!-- Do something for the profile icon, it currently redirects to nothing --> 
+
 <!-- TODO: When we fetch data from the database, create conditional rendering for when we don't have data yet -> loading
 Or when the database is empty then display a message -->
-<!-- TODO: use the primary key value as a key attribute when we map through the data  -->
-<!-- TODO: add defaultProps if needed -->
-<!-- TODO: when we use useEffect, check if we need a clean up function -->
-<!-- TODO: check if the use of useEffect is necessary to avoid performance issues 
-Not to use to transform data when rendering or not to handle user events-->
 <!-- TODO: add errorPage/errorElement element in router -->
-<!-- TODO: create a graph to visualize the database -->
 
 <!-- TODO: render formatting and linter tool (Prettier, ESlint) -->
   <!-- SUB-TODO: check all double or single quotes -->
-  
-<!-- TODO: treat and check data for database to avoid injections -->
+
 <!-- TODO: check displayed trades, some inputs are differ from others, issues with the value -->
-<!-- TODO: refactor the loading while we wait for the server response>
-<!-- TODO: refactor the styling of the Win/Loss button>
-<!-- TODO: implement CRUD operations on trade -->
-<!-- TODO: add loader when fetching>
-<!-- TODO: modify name of DataContext to API (finnancial)>
-<!-- TODO: add a loading stats from fetched data also>
+
 <!-- TODO: check if lost trade should have a negative pnl value or we handle with the outcome>
 <!-- TODO: limit the number of trades/data fetched for the graphic to see clear data>
-<!-- TODO: refactor the structure of the project with a client directory>
-<!-- TODO: component should be DUMB while container SMART>
 <!-- TODO: if the outcome is set to loss then we can input only negative values, opposite with win>
 <!-- TODO: add a general state to handle the colors for charts, so in the future everything can be more easily changed>
 <!-- TODO: check with tradeHistory if it should be displayed in case of no load -->
-<!-- TODO: add testing ?>
 
-<!-- ! There is two different ways referenced in the pages P/L and PNL, need to choose>
+<!-- Either display an empty result or display with some default values>
 <!-- ! 2 issues data is not ordered, negative values are not represented -->
 
 ## Queries documentation
