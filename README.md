@@ -75,6 +75,12 @@ Create an archive directory to keep the old html
 Handle when the database table is empty
   * display demo data
   * create a file, that contains examples trades
+Create and error page
+  * errorElement reference to it
+  * redirect to homepage (dashboard)
+Handle the refresh of the pages by adding a state
+  * each time a new trade is added, we increment the value of the refresh
+  * this will trigger a refresh of the pages, as the refresh value is listed in dependencies
 
 ## To-do
 <!-- TODO: Do something for the profile icon, it currently redirects to nothing --> 
@@ -82,27 +88,17 @@ Handle when the database table is empty
 <!-- TODO: implement CRUD operations on trade -->
 <!-- TODO: add testing ?>
 <!-- TODO: component should be DUMB while container SMART>
+<!-- TODO: check with tradeHistory if it should be displayed in case of no load -->
 
 <!-- TODO: pass the aria to the a el -->
 <!-- TODO: render a lightHouse -->
-
-<!-- TODO: When we fetch data from the database, create conditional rendering for when we don't have data yet -> loading
-Or when the database is empty then display a message -->
-<!-- TODO: add errorPage/errorElement element in router -->
-
 <!-- TODO: render formatting and linter tool (Prettier, ESlint) -->
   <!-- SUB-TODO: check all double or single quotes -->
 
-<!-- TODO: check displayed trades, some inputs are differ from others, issues with the value -->
-
-<!-- TODO: check if lost trade should have a negative pnl value or we handle with the outcome>
 <!-- TODO: limit the number of trades/data fetched for the graphic to see clear data>
-<!-- TODO: if the outcome is set to loss then we can input only negative values, opposite with win>
-<!-- TODO: add a general state to handle the colors for charts, so in the future everything can be more easily changed>
-<!-- TODO: check with tradeHistory if it should be displayed in case of no load -->
+<!-- TODO: differentiate in journal page when there is no data and when we wait for loading>
 
-<!-- Either display an empty result or display with some default values>
-<!-- ! 2 issues data is not ordered, negative values are not represented -->
+<!--TODO: freeze the button while waiting for page redirection in trade form ?>
 
 ## Queries documentation
 // total_trades: count all trades
