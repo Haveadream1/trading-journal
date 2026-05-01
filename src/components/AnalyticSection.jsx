@@ -1,6 +1,7 @@
 import { Bar, BarChart, Cell, Pie, PieChart, ResponsiveContainer, XAxis, YAxis } from "recharts";
+import { useStatistics } from "../data/StatisticsContext";
 
-export default function AnalyticSection({
+export default function AnalyticSection({   
     titleId,
     titleValue,
     text,
@@ -9,8 +10,7 @@ export default function AnalyticSection({
     tradesData,
     avgData
 }) {
-    // Note: colors differents from css styles
-    const COLORS = ['#82dfb2', '#cf5a5a'];
+    const { analyticSectionColor } = useStatistics();
 
     return (
         <section className="analytic-section" aria-labelledby={titleId}>
@@ -23,7 +23,7 @@ export default function AnalyticSection({
                     <BarChart responsive data={tradesData}>
                         <XAxis dataKey="trade_date" />
                         <YAxis dataKey="trade_count"/>
-                        <Bar dataKey="trade_count" fill={COLORS[0]} />
+                        <Bar dataKey="trade_count" fill={analyticSectionColor[0]} />
                     </BarChart>
                 </ResponsiveContainer>
             )}
@@ -33,7 +33,7 @@ export default function AnalyticSection({
                         {/* datakey has avgData.value, we just map to assign colors to cell depending on index */}
                         <Pie data={avgData} label="name" dataKey="value">
                             {avgData.map((data, index) => (
-                                <Cell key={index} fill={COLORS[index % COLORS.length]} />
+                                <Cell key={index} fill={analyticSectionColor[index % analyticSectionColor.length]} />
                             ))}
                         </Pie>
                     </PieChart>

@@ -1,4 +1,5 @@
 import { Area, AreaChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { useStatistics } from "../data/StatisticsContext";
 
 export default function SideMetricSection({ 
     titleId,
@@ -11,6 +12,8 @@ export default function SideMetricSection({
     textAsset,
     textCount
 }) {
+    const { sideMetricColor } = useStatistics();
+
     return (
         <section className={graphMetric ? ("trade-results-graphic") : ("side-metric-section")} aria-labelledby={titleId}>
             <h3 id={titleId}>{titleValue}</h3>
@@ -20,7 +23,7 @@ export default function SideMetricSection({
                         <XAxis dataKey='trade_date' />
                         <YAxis width="auto" type="net_pnl" />
                         <Tooltip />
-                        <Area type="monotone" dataKey="net_pnl" stroke="#11D473" fill="#11D473" />
+                        <Area type="monotone" dataKey="net_pnl" stroke={sideMetricColor} fill={sideMetricColor} />
                     </AreaChart>
                 </ResponsiveContainer>
             )}
