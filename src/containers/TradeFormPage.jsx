@@ -5,10 +5,12 @@ import FieldsetDiv from "../components/FieldsetDiv";
 import MainHeading from "../components/MainHeading";
 import { useForm } from "../data/FormContext";
 import { Link, Navigate, useNavigate } from "react-router";
+import { useStatistics } from '../data/StatisticsContext';
 
 export default function TradeFormPage() {
     const navigate = useNavigate();
     const {formData, pushTradeToHistory, validity} = useForm();
+    const { refreshStatistics } = useStatistics();
 
     // List of top 5 stocks, forex, commodities, crypto,
     const assetOptions = [
@@ -76,6 +78,8 @@ export default function TradeFormPage() {
             if (response.ok) {
                 pushTradeToHistory(data); // Store the submitted trade
                 console.log("Successfully saved the trade:", data);
+
+                await refreshStatistics(); // pause process to modify the trigger value, leads to refresh pages
 
                 // Time out to make sure data is saved before we switch of pages
                 setTimeout(() => {
