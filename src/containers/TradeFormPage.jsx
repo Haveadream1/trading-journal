@@ -29,6 +29,16 @@ export default function TradeFormPage() {
         {value: "loss", text: "Loss"},
     ]
 
+    const convertPnl = (outcome, pnl) => {
+        // We already verified in the form validation, that all pnl are positive
+            // We need to handle only the case when outcome is set to 'loss'
+        if (outcome === 'loss') {
+            return -pnl;
+        } else {
+            return pnl;
+        }
+    }
+
     const handleFormSubmit = async (e) => {
         e.preventDefault();
 
@@ -40,6 +50,8 @@ export default function TradeFormPage() {
             }
         }
 
+        let convertedPnl = convertPnl(formData['trade-outcome']['outcome-select'], parseFloat(formData['trade-outcome']['net-pnl']));
+
         try {
             // Format data and assign them to the same name as the database columns
             const formattedData = {
@@ -47,7 +59,7 @@ export default function TradeFormPage() {
                 asset: formData['trade-details']['asset-symbol'],
                 direction: formData['trade-details']['direction-select'],
                 outcome: formData['trade-outcome']['outcome-select'],
-                net_pnl: parseFloat(formData['trade-outcome']['net-pnl']),
+                net_pnl: convertedPnl,
             }
             
             // Send the form data to API to save it in the database
