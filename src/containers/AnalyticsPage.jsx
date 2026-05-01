@@ -17,7 +17,7 @@ export default function AnalyticsPage() {
 
         return [
             {name: 'Average win', value: avgWin},
-            {name: 'Average loss', value: avgLoss}
+            {name: 'Average loss', value: Math.abs(avgLoss)} // Convert to abosulte value to avoid issue with graph
         ];
     }
 
@@ -47,7 +47,7 @@ export default function AnalyticsPage() {
                         <AnalyticSection
                             titleId="weekly-results-heading"
                             titleValue="Weekly results"
-                            text={`+ ${stats.weeklyPnl} €`}
+                            text={String(stats.weeklyPnl).startsWith('-') ? `${stats.weeklyPnl} €` : `+ ${stats.weeklyPnl} €`}
                         />
 
                         <AnalyticSection
