@@ -27,7 +27,7 @@ app.get('/api/health', (req, res) => {
   // Use asyncronous function to handle the database query
 app.get('/api/trades', async (req, res) => {
   try {
-    const allTrades = await pool.query('SELECT * FROM trades'); // PostgreSQL query statement 
+    const allTrades = await pool.query('SELECT * FROM trades ORDER BY trade_date'); // PostgreSQL query statement 
     res.json(allTrades.rows); // Express method to send a JSON response to the client
   } catch (err) {
     console.error('Error reading all trades from database', err.message); // Log error for debugging
@@ -44,7 +44,6 @@ const formatData = (type, value) => {
   }
 }
 
-// ! FIX: the actual value is 'loss' and should be 'Loss', correct it in REACT
 app.get('/api/statistics', async (req, res) => {
   // Handle the case when no trades are stored yet
   const totalResult = await pool.query(`SELECT COUNT(*) as total FROM trades`);
