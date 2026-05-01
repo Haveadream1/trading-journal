@@ -49,9 +49,16 @@ export function StatisticsProvider({ children }) {
         }));
     }
 
+    // Define constants for colors used in graph
+        // Easier to change when they are regrouped in one context
+    const analyticSectionColor = ['#82dfb2', '#cf5a5a'];
+    const sideMetricColor = "#11D473";
+
     const value = {
         stats,
-        formatDate
+        formatDate,
+        analyticSectionColor,
+        sideMetricColor
     }
 
     return (
