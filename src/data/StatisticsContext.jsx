@@ -8,6 +8,7 @@ const DataContext = createContext(null);
 
 export function StatisticsProvider({ children }) {
     const [stats, setStats] = useState({}); // setting up an empty object leave it to be undefined until we fetch data
+    const [refreshTrigger, setRefreshTrigger] = useState(0);
 
     useEffect(() => {
         const fetchStatistics = async () => {
@@ -32,7 +33,12 @@ export function StatisticsProvider({ children }) {
             }
         }
         fetchStatistics();
-    }, [])
+    }, [refreshTrigger]) // refresh the data each time the trigger value change
+
+    // function to increment the trigger value
+    const refreshStatistics = () => {
+        setRefreshTrigger(prev => prev + 1);
+    }
 
     const formatDate = (tradeList) => {
         // To avoid errors when we wait for data
@@ -58,7 +64,8 @@ export function StatisticsProvider({ children }) {
         stats,
         formatDate,
         analyticSectionColor,
-        sideMetricColor
+        sideMetricColor,
+        refreshStatistics
     }
 
     return (
