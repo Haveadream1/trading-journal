@@ -83,7 +83,7 @@ app.get('/api/statistics', async (req, res) => {
       totalWinningPnl: formatData('float', baseRow.total_winning_pnl),
       totalLosingPnl: formatData('float', baseRow.total_losing_pnl),
       winRate: formatData('float', (baseRow.nbr_wins / baseRow.total_trades) * 100),
-      profitFactor: formatData('float', baseRow.total_winning_pnl / baseRow.total_losing_pnl),
+      profitFactor: formatData('float', baseRow.total_winning_pnl / Math.abs(baseRow.total_losing_pnl)), // get the absolute value for losing pnl
 
       weeklyPnl: formatData('float', weeklyRow.weekly_pnl),
 
