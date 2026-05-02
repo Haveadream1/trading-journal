@@ -81,6 +81,17 @@ Create and error page
 Handle the refresh of the pages by adding a state
   * each time a new trade is added, we increment the value of the refresh
   * this will trigger a refresh of the pages, as the refresh value is listed in dependencies
+Refactor articles API
+  * get api key from env file
+  * fetch from modules demo articles in case of failing fetch
+Implement testing for backend
+  * install Jest: testing framework
+  * install Supertest: testing library to simulate HTTP request like GET/POST
+  * both tools are used together for backend testing
+  * What to test:
+    * HTTP status 
+    * data format
+
 
 ## To-do
 <!-- TODO: Do something for the profile icon, it currently redirects to nothing --> 
@@ -98,7 +109,8 @@ Handle the refresh of the pages by adding a state
 <!-- TODO: limit the number of trades/data fetched for the graphic to see clear data>
 <!-- TODO: differentiate in journal page when there is no data and when we wait for loading>
 
-<!--TODO: freeze the button while waiting for page redirection in trade form ?>
+<!-- TODO: freeze the button while waiting for page redirection in trade form ?>
+<!-- TODO: add a loading state after clicking on the save trade button>
 
 ## Queries documentation
 // total_trades: count all trades
