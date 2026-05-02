@@ -8,8 +8,8 @@ const DataContext = createContext(null);
 export function DataProvider({ children }) {
     const [articles, setArticles] = useState([]); // Avoid NULL as default when fetching data
 
-    // Example data retrieved from the API docs
-    const result = [
+    // eslint-disable-next-line no-unused-vars
+    const exampleArticleData = [ // Example data retrieved from the API docs
         {
             "title": "Arcus Biosciences, Inc. (NYSE:RCUS) Faces Setback but Remains Focused on Future Developments",
             "date": "2025-12-12 19:07:04",
@@ -30,28 +30,33 @@ export function DataProvider({ children }) {
             "author": "Rayan Ahmad",
             "site": "Financial Modeling Prep"
         },
-    ]
+    ];
+    
+    const API_KEY = import.meta.env.VITE_API_KEY;
+    const API_URL = `https://financialmodelingprep.com/stable/fmp-articles?page=0&limit=2&apikey=${API_KEY}`;
+
+    // dotenv is used for Node.js environment
+        // as we are in React, we must prefix our key in the .env file VITE_
+        // and import it with: import.meta.env. followed by the name of key
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                // TODO: put API key in .env and fetch to it
-                // const response = await fetch("");
-                // if (!response.ok) {
-                //     throw new Error("Failed to fetch data", error);
-                // }
+                const response = await fetch(API_URL);
+                const result = await response.json();
 
-                // const result = await response.json();
-                // setArticles(result); // Pass the fetched data in the state
-
-                // ? To avoid wasting api calls
-                setArticles(result);
+                if (response.ok) {
+                    console.log('Sucessfully fetched financials articles from API');
+                    setArticles(result);
+                } else {
+                    console.error('Failed to fetch financials articles from API', result.error);
+                }
             } catch (error) {
-                throw new Error("An error was catched while fetching data", error);
+               console.error("An error was catched while fetching data", error);
             }
         }
         fetchData();
-    }, [])
+    }, []) // Empty dependency, run only once when the website loads
     
     return (
         <DataContext.Provider value={articles}>
