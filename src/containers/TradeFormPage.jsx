@@ -81,10 +81,7 @@ export default function TradeFormPage() {
 
                 await refreshStatistics(); // pause process to modify the trigger value, leads to refresh pages
 
-                // Time out to make sure data is saved before we switch of pages
-                setTimeout(() => {
-                    navigate("/journal"); // Redirect to journal page
-                }, 125);
+                navigate("/journal"); // Redirect to journal page
             } else {
                 console.error("Failed to save the trade", data.error);
             }
