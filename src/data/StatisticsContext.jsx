@@ -2,7 +2,7 @@
     // Avoid having to fetch data from the route on 2 different pages
 
 import { createContext, useState, useContext, useEffect } from "react";
-import { getDemoStatistics } from "./DemoData";
+import { getDemoStatistics } from "./DemoTradesData";
 
 const DataContext = createContext(null);
 
