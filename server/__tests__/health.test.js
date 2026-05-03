@@ -2,7 +2,7 @@
     // Check that the server is correctly running with the health route
 const request = require('supertest');
 const app = require('../app');
-const { describe, test } = require('jest-circus');
+const { describe } = require('jest-circus');
 
 // describe keyword used to group tests that are related
 describe('GET route /api/health', () => {
@@ -15,6 +15,6 @@ describe('GET route /api/health', () => {
     it('return server message correctly', async () => {
         const response = await request(app).get('/api/health');
 
-        expect(response.body.status).toBe('Server is running correctly');
+        expect(response.body.message).toBe('Server is running correctly');
     })
 });

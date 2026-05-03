@@ -13,7 +13,7 @@ app.use(express.json());  // Enable the server to parse(read) JSON data from Rea
 app.get('/api/health', (req, res) => {
   // Adding the formatted timestamp is a good practice for debugging
   res.json({ 
-    status: 'Server is running',
+    message: 'Server is running correctly',
     timestamp: new Date().toLocaleString() // ie: 4/19/2026, 3:09:40 PM
   });
 });
@@ -24,7 +24,6 @@ app.get('/api/trades', async (req, res) => {
   try {
     const allTrades = await pool.query('SELECT * FROM trades ORDER BY trade_date'); // PostgreSQL query statement 
     res.json(allTrades.rows); // Express method to send a JSON response to the client
-    res.status(200);
   } catch (err) {
     console.error('Error reading all trades from database', err.message); // Log error for debugging
     res.status(500).json({ error: 'Error reading all trades from database' }); // Send error to the client (500: server error)
