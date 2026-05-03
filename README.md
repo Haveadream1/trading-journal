@@ -86,11 +86,21 @@ Refactor articles API
   * fetch from modules demo articles in case of failing fetch
 Implement testing for backend
   * install Jest: testing framework
+    * install additional configuration {jest-circus} as default Jest doesn't recognize ES6 import statements
   * install Supertest: testing library to simulate HTTP request like GET/POST
   * both tools are used together for backend testing
-  * What to test:
-    * HTTP status 
-    * data format
+What to test:
+  * BACKEND
+    * API routes
+    * Validation
+    * Empty tables
+  * FRONTEND
+    * Components
+    * Context
+Split server file into 2 for testing reasons
+  * We need to have one file that defines routes and middlewares 
+  * while the other start the server, because when testing we are mocking not starting a real server
+  * server.js / app.js
 
 
 ## To-do
@@ -111,6 +121,10 @@ Implement testing for backend
 
 <!-- TODO: freeze the button while waiting for page redirection in trade form ?>
 <!-- TODO: add a loading state after clicking on the save trade button>
+<!-- TODO: pass the API call for articles in the backend>
+
+If run into an issue with Jest circus, downgrade to another version and install circus
+npm install --save-dev jest@29 jest-circus@29
 
 ## Queries documentation
 // total_trades: count all trades
