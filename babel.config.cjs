@@ -1,6 +1,6 @@
 module.exports = {
   presets: [
-    '@babel/preset-env',      // Transforms modern JavaScript
-    '@babel/preset-react'     // Transforms JSX
+    '@babel/preset-env', // allow us to use the ES6 features
+    '@babel/preset-react' // allow to transform React code into JS
   ]
 };
