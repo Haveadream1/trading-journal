@@ -1,3 +1,5 @@
+import React from "react";
+
 export default function TableRow({
     date,
     asset,
@@ -5,13 +7,13 @@ export default function TableRow({
     outcome,
     pnl
 }) {
-    // TODO add a button to remove the trade from the journal
-    
     return (
         <tr className="table-values-row">
             <td className="table-date-value">{date}</td>
             <td className="table-asset-value">{asset}</td>
             <td className="table-direction-value">{direction}</td>
+            
+            {/* conditionaly render depending on the outcome of the trade */}
             <td className="table-outcome-value">
                 {outcome === "loss" ? (
                     <span className="outcome-span-loss">Loss</span>

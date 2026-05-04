@@ -1,12 +1,16 @@
-import { useEffect } from "react";
+/* Style import */
+import '../styles/TradeFormStyle.css'
+
 import FieldsetDiv from "../components/FieldsetDiv";
 import MainHeading from "../components/MainHeading";
 import { useForm } from "../data/FormContext";
 import { Link, Navigate, useNavigate } from "react-router";
+import { useStatistics } from '../data/StatisticsContext';
 
 export default function TradeFormPage() {
     const navigate = useNavigate();
-    const {formData, pushTradeToHistory, tradeHistory, validity} = useForm();
+    const {formData, pushTradeToHistory, validity} = useForm();
+    const { refreshStatistics } = useStatistics();
 
     // List of top 5 stocks, forex, commodities, crypto,
     const assetOptions = [
@@ -16,7 +20,8 @@ export default function TradeFormPage() {
         "BTC", "ETH", "USDT", "BNB", "USD coin",
     ]
 
-    const directionOptions = [ // Passing an array of objects is easier than each values separately
+    // Passing an array of objects is easier than each values separately
+    const directionOptions = [
         {value: "buy", text: "Buy (Long)"},
         {value: "sell", text: "Sell (Short)"},
     ]
@@ -26,28 +31,69 @@ export default function TradeFormPage() {
         {value: "loss", text: "Loss"},
     ]
 
-    const handleFormSubmit = (e) => {
-        e.preventDefault();
-
-        // Loop through the objects to check that all inputs are valid
-        for (let i in validity) {
-            if (!validity[i]) {
-                console.log("Some inputs are still not valid to save the trade")
-                return
-            }
+    const convertPnl = (outcome, pnl) => {
+        // We already verified in the form validation, that all pnl are positive
+            // We need to handle only the case when outcome is set to 'loss'
+        if (outcome === 'loss') {
+            return -pnl;
+        } else {
+            return pnl;
         }
-        pushTradeToHistory(formData); // Store the submitted trade
-        console.log("Successfully saved the trade:", formData)
-
-        // Time out to make sure data is saved before we switch of pages
-        setTimeout(() => {
-            navigate("/journal"); // Redirect to journal page
-        }, 200);
     }
 
-    useEffect(() => {
-        console.log(tradeHistory);
-    }, [tradeHistory])
+    const handleFormSubmit = async (e) => {
+        e.preventDefault();
+
+        // Validity check for all inputs before sending data to API
+        for (let i in validity) {
+            if (!validity[i]) {
+                console.error("Some inputs are still invalid !");
+                return;
+            }
+        }
+
+        let convertedPnl = convertPnl(formData['trade-outcome']['outcome-select'], parseFloat(formData['trade-outcome']['net-pnl']));
+
+        try {
+            // Format data and assign them to the same name as the database columns
+            const formattedData = {
+                trade_date: formData['trade-outcome']['trade-date'],
+                asset: formData['trade-details']['asset-symbol'],
+                direction: formData['trade-details']['direction-select'],
+                outcome: formData['trade-outcome']['outcome-select'],
+                net_pnl: convertedPnl,
+            }
+            
+            // Send the form data to API to save it in the database
+            const response = await fetch('/api/trades', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json' // Metadata affilied to request to indicate the data type to server
+                },
+                body: JSON.stringify(formattedData) // Send form values as JSON
+            });
+
+            const data = await response.json(); // Parse the JSON response from server
+
+            if (response.ok) {
+                pushTradeToHistory(data); // Store the submitted trade
+                console.log("Successfully saved the trade:", data);
+
+                await refreshStatistics(); // pause process to modify the trigger value, leads to refresh pages
+
+                navigate("/journal"); // Redirect to journal page
+            } else {
+                console.error("Failed to save the trade", data.error);
+            }
+        } catch (err) {
+            console.error("Error submitting the trade", err.message);
+        }
+    };
+
+    // Debugging purpose
+    // useEffect(() => {
+    //     console.log(tradeHistory);
+    // }, [tradeHistory])
 
     return (
         <main className="trade-form-page">
@@ -98,11 +144,11 @@ export default function TradeFormPage() {
                     />
                     <FieldsetDiv 
                         id="net-pnl"
-                        label="Net P/L"    
+                        label="Net PnL"    
                         type="number"
                         placeholder="2500.51"
                         input="true"
-                        ariaLabel="Net P/L input"
+                        ariaLabel="Net PnL input"
                     />
                 </fieldset>
 

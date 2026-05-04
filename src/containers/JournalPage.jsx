@@ -1,15 +1,40 @@
+/* Style import */
+import '../styles/JournalStyle.css'
+
 import MainHeading from "../components/MainHeading";
 import TableRow from "../components/TableRow";
 import Header from "../components/Header";
-import { useForm } from "../data/FormContext";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function JournalPage() {
-    const {tradeHistory, formData} = useForm();
+    const [trades, setTrades] = useState([]);
 
+    // Debugging purpose
     // useEffect(() => {
     //     console.log(tradeHistory, formData);
     // }, [tradeHistory, formData]);
+
+    // Only fetch when the component is mounted
+    useEffect(() => {
+        // Fetch the trades from database
+        const fetchTrades = async () => {
+            try {
+                const response = await fetch('/api/trades'); // Simplier form because GET don't need to send data in body
+                const data = await response.json();
+                
+                if (response.ok) {
+                    console.log('Successfully fetched trades');
+                    setTrades(data);
+                } else {
+                    console.error('Failed to fetch trades', data.error);
+                }
+
+            } catch (err) {
+                console.error('Error fetching trades from database', err.message);
+            }
+        }
+        fetchTrades();
+    },[])
 
     return (
         <>
@@ -27,28 +52,33 @@ export default function JournalPage() {
                             <th>Asset</th>
                             <th>Direction</th>
                             <th>Outcome</th>
-                            <th>Net P/L</th>
+                            <th>Net PnL</th>
                         </tr>
                     </thead>
 
                     <tbody>
                         {/* // For now use the data stored in the context before switching to SQL and Node.js */}
-                        {tradeHistory.length > 0 ? (
-                            tradeHistory.map((trade, index) =>  
+                        {trades.length > 0 ? (
+                            // Map each fetched trade as a TableRow component
+                            trades.map((trade) =>  
                                 <TableRow
-                                    key={index}
-                                    date={trade["trade-outcome"]["trade-date"]}
-                                    asset={trade["trade-details"]["asset-symbol"]}
-                                    direction={trade["trade-details"]["direction-select"]}
-                                    outcome={trade["trade-outcome"]["outcome-select"]}
-                                    pnl={trade["trade-outcome"]["net-pnl"]}
+                                    key={trade.id} // Use the primary key from the database as key index
+                                    date={trade.trade_date?.slice(0, 10)}
+                                    asset={trade.asset} // Refer to the column name in database
+                                    direction={trade.direction === 'buy' ? 'Buy (Long)' : 'Sell (Short)'}
+                                    outcome={trade.outcome}
+                                    pnl={trade.net_pnl}
                                 />
                             )
                         ):(
-                            <tr>
-                                <td>No saved trades yet</td>
-                                {/* or TODO: display some default trades for ie  */}
-                            </tr>
+                            <>
+                                <tr>
+                                    <td>No saved trades yet</td> 
+                                </tr>
+                                <tr>
+                                    <td>(Demo data displayed on Dashboard and analytics page)</td>
+                                </tr>
+                            </>
                         )}
                     </tbody>
                 </table>

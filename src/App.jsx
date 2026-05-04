@@ -1,37 +1,51 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+/* Router import */
+import { RouterProvider } from 'react-router'
+import { createBrowserRouter } from 'react-router'
 
-function App() {
-  const [count, setCount] = useState(0)
+/* Pages import */
+import DashboardPage from './containers/DashboardPage'
+import JournalPage from './containers/JournalPage'
+import TradeFormPage from './containers/TradeFormPage'
+import AnalyticsPage from './containers/AnalyticsPage'
+import ErrorPage from './containers/ErrorPage'
 
+/* Provider import */
+import FormProvider from './data/FormContext'
+import { DataProvider } from './data/ArticlesContext'
+import { StatisticsProvider } from './data/StatisticsContext'
+
+// Router will take care of the website navigation
+  // Depending on the path, the corresponding page will be rendered
+const router = createBrowserRouter([
+  {
+    path:"/",
+    element: <DashboardPage />,
+    errorElement: <ErrorPage />
+  },
+  {
+    path:"/journal",
+    element: <JournalPage />,
+  },
+  {
+    path:"/tradeForm",
+    element: <TradeFormPage />,
+  },
+  {
+    path:"/analytics",
+    element: <AnalyticsPage />,
+  },
+])
+
+const App = () => {
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <DataProvider>
+      <FormProvider>
+        <StatisticsProvider>
+          <RouterProvider router={router} /> 
+        </StatisticsProvider>
+      </FormProvider>
+    </DataProvider>
   )
 }
 
-export default App
-
-// TODO: REMOVE once project terminated
+export default App;

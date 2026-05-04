@@ -1,32 +1,16 @@
 import { Bar, BarChart, Cell, Pie, PieChart, ResponsiveContainer, XAxis, YAxis } from "recharts";
+import { useStatistics } from "../data/StatisticsContext";
 
-export default function AnalyticSection({
+export default function AnalyticSection({   
     titleId,
     titleValue,
     text,
-    monthlyGraph,
-    averageGraph
+    numberTradesPerDateGraph,
+    averageGraph,
+    tradesData,
+    avgData
 }) {
-    const trades = [
-        { id: 1, asset: 'AAPL', direction: 'Buy', outcome: 'Win', date: '2024-01-15', netPNL: 200},
-        { id: 2, asset: 'NVDA', direction: 'Sell', outcome: 'Loss', date: '2024-01-16', netPNL: -100},
-        { id: 3, asset: 'AUD/USD', direction: 'Buy', outcome: 'Win', date: '2024-01-17', netPNL: 150},
-        { id: 4, asset: 'ETH', direction: 'Sell', outcome: 'Win', date: '2024-01-18', netPNL: 350},
-        { id: 5, asset: 'BTC', direction: 'Buy', outcome: 'Loss', date: '2024-01-19', netPNL: -200},
-        { id: 6, asset: 'USD coin', direction: 'Sell', outcome: 'Loss', date: '2024-01-20', netPNL: -150},
-    ];
-
-    const PNLtrades = [
-        { id: 1, asset: 'AAPL', direction: 'Buy', outcome: 'Win', date: '2024-01-15', netPNL: 200, fill: '#00C49F'},
-        { id: 2, asset: 'NVDA', direction: 'Sell', outcome: 'Loss', date: '2024-01-16', netPNL: -100, fill:  '#d41111'},
-    ];
-
-    // Look at example from recharts if we need to change the type of graphs
-    const data = [
-        { name: 'Average win', value: 70 }, // represents percents
-        { name: 'Average loss', value: 30 },
-    ];
-    const COLORS = ['#00C49F', '#c41a00ff'];
+    const { analyticSectionColor } = useStatistics();
 
     return (
         <section className="analytic-section" aria-labelledby={titleId}>
@@ -34,21 +18,22 @@ export default function AnalyticSection({
             {text && (
                 <p>{text}</p>
             )}
-            {monthlyGraph && (
+            {numberTradesPerDateGraph && (
                 <ResponsiveContainer>
-                    <BarChart responsive data={trades}>
-                        <XAxis dataKey="date" />
-                        <YAxis dataKey="netPNL"/>
-                        <Bar dataKey="netPNL" fill="#82ca9d" />
+                    <BarChart responsive data={tradesData}>
+                        <XAxis dataKey="trade_date" />
+                        <YAxis dataKey="trade_count"/>
+                        <Bar dataKey="trade_count" fill={analyticSectionColor[0]} />
                     </BarChart>
                 </ResponsiveContainer>
             )}
             {averageGraph && (
                 <ResponsiveContainer>
                     <PieChart responsive>
-                        <Pie data={data} label="name" dataKey="value">
-                            {data.map((key, index) => (
-                                <Cell key={key} fill={COLORS[index % COLORS.length]} />
+                        {/* datakey has avgData.value, we just map to assign colors to cell depending on index */}
+                        <Pie data={avgData} label="name" dataKey="value">
+                            {avgData.map((data, index) => (
+                                <Cell key={index} fill={analyticSectionColor[index % analyticSectionColor.length]} />
                             ))}
                         </Pie>
                     </PieChart>
@@ -57,4 +42,3 @@ export default function AnalyticSection({
         </section>
     );
 }
-{/*  Assign key to identify elements with REACT, fill attribute documentation on recharts */}

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useForm } from "../data/FormContext";
 
 export default function FieldsetDiv({
@@ -13,11 +13,11 @@ export default function FieldsetDiv({
     datalist,
     listId
 }) {
-    const {formData, handleDataChange, modifyInputValidity} = useForm();
+    const {handleDataChange, modifyInputValidity} = useForm();
     const [valid, setValid] = useState(false); // Use state to render the validity of an input
     const [errorMessage, setErrorMessage] = useState(); // Allow to display an error message depending of the input
 
-    // Asset input cannot be empty
+    // Check that the input is not empty
     const checkAsset = (asset) => {
         if (asset === "") {
             setValid(false); // Locally defined state, used to conditionally render the element
@@ -30,7 +30,7 @@ export default function FieldsetDiv({
         }
     }
 
-    // Date cannot be in the future
+    // Check that date is not in the future
     const checkDate = (userPickedDate) => {
         const currentDate = new Date().toLocaleDateString();
         const currentFormattedDate = currentDate.split(". ").join("-").slice(0, -1); // YYYY MM DD
@@ -49,12 +49,20 @@ export default function FieldsetDiv({
         }
     }
 
-    // PNL input cannot be set at 0
+    // Check that pnl has a valid value
     const checkPNL = (pnl) => {
         if (pnl === "0") {
             setValid(false);
             modifyInputValidity("net-pnl", false);
             setErrorMessage("Please enter a value different than zero");
+        } else if (pnl.startsWith("0")) {
+            setValid(false);
+            modifyInputValidity("net-pnl", false);
+            setErrorMessage("Please enter a value that does not start with zero");
+        } else if (parseFloat(pnl) < 0) {
+            setValid(false);
+            modifyInputValidity("net-pnl", false);
+            setErrorMessage("Please do not input a negative value, the conversion is automatically handled")
         } else {
             setValid(true);
             modifyInputValidity("net-pnl", true);
@@ -79,17 +87,17 @@ export default function FieldsetDiv({
                 checkDate(value);
                 break;
         }
-
         handleDataChange(fieldset, label, value);
     }
 
-    useEffect(() => {
-        if (options) {
-            options.map((value) => {
-                console.log(value);
-            })
-        }
-    }, []);
+    // Debugging purpose
+    // useEffect(() => {
+    //     if (options) {
+    //         options.map((value) => {
+    //             console.log(value);
+    //         })
+    //     }
+    // }, []);
 
     return (
         <div>
@@ -98,7 +106,8 @@ export default function FieldsetDiv({
             {select && (
                 <select name={id} id={id} aria-label={ariaLabel} onChange={onChangeHandler} required>
                     {options && 
-                        options.map((obj, index) => { // Loop through the passed object, and display an option element for each
+                        // Loop through the passed object, and display an option element for each
+                        options.map((obj, index) => {
                             return <option key={index} value={obj.value}>{obj.text}</option>
                         })
                     }

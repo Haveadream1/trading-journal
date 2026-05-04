@@ -1,50 +1,74 @@
+/* Style import */
+import '../styles/AnalyticsStyle.css'
+
 import AnalyticSection from "../components/AnalyticSection";
 import Header from "../components/Header";
 import MainHeading from "../components/MainHeading";
-
+import { useStatistics } from "../data/StatisticsContext";
 
 export default function AnalyticsPage() {
+    const {stats, formatDate} = useStatistics();
+
+    const createAverageDataObj = (avgWin, avgLoss) => {
+        // this check allows 0 values, contrary to !avgWin
+        if (avgWin === undefined || avgLoss === undefined) {
+            return [];
+        }
+
+        return [
+            {name: 'Average win', value: avgWin},
+            {name: 'Average loss', value: Math.abs(avgLoss)} // Convert to abosulte value to avoid issue with graph
+        ];
+    }
+
+    // Debuggin purpose
+    // useEffect(() => {
+    //     console.log(formatDate(stats.tradeList), stats.avgWin, stats.avgLoss);
+    // }, []);
+
     return (
         <>
             <Header />
             <main className="analytics-page">
                 <MainHeading 
                     titleValue="Analytics"
-                    text="Discover you results in a simple way"
+                    text="Discover your results in a simple way"
                 />
 
                 <div className="analytics-grid">
                     <div className="analytics-sub-left-grid">
                         <AnalyticSection
-                            titleId="monthly-graph-heading"
-                            titleValue="Monthly PNL"
-                            monthlyGraph="true"
+                            titleId="number-trades-per-date-heading"
+                            titleValue="Number of trades per date"
+                            numberTradesPerDateGraph="true"
+                            tradesData={formatDate(stats.tradeList)}
                         />
 
                         <AnalyticSection
                             titleId="weekly-results-heading"
                             titleValue="Weekly results"
-                            text="+856,40 €"
+                            text={String(stats.weeklyPnl).startsWith('-') ? `${stats.weeklyPnl} €` : `+ ${stats.weeklyPnl} €`}
                         />
 
                         <AnalyticSection
                             titleId="biggest-win-heading"
                             titleValue="Biggest win"
-                            text="250,24 €"
+                            text={`${stats.biggestWin} €`}
                         />
                     </div>
 
                     <div className="analytics-sub-right-grid">
                         <AnalyticSection
-                            titleId="account-grow-heading"
-                            titleValue="Monthly account grow"
-                            text="+32%"
+                            titleId="total-number-trades-heading"
+                            titleValue="Total number of trades"
+                            text={`${stats.totalTrades}`}
                         />
 
                         <AnalyticSection
                             titleId="average-graph-heading"
                             titleValue="Average Win/Loss"
                             averageGraph="true"
+                            avgData={createAverageDataObj(stats.avgWin, stats.avgLoss)}
                         />
                     </div>
                 </div>

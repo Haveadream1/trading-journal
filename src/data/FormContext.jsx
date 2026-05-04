@@ -1,7 +1,7 @@
+// Data context with states and functions to handle the form inputs change, validation and storage
 import { createContext, useContext, useState } from "react";
 
-const FormContext = createContext(null); 
-// Give default value for easier unit testing  
+const FormContext = createContext(null);
 
 export default function FormProvider({ children }) {
     const [tradeHistory, setTradeHistory] = useState([]); // Array to store trades
@@ -11,16 +11,16 @@ export default function FormProvider({ children }) {
         "net-pnl": false,
     })
 
-    // Define the structure and give default values
+    // Define the structure of the stored data for each trade
     const [formData, setFormData] = useState({
         "trade-details": {  // fieldset
-            "asset-symbol": "BTC/USD", // label : value
-            "direction-select": "Buy (Long)"
+            "asset-symbol": "", // label : value
+            "direction-select": "buy"
         },
         "trade-outcome": {
             "trade-date": "",
-            "outcome-select": "",
-            "net-pnl": "2500.51"
+            "outcome-select": "win",
+            "net-pnl": ""
         }
     })
 
@@ -35,7 +35,9 @@ export default function FormProvider({ children }) {
         }));
     }
 
-    // Define a method to store temporary the trades with react
+    // Define a method to store locally the trades with state
+        // Like that the UI update faster than waiting from the server response
+        // Improve UX (user experience) and reduce the number of fetch
     const pushTradeToHistory = (trade) => {
         setTradeHistory(prev => {
             return [...prev, trade];

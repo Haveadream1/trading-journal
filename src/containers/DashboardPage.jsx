@@ -1,11 +1,21 @@
+/* Style import */
+import '../styles/DashboardStyle.css'
+
 import MainHeading from "../components/MainHeading";
 import MetricSection from "../components/MetricSection";
 import Header from "../components/Header";
 import SideMetricSection from "../components/SideMetricSection";
-import { useData } from "../data/DataContext";
+import { useData } from "../data/ArticlesContext";
+import { useStatistics } from '../data/StatisticsContext'
 
 export default function DashboardPage() {
     const articles = useData();
+    const {stats, formatDate} = useStatistics();
+
+    // Debugging purpose
+    // useEffect(() => {
+    //     console.log(stats.tradeList);
+    // }, [])
 
     return (
         <>
@@ -19,34 +29,37 @@ export default function DashboardPage() {
                 <div className="performance-metrics-grid">
                     <MetricSection 
                         titleId="metric-heading-total-pnl" 
-                        titleValue="Total P/L" 
-                        text="15,150.25 €" 
+                        titleValue="Total PnL" 
+                        text={`${stats.totalPnl} €`}
                     />
 
                     <MetricSection 
                         titleId="metric-heading-win-rate" 
                         titleValue="Win Rate" 
-                        text="75.2 %" 
+                        text={`${stats.winRate} %`}
                     />
 
                     <MetricSection 
                         titleId="metric-heading-profit-factor" 
                         titleValue="Profit factor" 
-                        text="2.12" 
+                        text={`${stats.profitFactor}`}
                     />
                 </div>
 
                 <div className="graphic-metrics-grid">
                     <SideMetricSection 
-                        titleId="metric-heading-graph" 
-                        titleValue="Trades graphic" 
-                        graphMetric="true" 
+                        titleId="metric-heading-graph"
+                        titleValue="PnL Over time" 
+                        graphMetric="true"
+                        trades={formatDate(stats.tradeList)}
                     />
 
                     <SideMetricSection 
                         titleId="side-metric-heading-asset" 
                         titleValue="Most traded asset" 
-                        assetMetric="true" 
+                        assetMetric="true"
+                        textAsset={`${stats.mostTradedAsset}`}
+                        textCount={`${stats.mostTradedAssetCount} trades`}
                     />
 
                     <SideMetricSection 

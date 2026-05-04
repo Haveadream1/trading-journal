@@ -1,3 +1,5 @@
+import React from "react";
+
 export default function MetricSection({
     titleId,
     titleValue,
@@ -5,7 +7,7 @@ export default function MetricSection({
 }) {
     return (
         <section className="metric-section" aria-labelledby={titleId}>
-            <h3 id={titleId}>{titleValue}</h3>
+            <h2 id={titleId}>{titleValue}</h2>
             <p className="metric-value">{text}</p>
         </section>
     );
