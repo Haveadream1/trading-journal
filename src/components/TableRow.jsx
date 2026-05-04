@@ -1,3 +1,5 @@
+import React from "react";
+
 export default function TableRow({
     date,
     asset,
@@ -5,7 +7,6 @@ export default function TableRow({
     outcome,
     pnl
 }) {
-    // ! Check later: Loss and loss
     return (
         <tr className="table-values-row">
             <td className="table-date-value">{date}</td>
