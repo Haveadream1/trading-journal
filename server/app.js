@@ -18,6 +18,17 @@ app.get('/api/health', (req, res) => {
   });
 });
 
+// Set up a route to securely fetch articles from API
+app.get('/api/articles', async (req, res) => {
+  const API_KEY = process.env.FMP_API_KEY;
+  const API_URL = `https://financialmodelingprep.com/stable/fmp-articles?page=0&limit=2&apikey=${API_KEY}`;
+
+  const response = await fetch(API_URL);
+  const articles = await response.json();
+
+  res.json(articles);
+})
+
 // Set up GET route to get all trades
   // Use asyncronous function to handle the database query
 app.get('/api/trades', async (req, res) => {
