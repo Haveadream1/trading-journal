@@ -110,7 +110,8 @@ Install babel packages
 Create a jest config file
   * Add configuration to jest.congig file so it can handle the frontend and backend environment
 Import React to every test files and file we test
-
+Create a backend route for the financial API to respect requirement of project
+  * enhance security
 
 ## To-do
 <!-- TODO: Do something for the profile icon, it currently redirects to nothing --> 
