@@ -8,18 +8,11 @@ const DataContext = createContext(null);
 
 export function DataProvider({ children }) {
     const [articles, setArticles] = useState([]); // Avoid NULL as default when fetching data
-    
-    const API_KEY = import.meta.env.VITE_API_KEY;
-    const API_URL = `https://financialmodelingprep.com/stable/fmp-articles?page=0&limit=2&apikey=${API_KEY+'d'}`;
-
-    // dotenv is used for Node.js environment
-        // as we are in React, we must prefix our key in the .env file VITE_
-        // and import it with: import.meta.env. followed by the name of key
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(API_URL);
+                const response = await fetch('/api/articles');
                 const result = await response.json();
 
                 if (response.ok) {
