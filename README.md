@@ -84,7 +84,7 @@ Handle the refresh of the pages by adding a state
 Refactor articles API
   * get api key from env file
   * fetch from modules demo articles in case of failing fetch
-Implement testing for backend
+Implement unit testing for backend
   * install Jest: testing framework
     * install additional configuration {jest-circus} as default Jest doesn't recognize ES6 import statements
   * install Supertest: testing library to simulate HTTP request like GET/POST
@@ -92,7 +92,7 @@ Implement testing for backend
 What to test:
   * BACKEND
     * API routes
-    * Validation
+    * Data Validation
     * Empty tables
   * FRONTEND
     * Components
@@ -101,6 +101,15 @@ Split server file into 2 for testing reasons
   * We need to have one file that defines routes and middlewares 
   * while the other start the server, because when testing we are mocking not starting a real server
   * server.js / app.js
+Install testing libraries
+  * @testing-library/react and user event for frontend testing
+    * we still use jest as the test runner
+Install babel packages
+  * Create a babel config file
+    * as Jest doesn't understand jsx format as running on Node.js
+Create a jest config file
+  * Add configuration to jest.congig file so it can handle the frontend and backend environment
+Import React to every test files and file we test
 
 
 ## To-do
