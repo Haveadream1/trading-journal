@@ -12,8 +12,30 @@ export default function SideMetricSection({
     textAsset,
     textCount
 }) {
-    const { sideMetricColor } = useStatistics();
+    const { sideMetricColor, isLoading } = useStatistics();
 
+    // Create a loading render instead of putting everything in the main render for better code readability 
+    if (isLoading) {
+        return (
+            <section className={graphMetric ? ("trade-results-graphic") : ("side-metric-section")} aria-labelledby={titleId}>
+                <h3 id={titleId}>{titleValue}</h3>
+                {graphMetric && (
+                    <p>Loading...</p>
+                )}
+                {assetMetric && (
+                    <>
+                        <p className="asset-value">Loading...</p>
+                        <p className="trade-count">Loading...</p>
+                    </>
+                )}
+                {articleMetric && (
+                    <p>Loading...</p>
+                )}
+            </section>
+        );
+    }
+
+    // Main render
     return (
         <section className={graphMetric ? ("trade-results-graphic") : ("side-metric-section")} aria-labelledby={titleId}>
             <h3 id={titleId}>{titleValue}</h3>

@@ -10,7 +10,25 @@ export default function AnalyticSection({
     tradesData,
     avgData
 }) {
-    const { analyticSectionColor } = useStatistics();
+    const { analyticSectionColor, isLoading } = useStatistics();
+
+    // Loading render separate from main render
+    if (isLoading) {
+        return (
+            <section className="analytic-section" aria-labelledby={titleId}>
+                <h2 id={titleId}>{titleValue}</h2>
+                {text && (
+                    <p>Loading...</p>
+                )}
+                {numberTradesPerDateGraph && (
+                    <p>Loading...</p>
+                )}
+                {averageGraph && (
+                    <p>Loading...</p>
+                )}
+            </section>
+        )
+    }
 
     return (
         <section className="analytic-section" aria-labelledby={titleId}>
