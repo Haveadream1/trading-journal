@@ -9,12 +9,16 @@ const DataContext = createContext(null);
 export function StatisticsProvider({ children }) {
     const [stats, setStats] = useState({}); // setting up an empty object leave it to be undefined until we fetch data
     const [refreshTrigger, setRefreshTrigger] = useState(0);
+    const [isLoading, setIsLoading] = useState(true); // starts with a loading state
 
     useEffect(() => {
         const fetchStatistics = async () => {
+            setIsLoading(true);
             try {
                 const response = await fetch('/api/statistics');
                 const data = await response.json();
+
+                setIsLoading(false); // after waiting for data, we set loading state to false as success/error is handled after
 
                 if (data.totalTrades === 0) {
                     console.log("Database table is empty, we display demo trades");
@@ -29,6 +33,8 @@ export function StatisticsProvider({ children }) {
                     }
                 }
             } catch (err) { 
+                setIsLoading(false);
+
                 console.error('Error fetching analytics from database', err.message);
             }
         }
@@ -65,7 +71,8 @@ export function StatisticsProvider({ children }) {
         formatDate,
         analyticSectionColor,
         sideMetricColor,
-        refreshStatistics
+        refreshStatistics,
+        isLoading
     }
 
     return (
