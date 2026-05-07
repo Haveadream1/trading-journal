@@ -1,6 +1,5 @@
 // Demonstration trades used when the database table is empty
 
-// ! Handle here too negative pnl after
 export const getDemoTradeList = () => [
     {
         trade_date: '2026-04-15',
@@ -10,7 +9,7 @@ export const getDemoTradeList = () => [
     {
         trade_date: '2026-04-17',
         trade_count: 1,
-        net_pnl: 150.25 // Losing day
+        net_pnl: -150.25
     },
     {
         trade_date: '2026-04-20',
