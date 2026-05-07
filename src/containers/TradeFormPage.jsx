@@ -6,8 +6,11 @@ import MainHeading from "../components/MainHeading";
 import { useForm } from "../data/FormContext";
 import { Link, Navigate, useNavigate } from "react-router";
 import { useStatistics } from '../data/StatisticsContext';
+import { useState } from 'react';
 
 export default function TradeFormPage() {
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
     const navigate = useNavigate();
     const {formData, pushTradeToHistory, validity} = useForm();
     const { refreshStatistics } = useStatistics();
@@ -44,10 +47,16 @@ export default function TradeFormPage() {
     const handleFormSubmit = async (e) => {
         e.preventDefault();
 
+        // Avoid duplicates trades for the same submit
+        if(isSubmitting) return;
+        // Otherwise, disable submit button
+        setIsSubmitting(true);
+
         // Validity check for all inputs before sending data to API
         for (let i in validity) {
             if (!validity[i]) {
                 console.error("Some inputs are still invalid !");
+                setIsSubmitting(false);
                 return;
             }
         }
@@ -84,9 +93,11 @@ export default function TradeFormPage() {
                 navigate("/journal"); // Redirect to journal page
             } else {
                 console.error("Failed to save the trade", data.error);
+                setIsSubmitting(false);
             }
         } catch (err) {
             console.error("Error submitting the trade", err.message);
+            setIsSubmitting(false);
         }
     };
 
@@ -153,8 +164,18 @@ export default function TradeFormPage() {
                 </fieldset>
 
                 <div className="form-buttons-container">
-                    <button className="save-button" type="submit" aria-label="Submit form">Save Trade</button>
-                    <Link to="/journal" className="cancel-button" aria-label="Cancel form">Cancel</Link>
+                    <button disabled={isSubmitting} className="save-button" type="submit" aria-label="Submit form">
+                        {isSubmitting ? (
+                            "Saving...."
+                        ):(
+                            "Save Trade"
+                        )}
+                    </button>
+                    {!isSubmitting ? (
+                        <Link to="/journal" className="cancel-button" aria-label="Cancel form">Cancel</Link>
+                    ):(
+                        <></>
+                    )}
                 </div>
             </form>
         </main>
