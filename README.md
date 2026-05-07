@@ -42,15 +42,5 @@ Here is a list of most of the statisticals columns created with queries for the 
 
 ### To-dos
 * do something for the profile icon, it currently redirects to nothing
-* create a graph to visualize the database
 * implement CRUD operations on trade
-* component should be DUMB while container SMART
-* check with tradeHistory if it should be displayed in case of no load
-* render a lightHouse
-* render formatting and linter tool (Prettier, ESlint)
 * SUB-TODO: check all double or single quotes
-* limit the number of trades/data fetched for the graphic to see clear data
-* differentiate in journal page when there is no data and when we wait for loading
-* freeze the button while waiting for page redirection in trade form ?
-* add a loading state after clicking on the save trade button
-* check if project need a license
