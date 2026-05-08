@@ -9,6 +9,7 @@ import TradeFormPage from './containers/TradeFormPage'
 import AnalyticsPage from './containers/AnalyticsPage'
 import ErrorPage from './containers/ErrorPage'
 import ProfilePage from './containers/ProfilePage'
+import ProfileFormPage from './containers/ProfileFormPage'
 
 /* Provider import */
 import FormProvider from './data/FormContext'
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
   {
     path:"/profile",
     element: <ProfilePage />
+  },
+  {
+    path:"/profileForm",
+    element: <ProfileFormPage />
   }
 ])
 
