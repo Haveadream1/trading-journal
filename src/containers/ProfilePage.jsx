@@ -1,7 +1,9 @@
 /* Style import */
 import '../styles/ProfileStyle.css'
 
+import homeIcon from "../assets/HomeIcon.svg";
 import MainHeading from "../components/MainHeading";
+import { Link } from 'react-router';
 
 export default function ProfilePage() {
     return (
@@ -17,15 +19,16 @@ export default function ProfilePage() {
                 <div className="profile-section">
                     <div className="profile-picture-container">
                         <div className="picture-container">
-                            <img src="" id="profile-picture" alt="User profile picture" />
+                            <img src="" id="profile-picture" />
+                            {/* <img src="" id="profile-picture" alt="User profile picture" /> */}
                             <p>User name</p>
                         </div>
 
                         <div className="button-container">
-                            <button className="profile-edit-button">Edit</button>
-                            <button className="back-home-button">
-                                <img src="" alt="Home icon" />
-                            </button>
+                            <Link to={"/profileForm"} className='profile-edit-button' aria-label='redirect to profile form page'>Edit</Link>
+                            <Link to={"/"} className="back-home-button" aria-label='redirect to dashboard page'>
+                                <img src={homeIcon} alt="Home icon" />
+                            </Link>
                         </div>
                     </div>
 
