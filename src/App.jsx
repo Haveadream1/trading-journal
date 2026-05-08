@@ -8,6 +8,7 @@ import JournalPage from './containers/JournalPage'
 import TradeFormPage from './containers/TradeFormPage'
 import AnalyticsPage from './containers/AnalyticsPage'
 import ErrorPage from './containers/ErrorPage'
+import ProfilePage from './containers/ProfilePage'
 
 /* Provider import */
 import FormProvider from './data/FormContext'
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
     path:"/analytics",
     element: <AnalyticsPage />,
   },
+  {
+    path:"/profile",
+    element: <ProfilePage />
+  }
 ])
 
 const App = () => {
