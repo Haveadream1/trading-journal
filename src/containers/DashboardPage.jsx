@@ -7,10 +7,12 @@ import Header from "../components/Header";
 import SideMetricSection from "../components/SideMetricSection";
 import { useData } from "../data/ArticlesContext";
 import { useStatistics } from '../data/StatisticsContext'
+import { useProfile } from '../data/ProfileContext';
 
 export default function DashboardPage() {
     const articles = useData();
     const {stats, formatDate} = useStatistics();
+    const { profileData } = useProfile();
 
     // Debugging purpose
     // useEffect(() => {
@@ -23,7 +25,7 @@ export default function DashboardPage() {
             <main className="dashboard-page">
                 <MainHeading 
                     titleValue="Dashboard"
-                    text="Welcome H, here is a global overview of your performance"
+                    text={`Welcome ${profileData["username-input"]}, here is a global overview of your performance`}
                 />
 
                 <div className="performance-metrics-grid">
