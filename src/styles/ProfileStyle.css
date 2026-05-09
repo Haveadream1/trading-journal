@@ -81,7 +81,7 @@
 .data-child-container > :nth-child(1) {
     padding: var(--space-xs);
 }
-.user-name-value,
+.username-value,
 .user-motivation-value {
     color: var(--grey);
     background-color: white;
