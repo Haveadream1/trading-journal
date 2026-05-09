@@ -4,13 +4,16 @@ import '../styles/ProfileStyle.css'
 import homeIcon from "../assets/HomeIcon.svg";
 import MainHeading from "../components/MainHeading";
 import { Link } from 'react-router';
+import { useProfile } from '../data/ProfileContext';
 
 export default function ProfilePage() {
+    const { profileData } = useProfile();
+    
     return (
         <>
             <header className="profile-header">
                 <MainHeading 
-                    titleValue="Welcome user name"
+                    titleValue={`Welcome ${profileData["username-input"]} !`}
                     text="Access and edit your profile data"
                 />
             </header>
@@ -21,7 +24,7 @@ export default function ProfilePage() {
                         <div className="picture-container">
                             <img src="" id="profile-picture" />
                             {/* <img src="" id="profile-picture" alt="User profile picture" /> */}
-                            <p>User name</p>
+                            <p>{`${profileData["username-input"]}`}</p>
                         </div>
 
                         <div className="button-container">
@@ -35,7 +38,7 @@ export default function ProfilePage() {
                     <div className="profile-data-container">
                         <div className="data-child-container">
                             <p>Name:</p>
-                            <p className="user-name-value">User name</p>
+                            <p className="username-value">My name is....</p>
                         </div>
                         <div className="data-child-container">
                             <p>Motivation:</p>
