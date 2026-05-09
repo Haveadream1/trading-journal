@@ -33,14 +33,14 @@ export default function ProfileProvider({ children}) {
     const storeProfile = (profileData) => {
         // Save profile data into local storage: key, value
         try {
-            const storedProfile = localStorage.setItem('profile', JSON.stringify(profileData));
-            if (!storedProfile) return false;
-
+            localStorage.setItem('profile', JSON.stringify(profileData));
+            
             // Return a boolean used in the profile form for validation on submit
+                // setItem only return an error if an issue, and nothing for success 
             return true;
         } catch(error) {
             console.log('Failed to store the profile in local storage', error);
-            return false
+            return false;
         }
     }
 
