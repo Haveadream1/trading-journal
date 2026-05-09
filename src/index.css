@@ -23,7 +23,8 @@
 }
 
 html,
-button {
+button,
+input {
   font-family: "Nunito Sans", sans-serif;
 }
 
