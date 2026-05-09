@@ -1,7 +1,7 @@
 .profile-header {
     display: flex;
-    gap: none;
-    padding: none;
+    gap: 0;
+    padding: 0;
 }
 
 .profile-page {
@@ -47,6 +47,9 @@
     padding: var(--space-sm);
     background-color: var(--light-green);
     border-radius: var(--space-xs);
+    align-content: center;
+    min-height: 56.86px; 
+    /* Min-height important otherwise the height will be change between pages due to the icon */
 }
 .profile-cancel-button {
     background-color: var(--light-red);
@@ -71,6 +74,7 @@
     font-size: 16px;
     color: var(--grey);
     border: none;
+    padding: var(--space-xs);
 }
 
 .profile-fieldset > :nth-child(1),
