@@ -46,7 +46,7 @@ export default function ProfileFormPage() {
         <>
             <header className="profile-header">
                 <MainHeading 
-                    titleValue="Welcome user name"
+                    titleValue={`Welcome ${profileData["username-input"]} !`}
                     text="Access and edit your profile data"
                 />
             </header>
@@ -55,8 +55,8 @@ export default function ProfileFormPage() {
                 <div className="profile-section">
                     <div className="profile-picture-container">
                         <div className="picture-container">
-                            {/* <img src="" id="profile-picture" /> */}
-                            <p>User name</p>
+                            <span id='profile-picture'></span>
+                            <p>{`${profileData["username-input"]}`}</p>
                         </div>
 
                         <div className="button-container">
@@ -68,7 +68,6 @@ export default function ProfileFormPage() {
                         </div>
                     </div>
 
-                    {/* ! Button should be inside for the submit ? */}
                     {/* No fieldset because we don't implement a legend */}
                     <form onSubmit={handleSubmit} id="profile-form" className="profile-form">
                         <div id="profile-name-fieldset" className="profile-fieldset">
