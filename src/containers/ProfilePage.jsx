@@ -22,8 +22,8 @@ export default function ProfilePage() {
                 <div className="profile-section">
                     <div className="profile-picture-container">
                         <div className="picture-container">
-                            <img src="" id="profile-picture" />
                             {/* <img src="" id="profile-picture" alt="User profile picture" /> */}
+                            <span id='profile-picture'></span>
                             <p>{`${profileData["username-input"]}`}</p>
                         </div>
 
@@ -42,7 +42,7 @@ export default function ProfilePage() {
                         </div>
                         <div className="data-child-container">
                             <p>Motivation:</p>
-                            <p className="user-motivation-value">My motivation is...</p>
+                            <p className="user-motivation-value">My motivation is....</p>
                         </div>
                     </div>
                 </div>
