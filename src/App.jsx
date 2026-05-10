@@ -16,6 +16,7 @@ import FormProvider from './data/FormContext'
 import { DataProvider } from './data/ArticlesContext'
 import { StatisticsProvider } from './data/StatisticsContext'
 import ProfileProvider from './data/ProfileContext'
+import { ActionsProvider } from './data/ActionsContext'
 
 // Router will take care of the website navigation
   // Depending on the path, the corresponding page will be rendered
@@ -53,7 +54,9 @@ const App = () => {
       <FormProvider>
         <StatisticsProvider>
           <ProfileProvider>
-            <RouterProvider router={router} />
+            <ActionsProvider>
+              <RouterProvider router={router} />
+            </ActionsProvider>
           </ProfileProvider>
         </StatisticsProvider>
       </FormProvider>
