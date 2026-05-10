@@ -1,12 +1,42 @@
 import React from "react";
 
+// Icon imports
+import editIcon from '../assets/EditTradeIcon.svg';
+import deleteIcon from '../assets/DeleteTradeIcon.svg';
+
+import { useActions } from "../data/ActionsContext";
+import { useStatistics } from "../data/StatisticsContext";
+
 export default function TableRow({
+    id,
     date,
     asset,
     direction,
     outcome,
     pnl
 }) {
+    const { deleteTrade } = useActions();
+    const { refreshStatistics } = useStatistics();
+
+    const handleEditClick = () => {
+        console.log("Trade edited", id)
+    }
+
+    const handleDeleteClick = () => {
+        try {
+            const success = deleteTrade(id);
+
+            if (success) {
+                console.log("Trade deleted", id);
+                refreshStatistics();
+            } else {
+                console.error("Failed to delete the trade");
+            }
+        } catch (error) {
+            console.error("Error while deleting the trade", error.message);
+        }
+    }
+
     return (
         <tr className="table-values-row">
             <td className="table-date-value">{date}</td>
@@ -27,6 +57,15 @@ export default function TableRow({
                 ):(
                     <span className="pnl-span-win">{pnl} €</span>
                 )}
+            </td>
+            <td className="table-actions-buttons">
+                <button type="button" className="edit-trade-btn" onClick={handleEditClick} aria-label="Edit trade values">
+                    <img src={editIcon} id="edit-trade-icon" alt="Edit icon" />
+                </button>
+
+                <button type="button" className="delete-trade-btn" onClick={handleDeleteClick} aria-label="Delete trade">
+                    <img src={deleteIcon} id="delete-trade-icon" alt="Delete icon" />
+                </button>
             </td>
         </tr>
     );
