@@ -9,6 +9,8 @@ import { useStatistics } from '../data/StatisticsContext';
 
 export default function JournalPage() {
     const [trades, setTrades] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+
     const { refreshTrigger } = useStatistics();
 
     // Debugging purpose
@@ -20,9 +22,13 @@ export default function JournalPage() {
     useEffect(() => {
         // Fetch the trades from database
         const fetchTrades = async () => {
+            setIsLoading(true);
+
             try {
                 const response = await fetch('/api/trades'); // Simplier form because GET don't need to send data in body
                 const data = await response.json();
+
+                setIsLoading(false);
                 
                 if (response.ok) {
                     console.log('Successfully fetched trades');
@@ -32,6 +38,7 @@ export default function JournalPage() {
                 }
 
             } catch (err) {
+                setIsLoading(false);
                 console.error('Error fetching trades from database', err.message);
             }
         }
@@ -60,8 +67,21 @@ export default function JournalPage() {
                     </thead>
 
                     <tbody>
-                        {/* // For now use the data stored in the context before switching to SQL and Node.js */}
-                        {trades.length > 0 ? (
+                        {isLoading ? (
+                            <tr>
+                                {/* Span through the length */}
+                                <td colSpan={6} className='table-loading-element'>Loading...</td>
+                            </tr>
+                        ) : trades.length === 0 ?(
+                            <>
+                                <tr>
+                                    <td colSpan={6}>No trades saved</td>
+                                </tr>
+                                <tr>
+                                    <td colSpan={6}>Loading demo trades</td>
+                                </tr>
+                            </>
+                        ) : (
                             // Map each fetched trade as a TableRow component
                             trades.map((trade) =>  
                                 <TableRow
@@ -74,15 +94,6 @@ export default function JournalPage() {
                                     pnl={trade.net_pnl}
                                 />
                             )
-                        ):(
-                            <>
-                                <tr>
-                                    <td>No saved trades yet</td> 
-                                </tr>
-                                <tr>
-                                    <td>(Demo data displayed on Dashboard and analytics page)</td>
-                                </tr>
-                            </>
                         )}
                     </tbody>
                 </table>
