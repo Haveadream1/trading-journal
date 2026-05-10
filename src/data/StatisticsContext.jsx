@@ -72,6 +72,7 @@ export function StatisticsProvider({ children }) {
         analyticSectionColor,
         sideMetricColor,
         refreshStatistics,
+        refreshTrigger,
         isLoading
     }
 
