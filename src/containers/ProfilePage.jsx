@@ -28,8 +28,8 @@ export default function ProfilePage() {
                         </div>
 
                         <div className="button-container">
-                            <Link to={"/profileForm"} className='profile-edit-button' aria-label='redirect to profile form page'>Edit</Link>
-                            <Link to={"/"} className="back-home-button" aria-label='redirect to dashboard page'>
+                            <Link to={"/profileForm"} className='profile-edit-button' aria-label='Redirect to profile form page'>Edit</Link>
+                            <Link to={"/"} className="back-home-button" aria-label='Redirect to dashboard page'>
                                 <img src={homeIcon} alt="Home icon" />
                             </Link>
                         </div>
