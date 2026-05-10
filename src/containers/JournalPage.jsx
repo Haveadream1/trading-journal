@@ -5,9 +5,11 @@ import MainHeading from "../components/MainHeading";
 import TableRow from "../components/TableRow";
 import Header from "../components/Header";
 import { useEffect, useState } from "react";
+import { useStatistics } from '../data/StatisticsContext';
 
 export default function JournalPage() {
     const [trades, setTrades] = useState([]);
+    const { refreshTrigger } = useStatistics();
 
     // Debugging purpose
     // useEffect(() => {
@@ -34,7 +36,7 @@ export default function JournalPage() {
             }
         }
         fetchTrades();
-    },[])
+    },[refreshTrigger])
 
     return (
         <>
@@ -53,6 +55,7 @@ export default function JournalPage() {
                             <th>Direction</th>
                             <th>Outcome</th>
                             <th>Net PnL</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
 
@@ -63,6 +66,7 @@ export default function JournalPage() {
                             trades.map((trade) =>  
                                 <TableRow
                                     key={trade.id} // Use the primary key from the database as key index
+                                    id={trade.id} // Pass key as a props to retrieve it for CRUD operations
                                     date={trade.trade_date?.slice(0, 10)}
                                     asset={trade.asset} // Refer to the column name in database
                                     direction={trade.direction === 'buy' ? 'Buy (Long)' : 'Sell (Short)'}
