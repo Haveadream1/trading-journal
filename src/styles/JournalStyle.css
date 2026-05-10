@@ -40,6 +40,19 @@ thead {
   color: var(--red);
 }
 
+.table-actions-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+}
+
+.table-actions-buttons > * {
+  display: flex;
+  background: none;
+  border: none;
+}
+
 .add-new-trade-button {
   width: 60px;
   height: 60px;
