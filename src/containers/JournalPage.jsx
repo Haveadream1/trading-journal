@@ -18,30 +18,31 @@ export default function JournalPage() {
     //     console.log(tradeHistory, formData);
     // }, [tradeHistory, formData]);
 
-    // Only fetch when the component is mounted
-    useEffect(() => {
-        // Fetch the trades from database
-        const fetchTrades = async () => {
-            setIsLoading(true);
+    // Fetch the trades from database
+    const fetchTrades = async () => {
+        setIsLoading(true);
 
-            try {
-                const response = await fetch('/api/trades'); // Simplier form because GET don't need to send data in body
-                const data = await response.json();
-
-                setIsLoading(false);
-                
-                if (response.ok) {
-                    console.log('Successfully fetched trades');
-                    setTrades(data);
-                } else {
-                    console.error('Failed to fetch trades', data.error);
-                }
-
-            } catch (err) {
-                setIsLoading(false);
-                console.error('Error fetching trades from database', err.message);
+        try {
+            const response = await fetch('/api/trades'); // Simplier form because GET don't need to send data in body
+            const data = await response.json();
+            
+            if (response.ok) {
+                console.log('Successfully fetched trades');
+                setTrades(data);
+            } else {
+                console.error('Failed to fetch trades', data.error);
             }
+
+        } catch (err) {
+            console.error('Error fetching trades from database', err.message);
+        } finally {
+            // Clean up loading state
+            setIsLoading(false);
         }
+    }
+
+    // Fetch on inital mount and when dependency value is modified
+    useEffect(() => {
         fetchTrades();
     },[refreshTrigger])
 
@@ -75,10 +76,10 @@ export default function JournalPage() {
                         ) : trades.length === 0 ?(
                             <>
                                 <tr>
-                                    <td colSpan={6}>No trades saved</td>
+                                    <td colSpan={6} className='table-loading-element'>No trades saved</td>
                                 </tr>
                                 <tr>
-                                    <td colSpan={6}>Loading demo trades</td>
+                                    <td colSpan={6} className='table-loading-element'>Loading demo trades</td>
                                 </tr>
                             </>
                         ) : (
@@ -92,6 +93,7 @@ export default function JournalPage() {
                                     direction={trade.direction === 'buy' ? 'Buy (Long)' : 'Sell (Short)'}
                                     outcome={trade.outcome}
                                     pnl={trade.net_pnl}
+                                    onTradeDeleted={fetchTrades}
                                 />
                             )
                         )}
