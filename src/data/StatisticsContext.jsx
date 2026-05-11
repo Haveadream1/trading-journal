@@ -18,8 +18,6 @@ export function StatisticsProvider({ children }) {
                 const response = await fetch('/api/statistics');
                 const data = await response.json();
 
-                setIsLoading(false); // after waiting for data, we set loading state to false as success/error is handled after
-
                 if (data.totalTrades === 0) {
                     console.log("Database table is empty, we display demo trades");
                     setStats(getDemoStatistics());
@@ -33,9 +31,11 @@ export function StatisticsProvider({ children }) {
                     }
                 }
             } catch (err) { 
-                setIsLoading(false);
-
+                // Error handling
                 console.error('Error fetching analytics from database', err.message);
+            } finally {
+                // Clean up
+                setIsLoading(false);
             }
         }
         fetchStatistics();
