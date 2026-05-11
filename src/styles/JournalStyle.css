@@ -41,16 +41,25 @@ thead {
 }
 
 .table-actions-buttons {
-  display: flex;
   align-items: center;
-  justify-content: center;
-  gap: var(--space-md);
 }
 
 .table-actions-buttons > * {
-  display: flex;
+  padding: var(--space-xs);
   background: none;
   border: none;
+}
+
+/* target the icons in the button */
+.edit-trade-btn > *,
+.delete-trade-btn > *{
+  width: 20px;
+  height: 20px;
+}
+
+.table-loading-element {
+  text-align: center;
+  font-size: larger;
 }
 
 .add-new-trade-button {
