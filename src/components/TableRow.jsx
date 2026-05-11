@@ -13,22 +13,27 @@ export default function TableRow({
     asset,
     direction,
     outcome,
-    pnl
+    pnl,
+    onTradeDeleted
 }) {
-    const { deleteTrade } = useActions();
+    const { deleteTrade} = useActions();
     const { refreshStatistics } = useStatistics();
 
     const handleEditClick = () => {
         console.log("Trade edited", id)
     }
 
-    const handleDeleteClick = () => {
+    const handleDeleteClick = async () => {
         try {
-            const success = deleteTrade(id);
+            // Function return a boolean depending on success/failure
+            const success =  await deleteTrade(id);
 
             if (success) {
                 console.log("Trade deleted", id);
-                refreshStatistics();
+
+                // When trade is deleted function is called causing the refresh in the parent to run
+                onTradeDeleted?.() // Optional function invocation, avoid to mock it for test
+                refreshStatistics(); // Call to refresh statistics data
             } else {
                 console.error("Failed to delete the trade");
             }
