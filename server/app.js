@@ -105,6 +105,76 @@ app.get('/api/statistics', async (req, res) => {
   }
 })
 
+// Set up DELETE route to remove trade by id
+app.delete('/api/trades/:id', async (req, res) => {
+  // Pass the key/if fetched from the click handler to target the specified row
+  
+  try {
+    const { id } = req.params; // Get the id from the route request parameters
+
+    const tradeId = parseInt(id);
+    // Check if tradeId is an integer to be able to continue
+    if (isNaN(tradeId)) {
+      return res.status(400).json({ error: 'Invalid id for deleting trade'});
+    }
+
+    // Use again parameterized query
+      // Return the trade deleted
+    const result = await pool.query(
+      `DELETE FROM trades WHERE id = $1 RETURNING *;`,
+      [tradeId]
+    );
+
+    // Check if the result is empty
+    if (!result.rows[0]) {
+      // 404 -> Not found HTTP status code
+      return res.status(404).json({ error: 'Trade not found in database'});
+    }
+    
+    // 200 -> OK HTTP status code
+    res.status(200).json({ message: 'Trade deleted successfully by id'});
+  } catch (err) {
+    console.error('Error deleting trade with id', err.message);
+    res.status(500).json({ error: 'Error deleting trade with id' });
+  }
+})
+
+// Set up PUT route to edit trades by id
+app.put('/api/trades/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { trade_date, asset, direction, outcome, net_pnl } = req.body;
+    
+    // Validation id and columns values
+    const tradeId = parseInt(id);
+    if (isNaN(tradeId)) {
+      return res.status(400).json({ error: 'Invalid id for editing the trade'});
+    }
+
+    if (!trade_date || !asset || !direction || !outcome || net_pnl === null) {
+      return res.status(400).json({ error: 'Error with required inputs' });
+    }
+
+    const query = `
+      UPDATE trades SET trade_date = $1, asset = $2, direction = $3, outcome = $4, net_pnl = $5 
+      WHERE id = $6 
+      RETURNING *;
+    `;
+    const tradeValues = [trade_date, asset, direction, outcome, net_pnl, tradeId];
+
+    const result = await pool.query(query, tradeValues);
+
+    if (!result.rows[0]) {
+      return res.status(404).json({ error: 'Trade not found in database'});
+    }
+
+    res.status(200).json(result.rows[0]);
+  } catch (error) {
+    console.error("Error editing the trade", error.message);
+    res.status(500).json({ error: 'Error editing the trade' });
+  }
+})
+
 // Set up POST route
 app.post('/api/trades', async (req, res) => {
   try {
@@ -135,39 +205,5 @@ app.post('/api/trades', async (req, res) => {
     res.status(500).json({ error: 'Error inserting a new trade into database' });
   }
 });
-
-// Set up delete route
-app.delete('/api/trades/:id', async (req, res) => {
-  // Pass the key/if fetched from the click handler to target the specified row
-  
-  try {
-    const { id } = req.params; // Get the id from the route request parameters
-
-    const tradeId = parseInt(id);
-    // Check if tradeId is an integer to be able to continue
-    if (isNaN(tradeId)) {
-      return res.status(400).json({ error: 'Invalid id for deleting trade'});
-    }
-
-    // Use again parameterized query
-      // Return the trade deleted
-    const result = await pool.query(
-      'DELETE FROM trades WHERE id = $1 RETURNING *;',
-      [tradeId]
-    );
-
-    // Check if the result is empty
-    if (!result.rows[0]) {
-      // 404 -> Not found HTTP status code
-      return res.status(404).json({ error: 'Trade not found in database'});
-    }
-    
-    // 200 -> OK HTTP status code
-    res.status(200).json({ message: 'Trade deleted successfully by id'});
-  } catch (err) {
-    console.error('Error deleting trade with id', err.message);
-    res.status(500).json({ error: 'Error deleting trade with id' });
-  }
-})
 
 module.exports = app;
