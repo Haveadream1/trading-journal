@@ -6,6 +6,7 @@ import TableRow from "../components/TableRow";
 import Header from "../components/Header";
 import { useEffect, useState } from "react";
 import { useStatistics } from '../data/StatisticsContext';
+import { Link } from 'react-router';
 
 export default function JournalPage() {
     const [trades, setTrades] = useState([]);
@@ -100,9 +101,9 @@ export default function JournalPage() {
                     </tbody>
                 </table>
 
-                <a href="/tradeForm" className="add-new-trade-button" aria-label="Add a new trade">
+                <Link to={"/tradeForm"} className="add-new-trade-button" aria-label="Add a new trade">
                     <span className="material-symbols-outlined">add_2</span>
-                </a>
+                </Link>
             </main>
         </>
     );
