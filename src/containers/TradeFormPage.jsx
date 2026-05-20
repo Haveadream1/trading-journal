@@ -101,11 +101,6 @@ export default function TradeFormPage() {
         }
     };
 
-    // Debugging purpose
-    // useEffect(() => {
-    //     console.log(tradeHistory);
-    // }, [tradeHistory])
-
     return (
         <main className="trade-form-page">
             <MainHeading 
