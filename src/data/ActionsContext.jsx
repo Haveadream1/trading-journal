@@ -25,8 +25,32 @@ export function ActionsProvider({ children }) {
         }
     }
 
+    const updateTrade = async (id, tradeData) => {
+        try {
+            const response = await fetch(`/api/trades/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(tradeData)
+            })
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                console.error("Failed to edit the trade", data.error);
+                return false;
+            }
+            return true;
+        } catch(error) {
+            console.error("Error editing the trade", error.message);
+            return false;
+        }
+    }
+
     const value = {
-        deleteTrade
+        deleteTrade,
+        updateTrade
     };
 
     return (
