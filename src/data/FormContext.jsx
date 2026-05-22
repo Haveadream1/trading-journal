@@ -24,6 +24,9 @@ export default function FormProvider({ children }) {
         }
     })
 
+    const [isTradeUpdated, setIsTradeUpdated] = useState(false) // State remembering if we are submitting or updating the trade
+    const [updateTradeId, setUpdateTradeId] = useState(null);
+
     // Pass the new data in the state without deleting data not targeted
     const handleDataChange = (fieldset, label, value) => {
         setFormData((prev) => ({
@@ -51,14 +54,47 @@ export default function FormProvider({ children }) {
             [label]: bool
         }))
     }
+
+    const submitTrade = async (tradeData) => {
+        try {
+            // Send the form data to API to save it in the database
+            const response = await fetch('/api/trades', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json' // Metadata affilied to request to indicate the data type to server
+                },
+                body: JSON.stringify(tradeData) // Send form values as JSON
+            });
+
+            const data = await response.json();  // Parse the JSON response from server
+            
+            if (response.ok) {
+                pushTradeToHistory(data);
+                console.log("Successfully saved the trade in the database");
+
+                return true;
+            } else {
+                console.error("Failed to save the trade", data.error);
+                return false;
+            }
+        } catch(error) {
+            console.error("Error submitting the trade", error.message);
+            return false
+        }
+    }
     
     const value = {
         formData,
+        isTradeUpdated,
+        setIsTradeUpdated,
+        updateTradeId,
+        setUpdateTradeId,
         handleDataChange,
         tradeHistory,
         pushTradeToHistory,
         validity,
         modifyInputValidity,
+        submitTrade,
     };
 
     return (
