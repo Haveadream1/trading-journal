@@ -30,15 +30,17 @@ export default function FieldsetDiv({
         }
     }
 
-    // Check that date is not in the future
+    // Check the user picked date is not in the future
     const checkDate = (userPickedDate) => {
-        const currentDate = new Date().toLocaleDateString();
-        const currentFormattedDate = currentDate.split(". ").join("-").slice(0, -1); // YYYY MM DD
+        const todayDate = new Date();
+        todayDate.setHours(0, 0, 0, 0); // Normalize the hours so we can compare only the dates
 
-        const chosenDate = new Date(userPickedDate).toLocaleDateString();
-        const chosenFormattedDate = chosenDate.split(". ").join("-").slice(0, -1);
+        // Parse the received date
+        const chosenDate = new Date(userPickedDate);
+        chosenDate.setHours(0, 0, 0, 0);
 
-        if (chosenFormattedDate > currentFormattedDate) {
+        // Compare date objects
+        if (chosenDate > todayDate) {
             setValid(false);
             modifyInputValidity("trade-date", false);
             setErrorMessage("Please enter a date earlier or equal to today");
