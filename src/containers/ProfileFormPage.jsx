@@ -64,7 +64,10 @@ export default function ProfileFormPage() {
                             <button type='submit' form="profile-form" disabled={isSubmitting} className='profile-save-button' >
                                 {isSubmitting ? "Saving..." : "Save"}
                             </button>
-                            <Link to={"/profile"} className="profile-cancel-button" aria-label='redirect to profile page'>Cancel</Link>
+
+                            <Link to={"/profile"} className="profile-cancel-button" aria-label='redirect to profile page'>
+                                Cancel
+                            </Link>
                         </div>
                     </div>
 
