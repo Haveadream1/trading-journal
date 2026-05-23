@@ -6,6 +6,8 @@ import deleteIcon from '../assets/DeleteTradeIcon.svg';
 
 import { useActions } from "../data/ActionsContext";
 import { useStatistics } from "../data/StatisticsContext";
+import { useForm } from "../data/FormContext";
+import { Link } from "react-router";
 
 export default function TableRow({
     id,
@@ -18,9 +20,12 @@ export default function TableRow({
 }) {
     const { deleteTrade} = useActions();
     const { refreshStatistics } = useStatistics();
+    const { setIsTradeUpdated, setUpdateTradeId } = useForm();
 
     const handleEditClick = () => {
-        console.log("Trade edited", id)
+        console.log("Trade edited with the following id: ", id);
+        setIsTradeUpdated(true);
+        setUpdateTradeId(id);
     }
 
     const handleDeleteClick = async () => {
@@ -64,9 +69,9 @@ export default function TableRow({
                 )}
             </td>
             <td className="table-actions-buttons">
-                <button type="button" className="edit-trade-btn" onClick={handleEditClick} aria-label="Edit trade values">
+                <Link to={"/tradeForm"} className="edit-trade-btn" onClick={handleEditClick} aria-label="Edit trade values">
                     <img src={editIcon} id="edit-trade-icon" alt="Edit icon" />
-                </button>
+                </Link>
 
                 <button type="button" className="delete-trade-btn" onClick={handleDeleteClick} aria-label="Delete trade">
                     <img src={deleteIcon} id="delete-trade-icon" alt="Delete icon" />
