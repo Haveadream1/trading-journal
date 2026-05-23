@@ -117,7 +117,18 @@ export default function FieldsetDiv({
                 </select>
             )}
             {input && (
-                <input type={type} list={listId} name={id} id={id} className={valid ? "valid" : "invalid"} defaultValue={defaultValue} placeholder={placeholder} aria-label={ariaLabel} onChange={onChangeHandler} required />
+                <input 
+                    type={type} 
+                    list={listId}
+                    name={id} 
+                    id={id} 
+                    className={valid ? "valid" : "invalid"} 
+                    defaultValue={defaultValue} 
+                    placeholder={placeholder} 
+                    aria-label={ariaLabel} 
+                    onChange={onChangeHandler} 
+                    required 
+                />
             )}
             {datalist && (
                 <datalist id={listId} defaultValue={defaultValue}>
