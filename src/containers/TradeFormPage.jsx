@@ -7,13 +7,15 @@ import { useForm } from "../data/FormContext";
 import { Link, Navigate, useNavigate } from "react-router";
 import { useStatistics } from '../data/StatisticsContext';
 import { useState } from 'react';
+import { useActions } from '../data/ActionsContext';
 
 export default function TradeFormPage() {
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     const navigate = useNavigate();
-    const {formData, pushTradeToHistory, validity} = useForm();
+    const { formData, isTradeUpdated, setIsTradeUpdated, updateTradeId, validity, submitTrade } = useForm();
     const { refreshStatistics } = useStatistics();
+    const { updateTrade } = useActions();
 
     // List of top 5 stocks, forex, commodities, crypto,
     const assetOptions = [
@@ -52,19 +54,18 @@ export default function TradeFormPage() {
         // Otherwise, disable submit button
         setIsSubmitting(true);
 
-        // Validity check for all inputs before sending data to API
-        for (let i in validity) {
-            if (!validity[i]) {
-                console.error("Some inputs are still invalid !");
-                setIsSubmitting(false);
-                return;
-            }
-        }
-
-        let convertedPnl = convertPnl(formData['trade-outcome']['outcome-select'], parseFloat(formData['trade-outcome']['net-pnl']));
-
         try {
-            // Format data and assign them to the same name as the database columns
+            // Validity check for all inputs before sending data to API
+            for (let i in validity) {
+                if (!validity[i]) {
+                    console.error("Some inputs are still invalid !");
+                    setIsSubmitting(false);
+                    return;
+                }
+            }
+            setIsTradeUpdated(false);
+
+            let convertedPnl = convertPnl(formData['trade-outcome']['outcome-select'], parseFloat(formData['trade-outcome']['net-pnl']));
             const formattedData = {
                 trade_date: formData['trade-outcome']['trade-date'],
                 asset: formData['trade-details']['asset-symbol'],
@@ -72,31 +73,25 @@ export default function TradeFormPage() {
                 outcome: formData['trade-outcome']['outcome-select'],
                 net_pnl: convertedPnl,
             }
-            
-            // Send the form data to API to save it in the database
-            const response = await fetch('/api/trades', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json' // Metadata affilied to request to indicate the data type to server
-                },
-                body: JSON.stringify(formattedData) // Send form values as JSON
-            });
 
-            const data = await response.json(); // Parse the JSON response from server
+            let isOperationSuccessful;
+            // Depending on the state set by the update button we either UPDATE or SUBMIT the trade
+            if (isTradeUpdated) {
+                isOperationSuccessful = await updateTrade(updateTradeId, formattedData);
+            } else {
+                isOperationSuccessful = await submitTrade(formattedData);
+            }
 
-            if (response.ok) {
-                pushTradeToHistory(data); // Store the submitted trade
-                console.log("Successfully saved the trade:", data);
-
+            if (isOperationSuccessful) {
                 await refreshStatistics(); // pause process to modify the trigger value, leads to refresh pages
 
                 navigate("/journal"); // Redirect to journal page
             } else {
-                console.error("Failed to save the trade", data.error);
+                console.error("Failed to conduct the operation on the trade");
                 setIsSubmitting(false);
             }
-        } catch (err) {
-            console.error("Error submitting the trade", err.message);
+        } catch (error) {
+            console.error("Error while trying to submit the form", error.message);
             setIsSubmitting(false);
         }
     };
