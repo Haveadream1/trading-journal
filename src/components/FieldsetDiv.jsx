@@ -11,7 +11,8 @@ export default function FieldsetDiv({
     select, 
     input,
     datalist,
-    listId
+    listId,
+    defaultValue
 }) {
     const {handleDataChange, modifyInputValidity} = useForm();
     const [valid, setValid] = useState(false); // Use state to render the validity of an input
@@ -106,7 +107,7 @@ export default function FieldsetDiv({
             <label htmlFor={id}>{label}<span className="required">*</span></label>
             {/* Conditional rendering */}
             {select && (
-                <select name={id} id={id} aria-label={ariaLabel} onChange={onChangeHandler} required>
+                <select name={id} id={id} aria-label={ariaLabel} onChange={onChangeHandler} defaultValue={defaultValue} required>
                     {options && 
                         // Loop through the passed object, and display an option element for each
                         options.map((obj, index) => {
@@ -116,10 +117,10 @@ export default function FieldsetDiv({
                 </select>
             )}
             {input && (
-                <input type={type} list={listId} name={id} id={id} className={valid ? "valid" : "invalid"} placeholder={placeholder} aria-label={ariaLabel} onChange={onChangeHandler} required />
+                <input type={type} list={listId} name={id} id={id} className={valid ? "valid" : "invalid"} defaultValue={defaultValue} placeholder={placeholder} aria-label={ariaLabel} onChange={onChangeHandler} required />
             )}
             {datalist && (
-                <datalist id={listId}>
+                <datalist id={listId} defaultValue={defaultValue}>
                     {options &&
                         options.map((asset, index) => {
                             return <option key={index} value={asset}></option>
