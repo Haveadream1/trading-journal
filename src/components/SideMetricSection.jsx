@@ -61,7 +61,9 @@ export default function SideMetricSection({
                     {data.map((article, key) => (
                         <li key={key}>
                             {/* Good practice with external links, use noopener and noreferrer for (security/performance) */}
-                            <a href={article.link} className="article-link" target="_blank" rel="noopener noreferrer">{article.tickers}</a>
+                            <a href={article.link} className="article-link" target="_blank" rel="noopener noreferrer">
+                                {article.tickers}
+                            </a>
                         </li>
                     ))}
                 </ul>
