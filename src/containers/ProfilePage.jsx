@@ -38,11 +38,11 @@ export default function ProfilePage() {
                     <div className="profile-data-container">
                         <div className="data-child-container">
                             <p>Name:</p>
-                            <p className="username-value">My name is....</p>
+                            <p className="username-value">{profileData["username-input"] || "My name is...." }</p>
                         </div>
                         <div className="data-child-container">
                             <p>Motivation:</p>
-                            <p className="user-motivation-value">My motivation is....</p>
+                            <p className="user-motivation-value">{profileData["motivation-input"] || "My motivation is...." }</p>
                         </div>
                     </div>
                 </div>
