@@ -13,7 +13,7 @@ export default function TradeFormPage() {
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     const navigate = useNavigate();
-    const { formData, isTradeUpdated, setIsTradeUpdated, updateTradeId, validity, submitTrade } = useForm();
+    const { formData, isTradeUpdated, setIsTradeUpdated, updateTradeId, validity, submitTrade, selectedUpdateTrade } = useForm();
     const { refreshStatistics } = useStatistics();
     const { updateTrade } = useActions();
 
@@ -96,6 +96,10 @@ export default function TradeFormPage() {
         }
     };
 
+    const formatFetchedDefaultDate = (dateStored) => {
+        return dateStored.slice(0, 10);
+    }
+
     return (
         <main className="trade-form-page">
             <MainHeading 
@@ -113,7 +117,8 @@ export default function TradeFormPage() {
                         input="true"
                         datalist="true"
                         options={assetOptions}
-                        placeholder="GBP/USD"
+                        // Display either the data of the selected trade to update or the default
+                        placeholder={selectedUpdateTrade?.asset || "GBP/USD"}
                         ariaLabel="Asset symbol datalist"
                     />
                     <FieldsetDiv
@@ -122,6 +127,7 @@ export default function TradeFormPage() {
                         type="select"
                         ariaLabel="Directions select"
                         select="true"
+                        defaultValue={selectedUpdateTrade?.direction || "Buy (Long)"}
                         options={directionOptions}
                     />
                 </fieldset>
@@ -133,6 +139,7 @@ export default function TradeFormPage() {
                         label="Date"
                         type="date"
                         input="true"
+                        defaultValue={selectedUpdateTrade?.trade_date ? formatFetchedDefaultDate(selectedUpdateTrade.trade_date) : ""}
                         ariaLabel="Trade date input"
                     />
                     <FieldsetDiv
@@ -141,13 +148,14 @@ export default function TradeFormPage() {
                         type="select"
                         ariaLabel="Outcomes select"
                         select="true"
+                        defaultValue={selectedUpdateTrade?.outcome || "Win"}
                         options={outcomeOptions}
                     />
                     <FieldsetDiv 
                         id="net-pnl"
                         label="Net PnL"    
                         type="number"
-                        placeholder="2500.51"
+                        placeholder={selectedUpdateTrade?.net_pnl || 250.51}
                         input="true"
                         ariaLabel="Net PnL input"
                     />
