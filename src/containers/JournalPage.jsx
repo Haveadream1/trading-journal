@@ -6,18 +6,16 @@ import TableRow from "../components/TableRow";
 import Header from "../components/Header";
 import { useEffect, useState } from "react";
 import { useStatistics } from '../data/StatisticsContext';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
+import { useForm } from '../data/FormContext';
 
 export default function JournalPage() {
-    const [trades, setTrades] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
     const { refreshTrigger } = useStatistics();
+    const { trades, setTrades, setSelectedUpdateTrade } = useForm();
 
-    // Debugging purpose
-    // useEffect(() => {
-    //     console.log(tradeHistory, formData);
-    // }, [tradeHistory, formData]);
+    const navigate = useNavigate();
 
     // Fetch the trades from database
     const fetchTrades = async () => {
@@ -40,6 +38,12 @@ export default function JournalPage() {
             // Clean up loading state
             setIsLoading(false);
         }
+    }
+
+    const handleAddButton = () => {
+        navigate("/tradeForm");
+        // set it to null to use default values
+        setSelectedUpdateTrade(null);
     }
 
     // Fetch on inital mount and when dependency value is modified
@@ -101,9 +105,9 @@ export default function JournalPage() {
                     </tbody>
                 </table>
 
-                <Link to={"/tradeForm"} className="add-new-trade-button" aria-label="Add a new trade">
+                <button type='button' onClick={handleAddButton} className="add-new-trade-button" aria-label="Add a new trade">
                     <span className="material-symbols-outlined">add_2</span>
-                </Link>
+                </button>
             </main>
         </>
     );
