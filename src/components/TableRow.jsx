@@ -20,10 +20,22 @@ export default function TableRow({
 }) {
     const { deleteTrade} = useActions();
     const { refreshStatistics } = useStatistics();
-    const { setIsTradeUpdated, setUpdateTradeId } = useForm();
+    const { setIsTradeUpdated, setUpdateTradeId, trades, setSelectedUpdateTrade } = useForm();
+
+    const fetchTradeById = (selectedId) => {
+        // Loop through the list of trades object
+        Object.values(trades).forEach(trade => {
+            // Return the trade that was selected for update
+            if (trade.id === selectedId) {
+                // Store trade in a state
+                setSelectedUpdateTrade(trade);
+            }
+        })
+    }
 
     const handleEditClick = () => {
         console.log("Trade edited with the following id: ", id);
+        fetchTradeById(id);
         setIsTradeUpdated(true);
         setUpdateTradeId(id);
     }
