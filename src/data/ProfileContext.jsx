@@ -4,7 +4,7 @@ const FormContext = createContext(null);
 
 export default function ProfileProvider({ children}) {
     const [profileData, setProfileData] = useState({
-        "username-input": "Anonymous",
+        "username-input": "User",
         "motivation-input":  ""
     });
 
