@@ -72,12 +72,27 @@ export default function ProfileFormPage() {
                     <form onSubmit={handleSubmit} id="profile-form" className="profile-form">
                         <div id="profile-name-fieldset" className="profile-fieldset">
                             <label htmlFor="username-input">Name:</label>
-                            <input type="text" onChange={handleInputChange} id="username-input" className="profile-input" min={1} maxLength={15} placeholder="My name is...." />
+                            <input 
+                                type="text" 
+                                onChange={handleInputChange} 
+                                id="username-input" 
+                                className="profile-input" 
+                                min={1} 
+                                maxLength={15} 
+                                placeholder="My name is...." 
+                            />
                         </div>
 
                         <div id="profile-motivation-fieldset" className="profile-fieldset">
                             <label htmlFor="motivation-input">Motivation:</label>
-                            <input type="text" onChange={handleInputChange} id="motivation-input" className="profile-input" maxLength={25} placeholder="My motivation is...." />
+                            <input 
+                                type="text" 
+                                onChange={handleInputChange} 
+                                id="motivation-input" 
+                                className="profile-input" 
+                                maxLength={25} 
+                                placeholder="My motivation is...." 
+                            />
                         </div>
                     </form>
                 </div>
