@@ -4,7 +4,9 @@ import { createContext, useContext, useState } from "react";
 const FormContext = createContext(null);
 
 export default function FormProvider({ children }) {
-    const [tradeHistory, setTradeHistory] = useState([]); // Array to store trades
+    const [trades, setTrades] = useState([]); // Array to store trades
+
+    const [tradeHistory, setTradeHistory] = useState([]);
     const [validity, setValidity] = useState({
         "asset-symbol": false,
         "trade-date": false,
@@ -26,6 +28,7 @@ export default function FormProvider({ children }) {
 
     const [isTradeUpdated, setIsTradeUpdated] = useState(false) // State remembering if we are submitting or updating the trade
     const [updateTradeId, setUpdateTradeId] = useState(null);
+    const [selectedUpdateTrade, setSelectedUpdateTrade] = useState(null);
 
     // Pass the new data in the state without deleting data not targeted
     const handleDataChange = (fieldset, label, value) => {
@@ -84,11 +87,15 @@ export default function FormProvider({ children }) {
     }
     
     const value = {
+        trades,
+        setTrades,
         formData,
         isTradeUpdated,
         setIsTradeUpdated,
         updateTradeId,
         setUpdateTradeId,
+        selectedUpdateTrade,
+        setSelectedUpdateTrade,
         handleDataChange,
         tradeHistory,
         pushTradeToHistory,
