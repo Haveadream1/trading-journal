@@ -28,7 +28,10 @@ export default function ProfilePage() {
                         </div>
 
                         <div className="button-container">
-                            <Link to={"/profileForm"} className='profile-edit-button' aria-label='Redirect to profile form page'>Edit</Link>
+                            <Link to={"/profileForm"} className='profile-edit-button' aria-label='Redirect to profile form page'>
+                                Edit
+                            </Link>
+
                             <Link to={"/"} className="back-home-button" aria-label='Redirect to dashboard page'>
                                 <img src={homeIcon} alt="Home icon" />
                             </Link>
@@ -38,11 +41,17 @@ export default function ProfilePage() {
                     <div className="profile-data-container">
                         <div className="data-child-container">
                             <p>Name:</p>
-                            <p className="username-value">{profileData["username-input"] || "My name is...." }</p>
+
+                            <p className="username-value">
+                                {profileData["username-input"] || "My name is...."}
+                            </p>
                         </div>
                         <div className="data-child-container">
                             <p>Motivation:</p>
-                            <p className="user-motivation-value">{profileData["motivation-input"] || "My motivation is...." }</p>
+
+                            <p className="user-motivation-value">
+                                {profileData["motivation-input"] || "My motivation is...."}
+                            </p>
                         </div>
                     </div>
                 </div>
