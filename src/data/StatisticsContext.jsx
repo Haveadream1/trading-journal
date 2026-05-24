@@ -4,7 +4,7 @@
 import { createContext, useState, useContext, useEffect } from "react";
 import { getDemoStatistics } from "./DemoTradesData";
 
-const DataContext = createContext(null);
+const StatisticsContext = createContext(null);
 
 export function StatisticsProvider({ children }) {
     const [stats, setStats] = useState({}); // setting up an empty object leave it to be undefined until we fetch data
@@ -77,14 +77,14 @@ export function StatisticsProvider({ children }) {
     }
 
     return (
-        <DataContext.Provider value={value}>
+        <StatisticsContext.Provider value={value}>
             {children}
-        </DataContext.Provider>
+        </StatisticsContext.Provider>
     );
 }
 
 export const useStatistics = () =>  {
-    const context = useContext(DataContext);
+    const context = useContext(StatisticsContext);
     if (!context) {
         throw new Error('useStatistics must be inside a StatisticsProvider');
     }

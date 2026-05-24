@@ -4,7 +4,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { demoArticles } from "./DemoArticles";
 
-const DataContext = createContext(null);
+const ArticlesContext = createContext(null);
 
 export function DataProvider({ children }) {
     const [articles, setArticles] = useState([]); // Avoid NULL as default when fetching data
@@ -31,14 +31,14 @@ export function DataProvider({ children }) {
     }, []) // Empty dependency, run only once when the website loads
     
     return (
-        <DataContext.Provider value={articles}>
+        <ArticlesContext.Provider value={articles}>
             {children}
-        </DataContext.Provider>
+        </ArticlesContext.Provider>
     );
 }
 
 export const useData = () => {
-    const context = useContext(DataContext);
+    const context = useContext(ArticlesContext);
     if (!context) {
         throw new Error("useData must be used inside a DataProvider");
     }

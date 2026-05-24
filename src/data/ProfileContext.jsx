@@ -1,8 +1,8 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
-const FormContext = createContext(null);
+const ProfileContext = createContext(null);
 
-export default function ProfileProvider({ children}) {
+export function ProfileProvider({ children }) {
     const [profileData, setProfileData] = useState({
         "username-input": "User",
         "motivation-input":  ""
@@ -51,14 +51,14 @@ export default function ProfileProvider({ children}) {
     };
 
     return (
-        <FormContext.Provider value={value}>
+        <ProfileContext.Provider value={value}>
             {children}
-        </FormContext.Provider>
+        </ProfileContext.Provider>
     )
 }
 
 export const useProfile = () => {
-    const context = useContext(FormContext);
+    const context = useContext(ProfileContext);
     if (!context) {
         throw new Error("useProfile must be in a FormProvider");
     }

@@ -3,7 +3,7 @@ import { createContext, useContext, useState } from "react";
 
 const FormContext = createContext(null);
 
-export default function FormProvider({ children }) {
+export function FormProvider({ children }) {
     const [trades, setTrades] = useState([]); // Array to store trades
 
     const [tradeHistory, setTradeHistory] = useState([]);
