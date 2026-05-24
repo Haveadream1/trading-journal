@@ -1,4 +1,5 @@
 module.exports = {
+  // Allow to test both backend and frontend by specifying the path
   projects: [
     {
       displayName: 'backend',
