@@ -1,13 +1,13 @@
 // Test if we don't get errors when database is empty
 
+jest.mock('../database', () => ({
+    query: jest.fn()
+}))
+
 const request = require('supertest');
 const { describe } = require("jest-circus");
 const app = require('../app');
 const pool = require('../database');
-
-jest.mock('../database', () => ({
-    query: jest.fn()
-}))
 
 describe('GET route /api/statistics', () => {
     it('return totalTrades equal to 0 when database is empty', async () => {
