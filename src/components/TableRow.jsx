@@ -4,10 +4,8 @@ import React from "react";
 import editIcon from '../assets/EditTradeIcon.svg';
 import deleteIcon from '../assets/DeleteTradeIcon.svg';
 
-import { useActions } from "../data/ActionsContext";
-import { useStatistics } from "../data/StatisticsContext";
-import { useForm } from "../data/FormContext";
 import { Link } from "react-router";
+import { useTradeActions } from "../hooks/useTradeActions";
 
 export default function TableRow({
     id,
@@ -18,46 +16,7 @@ export default function TableRow({
     pnl,
     onTradeDeleted
 }) {
-    const { deleteTrade} = useActions();
-    const { refreshStatistics } = useStatistics();
-    const { setIsTradeUpdated, setUpdateTradeId, trades, setSelectedUpdateTrade } = useForm();
-
-    const fetchTradeById = (selectedId) => {
-        // Loop through the list of trades object
-        Object.values(trades).forEach(trade => {
-            // Return the trade that was selected for update
-            if (trade.id === selectedId) {
-                // Store trade in a state
-                setSelectedUpdateTrade(trade);
-            }
-        })
-    }
-
-    const handleEditClick = () => {
-        console.log("Trade edited with the following id: ", id);
-        fetchTradeById(id);
-        setIsTradeUpdated(true);
-        setUpdateTradeId(id);
-    }
-
-    const handleDeleteClick = async () => {
-        try {
-            // Function return a boolean depending on success/failure
-            const success =  await deleteTrade(id);
-
-            if (success) {
-                console.log("Trade deleted", id);
-
-                // When trade is deleted function is called causing the refresh in the parent to run
-                onTradeDeleted?.() // Optional function invocation, avoid to mock it for test
-                refreshStatistics(); // Call to refresh statistics data
-            } else {
-                console.error("Failed to delete the trade");
-            }
-        } catch (error) {
-            console.error("Error while deleting the trade", error.message);
-        }
-    }
+    const { handleEditClick , handleDeleteClick} = useTradeActions(id , onTradeDeleted);
 
     return (
         <tr className="table-values-row">
