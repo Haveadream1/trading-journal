@@ -2,7 +2,7 @@
     // We need to make sure we have only one call when the entire page refresh, put a limit too
 
 import { createContext, useContext, useEffect, useState } from "react";
-import { demoArticles } from "./DemoArticles";
+import { demoArticles } from "../data/DemoArticles";
 
 const ArticlesContext = createContext(null);
 
