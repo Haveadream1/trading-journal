@@ -28,6 +28,10 @@ input {
   font-family: "Nunito Sans", sans-serif;
 }
 
+button {
+  cursor: pointer;
+}
+
 #root {
   min-height: 100vh;
   padding: var(--space-md);
