@@ -1,11 +1,11 @@
 // Unit testing API article route
 
+// mock fetching
+global.fetch = jest.fn();
+
 const request = require('supertest');
 const { describe } = require("jest-circus");
 const app = require('../app');
-
-// mock fetching
-global.fetch = jest.fn();
 
 const demoArticles = {
         "title": "Arcus Biosciences, Inc. (NYSE:RCUS) Faces Setback but Remains Focused on Future Developments",
