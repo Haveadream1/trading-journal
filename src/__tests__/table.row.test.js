@@ -31,6 +31,7 @@ describe('GET table row component', () => {
             <table>
                 <tbody>
                     <TableRow 
+                        id={1}
                         date='2026/03/30'
                         asset='NVDA'
                         direction='buy'
@@ -51,6 +52,7 @@ describe('GET table row component', () => {
             <table>
                 <tbody>
                     <TableRow 
+                        id={2}
                         date='2026/04/12'
                         asset='AMZN'
                         direction='sell'
