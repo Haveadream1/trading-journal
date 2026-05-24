@@ -5,9 +5,9 @@ import MainHeading from "../components/MainHeading";
 import TableRow from "../components/TableRow";
 import Header from "../components/Header";
 import { useEffect, useState } from "react";
-import { useStatistics } from '../data/StatisticsContext';
+import { useStatistics } from '../context/StatisticsContext';
 import { Link, useNavigate } from 'react-router';
-import { useForm } from '../data/FormContext';
+import { useForm } from '../context/FormContext';
 
 export default function JournalPage() {
     const [isLoading, setIsLoading] = useState(true);

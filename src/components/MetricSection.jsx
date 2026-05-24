@@ -1,5 +1,5 @@
 import React from "react";
-import { useStatistics } from "../data/StatisticsContext";
+import { useStatistics } from "../context/StatisticsContext";
 
 export default function MetricSection({
     titleId,

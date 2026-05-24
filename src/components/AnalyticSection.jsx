@@ -1,5 +1,5 @@
 import { Bar, BarChart, Cell, Pie, PieChart, ResponsiveContainer, XAxis, YAxis } from "recharts";
-import { useStatistics } from "../data/StatisticsContext";
+import { useStatistics } from "../context/StatisticsContext";
 
 export default function AnalyticSection({   
     titleId,

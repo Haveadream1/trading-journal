@@ -1,7 +1,7 @@
 // Custom hook to clean component, enable also single responsibility
 
 import { useState } from "react";
-import { useForm } from "../data/FormContext";
+import { useForm } from "../context/FormContext";
 
 export const useInputValidation = () => {
     const {handleDataChange, modifyInputValidity} = useForm();

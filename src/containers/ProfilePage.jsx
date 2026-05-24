@@ -4,7 +4,7 @@ import '../styles/ProfileStyle.css'
 import homeIcon from "../assets/HomeIcon.svg";
 import MainHeading from "../components/MainHeading";
 import { Link } from 'react-router';
-import { useProfile } from '../data/ProfileContext';
+import { useProfile } from '../context/ProfileContext';
 
 export default function ProfilePage() {
     const { profileData } = useProfile();

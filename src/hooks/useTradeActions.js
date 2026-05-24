@@ -1,9 +1,9 @@
 // Custom hook to clean the component
     // Allow easier testing, keeping the component dumb
 
-import { useActions } from "../data/ActionsContext";
-import { useForm } from "../data/FormContext";
-import { useStatistics } from "../data/StatisticsContext";
+import { useActions } from "../context/ActionsContext";
+import { useForm } from "../context/FormContext";
+import { useStatistics } from "../context/StatisticsContext";
 
 export const useTradeActions = (tradeId, onTradeDeleted) => {
     const { deleteTrade} = useActions();

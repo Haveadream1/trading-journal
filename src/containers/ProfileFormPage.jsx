@@ -5,7 +5,7 @@ import '../styles/ProfileStyle.css'
 import { Link, Navigate, useNavigate } from "react-router";
 import MainHeading from "../components/MainHeading";
 import { useState } from 'react';
-import { useProfile } from '../data/ProfileContext';
+import { useProfile } from '../context/ProfileContext';
 
 export default function ProfileFormPage() {
     const [isSubmitting, setIsSubmitting] = useState(false);

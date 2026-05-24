@@ -5,9 +5,9 @@ import MainHeading from "../components/MainHeading";
 import MetricSection from "../components/MetricSection";
 import Header from "../components/Header";
 import SideMetricSection from "../components/SideMetricSection";
-import { useData } from "../data/ArticlesContext";
-import { useStatistics } from '../data/StatisticsContext'
-import { useProfile } from '../data/ProfileContext';
+import { useData } from "../context/ArticlesContext";
+import { useStatistics } from '../context/StatisticsContext'
+import { useProfile } from '../context/ProfileContext';
 
 export default function DashboardPage() {
     const articles = useData();

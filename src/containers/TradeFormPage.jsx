@@ -3,11 +3,11 @@ import '../styles/TradeFormStyle.css'
 
 import FieldsetDiv from "../components/FieldsetDiv";
 import MainHeading from "../components/MainHeading";
-import { useForm } from "../data/FormContext";
+import { useForm } from "../context/FormContext";
 import { Link, Navigate, useNavigate } from "react-router";
-import { useStatistics } from '../data/StatisticsContext';
+import { useStatistics } from '../context/StatisticsContext';
 import { useState } from 'react';
-import { useActions } from '../data/ActionsContext';
+import { useActions } from '../context/ActionsContext';
 
 export default function TradeFormPage() {
     const [isSubmitting, setIsSubmitting] = useState(false);

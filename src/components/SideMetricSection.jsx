@@ -1,5 +1,5 @@
 import { Area, AreaChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
-import { useStatistics } from "../data/StatisticsContext";
+import { useStatistics } from "../context/StatisticsContext";
 
 export default function SideMetricSection({ 
     titleId,

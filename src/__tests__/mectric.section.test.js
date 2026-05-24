@@ -6,10 +6,10 @@ import '@testing-library/jest-dom';
 import { describe, it, expect, jest } from "@jest/globals";
 import { render, screen } from '@testing-library/react';
 import MetricSection from '../components/MetricSection';
-import { useStatistics } from '../data/StatisticsContext';
+import { useStatistics } from '../context/StatisticsContext';
 
 // Mock statistics context
-jest.mock('../data/statisticsContext', () => ({
+jest.mock('../context/statisticsContext', () => ({
     useStatistics: jest.fn()
 }))
 
