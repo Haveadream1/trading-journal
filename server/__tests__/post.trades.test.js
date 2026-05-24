@@ -2,16 +2,21 @@
     // Check that we get notified with an error for undefined input
     // Check that we get the correct response when succesfully inserted a trade
 
-const { describe } = require('jest-circus');
-const request = require('supertest');
-const app = require('../app');
-const pool = require('../database');
-
 jest.mock('../database', () => ({
     query: jest.fn()
 }))
 
+const { describe, beforeEach } = require('jest-circus');
+const request = require('supertest');
+const app = require('../app');
+const pool = require('../database');
+
 describe('POST route for /api/trades', () => {
+    // Clean mocks between tests
+    beforeEach(() => {
+        pool.query.mockReset();
+    })
+
     it('return an error for undefined input', async () => {
         // Doesn't need to mock because validation occurs before the query
         const response = await request(app)

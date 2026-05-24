@@ -1,17 +1,22 @@
 // Test to verify if we correctly get the trades from the database
     // and how it handles errors
-    
-const request = require('supertest');
-const { describe } = require("jest-circus");
-const app = require("../app");
-const pool = require('../database');
 
 // mocking is replacing the database with a simulated one
 jest.mock('../database', () => ({
     query: jest.fn() // create the fake(mock) function
 }))
 
+const request = require('supertest');
+const { describe, beforeEach } = require("jest-circus");
+const app = require("../app");
+const pool = require('../database');
+
 describe('GET route /api/trades', () => {
+    // Clean mocks
+    beforeEach(() => {
+        pool.query.mockReset();
+    })
+
     it('return the object type passed to the response', async () => {    
         const response = await request(app).get('/api/trades');
 
