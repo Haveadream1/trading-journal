@@ -12,10 +12,10 @@ import ProfilePage from './containers/ProfilePage'
 import ProfileFormPage from './containers/ProfileFormPage'
 
 /* Provider import */
-import FormProvider from './data/FormContext'
+import { FormProvider } from './data/FormContext'
 import { DataProvider } from './data/ArticlesContext'
 import { StatisticsProvider } from './data/StatisticsContext'
-import ProfileProvider from './data/ProfileContext'
+import { ProfileProvider } from './data/ProfileContext'
 import { ActionsProvider } from './data/ActionsContext'
 
 // Router will take care of the website navigation
