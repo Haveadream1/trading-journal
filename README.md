@@ -6,10 +6,19 @@ The platform is composed of 3 main pages:
 * Dashboard
 * Journal
 * Statistics
+!TODO: Add screenshots 
+
+!TODO: Add gif of responsivenes
 
 1. The dashboard page displays the main analytics data as well as fetched links to financial articles    
 2. The journal page is composed of a table populated by trades ordered by date. On this same page it is possible to add a new trade by clicking on the + button, redirecting to a form with mandatory inputs    
 3. The statistics page render a graphical representation of data as well as more complex statistics
+
+## Live Demo
+!LINK
+
+## Features
+!TODO: add gif of CRUD operations, user profile, api link, etc...
 
 ## Technology stack and tools
 PERN stack consisting of PostgreSQL, Express.js, React and Node.js
@@ -20,6 +29,27 @@ PERN stack consisting of PostgreSQL, Express.js, React and Node.js
 * Graph library: Recharts
 * Frontend build tool: Vite
 * Design mockup: Figma
+
+## Installation guide
+
+## Testing guide
+
+## Project structure
+trading-journal/
+├─ archive/
+├─ public/
+├─ server/
+    ├── __tests__/
+├─ src/
+    ├── __tests__/
+    ├── assets/
+    ├── components/
+    ├── containers/
+    ├── data/
+    ├── hooks/
+    ├── styles/
+│ README.md
+
 
 ## Queries documentation
 Here is a list of most of the statisticals columns created with queries for the different routes:
@@ -40,7 +70,7 @@ Here is a list of most of the statisticals columns created with queries for the 
 * most_traded_asset_count: number of trades for most traded asset
 * trades: the list of all sorted trades by date
 
-### To-dos
-* do something for the profile icon, it currently redirects to nothing
-* implement CRUD operations on trade
-* SUB-TODO: check all double or single quotes
+## To-dos
+
+
+## Credits
