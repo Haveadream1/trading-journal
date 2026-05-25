@@ -1,6 +1,5 @@
 # Trading journal :bar_chart:
-[![Static Badge](https://img.shields.io/badge/PostgreSQL-white?logo=postgresql&logoColor=blue&labelColor=white&color=blue)](https://img.shields.io/badge/PostgreSQL-%234169E1?style=flat&logo=postgresql&labelColor=white
-)
+![Static Badge](https://img.shields.io/badge/PostgreSQL-white?logo=postgresql&logoColor=blue&labelColor=white&color=blue)
 ![Static Badge](https://img.shields.io/badge/Express-yellow?style=flat&logo=express&labelColor=w)
 ![Static Badge](https://img.shields.io/badge/React-black?logo=react)
 ![Static Badge](https://img.shields.io/badge/Node.js-%235FA04E?style=flat&logo=nodedotjs&labelColor=white)
@@ -17,12 +16,7 @@ The web application is composed of 3 main pages:
 * Statistics
     * Render a graphical representation of data as well as more complex statistics
 
-<img width="1855" height="967" alt="PagesGif" src="https://github.com/user-attachments/assets/4cb79fef-f833-4204-9918-936c4c070e52" />
-
-
-!TODO: Add screenshots 
-
-!TODO: Add gif of responsivenes
+<img width="1784" height="991" alt="PagesGif" src="https://github.com/user-attachments/assets/4b9aea76-9d2b-49e5-ba06-4087640033b1" />
 
 ## Live Demo :rocket:
 [Discover the application]() (SOON)
@@ -36,6 +30,8 @@ The web application is composed of 3 main pages:
     * Delete trades
 * Create and Update personal information in the profile
 * Access recent financials articles that may affect the current market
+
+<img width="1784" height="991" alt="CreateGif" src="https://github.com/user-attachments/assets/e4302c12-0264-404f-a802-8adaf4e5c228" />
 
 ## Technology stack and tools :mortar_board:
 PERN stack consisting of PostgreSQL, Express.js, React and Node.js
@@ -64,16 +60,16 @@ PERN stack consisting of PostgreSQL, Express.js, React and Node.js
 3. Install frontend dependencies:
     * `cd ..`
     * `npm install`
-3. Add environment variables:
+4. Add environment variables:
     * Following the `.env.example` file, copy a `.env` file and add required variables
     * `cp server/.env.example server/.env`
-4. Start PostgreSQL database:
+5. Start PostgreSQL database:
     * `cd .\server\`
     * `node server.js`
-5. Start Vite development server
+6. Start Vite development server
     * `cd ..`
     * `npm run dev`
-6. Open the browser
+7. Open the browser
     * Navigate to `http://localhost:5173`
 
 ## Testing guide :scissors:
@@ -106,7 +102,19 @@ trading-journal/
 └── README.md
 ```
 
-## Queries documentation :bookmark_tabs:
+## API documentation :closed_book:
+Different methods have been implemented for the routes
+1. /api/trades
+   * POST: create a new trade
+   * GET: request and retrieve all trades
+   * PUT: update the trade specified by id
+   * DELETE: delete the trade specified by id
+2. /api/statistics
+   * GET: request and retrieve aggregated data
+3. /api/articles
+   * GET: fetch financial news
+
+## Aggregated queries documentation :bookmark_tabs:
 Here is a list of most of the statisticals columns created with queries for the different routes:
 * total_trades: count all trades
 * total_pnl: sum all net_pnl
@@ -127,7 +135,9 @@ Here is a list of most of the statisticals columns created with queries for the 
 
 ## To-dos :rotating_light:
 * Enable user to import a profile picture
+* Implement scalable fonts
 
 ## Credits :white_check_mark:
-[Emojis](https://gist.github.com/rxaviers/7360908)    
-
+[Emojis](https://gist.github.com/rxaviers/7360908)      
+[Simple icons](https://simpleicons.org/)    
+[Bagdes](https://shields.io/)    
