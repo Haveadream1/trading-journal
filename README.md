@@ -40,11 +40,13 @@ trading-journal/
 ├─ public/
 ├─ server/
     ├── __tests__/
+    ├── routes/
 ├─ src/
     ├── __tests__/
     ├── assets/
     ├── components/
     ├── containers/
+    ├── context/
     ├── data/
     ├── hooks/
     ├── styles/
