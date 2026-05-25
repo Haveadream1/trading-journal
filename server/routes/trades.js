@@ -6,7 +6,21 @@ const pool = require('../database');
   // Use asyncronous function to handle the database query
 router.get('/', async (req, res) => {
   try {
-    const allTrades = await pool.query('SELECT * FROM trades ORDER BY trade_date'); // PostgreSQL query statement 
+
+    // Fix timezone issues by converting it to a formatted string 
+    const allTrades = await pool.query(
+      `SELECT
+          id,
+          TO_CHAR(trade_date, 'YYYY-MM-DD') AS trade_date,
+          asset,
+          direction,
+          outcome,
+          net_pnl
+        FROM trades
+        ORDER BY trade_date
+      `
+    );
+
     res.json(allTrades.rows); // Express method to send a JSON response to the client
   } catch (err) {
     console.error('Error reading all trades from database', err.message); // Log error for debugging
