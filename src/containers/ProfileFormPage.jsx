@@ -93,7 +93,7 @@ export default function ProfileFormPage() {
                                 onChange={handleInputChange} 
                                 id="motivation-input" 
                                 className="profile-input" 
-                                maxLength={25} 
+                                maxLength={50} 
                                 placeholder="My motivation is...." 
                             />
                         </div>
