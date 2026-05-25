@@ -1,4 +1,10 @@
 # Trading journal :bar_chart:
+[![Static Badge](https://img.shields.io/badge/PostgreSQL-white?logo=postgresql&logoColor=blue&labelColor=white&color=blue)](https://img.shields.io/badge/PostgreSQL-%234169E1?style=flat&logo=postgresql&labelColor=white
+)
+![Static Badge](https://img.shields.io/badge/Express-yellow?style=flat&logo=express&labelColor=w)
+![Static Badge](https://img.shields.io/badge/React-black?logo=react)
+![Static Badge](https://img.shields.io/badge/Node.js-%235FA04E?style=flat&logo=nodedotjs&labelColor=white)
+
 This coding project is used to record trades and display related statistics.    
 The goal is to provide a simple but complete journal that will help enhance personal performance without any paid membership !
 
@@ -19,7 +25,7 @@ The web application is composed of 3 main pages:
 !TODO: Add gif of responsivenes
 
 ## Live Demo :rocket:
-[Discover the application]()
+[Discover the application]() (SOON)
 
 ## Features :round_pushpin:
 * Graphical representation and interpretation of data
@@ -40,8 +46,8 @@ PERN stack consisting of PostgreSQL, Express.js, React and Node.js
 * Graph library: Recharts
 * Frontend build tool: Vite
 * Design mockup: Figma
-* Frontend deployment: ?
-* Backend deployment: ?
+* Frontend deployment: ? (SOON)
+* Backend deployment: ? (SOON)
 
 ## Installation :arrow_forward:
 ### Prerequisites :triangular_flag_on_post:
@@ -52,13 +58,23 @@ PERN stack consisting of PostgreSQL, Express.js, React and Node.js
 1. Clone the repository from Github:
     * `git clone https://github.com/Haveadream1/trading-journal.git`
     * `cd .\trading-journal\`
-2. Install dependencies:
+2. Install backend dependencies:
+    * `cd .\server\`
     * `npm install`
-    * Should I tell to install sever and src dependencies or just this is enough ?
+3. Install frontend dependencies:
+    * `cd ..`
+    * `npm install`
 3. Add environment variables:
-    * Following the `.env.example` file, create a `.env` file and add required variables
-4. Run the application:
+    * Following the `.env.example` file, copy a `.env` file and add required variables
+    * `cp server/.env.example server/.env`
+4. Start PostgreSQL database:
+    * `cd .\server\`
+    * `node server.js`
+5. Start Vite development server
+    * `cd ..`
     * `npm run dev`
+6. Open the browser
+    * Navigate to `http://localhost:5173`
 
 ## Testing guide :scissors:
 The project has both testing for backend and frontend.    
@@ -71,22 +87,24 @@ By running the following commands, all test suites will run.
     * `npm run test`
 
 ## Project structure :open_file_folder:
+```
 trading-journal/    
-├─ archive/    
-├─ public/     
-├─ server/    
-&nbsp; &nbsp; ├── __tests__/    
-&nbsp; &nbsp; ├── routes/    
-├─ src/    
-&nbsp; &nbsp; ├── __tests__/     
-&nbsp; &nbsp; ├── assets/     
-&nbsp; &nbsp; ├── components/      
-&nbsp; &nbsp; ├── containers/    
-&nbsp; &nbsp; ├── context/    
-&nbsp; &nbsp; ├── data/    
-&nbsp; &nbsp; ├── hooks/    
-&nbsp; &nbsp; ├── styles/     
-│ README.md     
+├── archive/    
+├── public/     
+├── server/    
+│   ├── __tests__/    
+│   └── routes/    
+├── src/    
+│   ├── __tests__/     
+│   ├── assets/     
+│   ├── components/      
+│   ├── containers/    
+│   ├── context/    
+│   ├── data/    
+│   ├── hooks/    
+│   └── styles/     
+└── README.md
+```
 
 ## Queries documentation :bookmark_tabs:
 Here is a list of most of the statisticals columns created with queries for the different routes:
