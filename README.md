@@ -1,26 +1,37 @@
-# Trading journal
-A web application used to record trades and display related statistics
+# Trading journal :bar_chart:
+This coding project is used to record trades and display related statistics.    
+The goal is to provide a simple but complete journal that will help enhance personal performance without any paid membership !
 
-## Project description
-The platform is composed of 3 main pages:
+## Project description :clipboard:
+The web application is composed of 3 main pages:
 * Dashboard
+    * Displays the main analytics data as well as fetched links to financial articles
 * Journal
+    * Is composed of a table populated by trades ordered by date
 * Statistics
+    * Render a graphical representation of data as well as more complex statistics
+
+<img width="1855" height="967" alt="PagesGif" src="https://github.com/user-attachments/assets/4cb79fef-f833-4204-9918-936c4c070e52" />
+
+
 !TODO: Add screenshots 
 
 !TODO: Add gif of responsivenes
 
-1. The dashboard page displays the main analytics data as well as fetched links to financial articles    
-2. The journal page is composed of a table populated by trades ordered by date. On this same page it is possible to add a new trade by clicking on the + button, redirecting to a form with mandatory inputs    
-3. The statistics page render a graphical representation of data as well as more complex statistics
+## Live Demo :rocket:
+[Discover the application]()
 
-## Live Demo
-!LINK
+## Features :round_pushpin:
+* Graphical representation and interpretation of data
+* Implementation of CRUD operations
+    * Create new trades with the form put at disposition
+    * Read displayed trades in the table
+    * Update trades
+    * Delete trades
+* Create and Update personal information in the profile
+* Access recent financials articles that may affect the current market
 
-## Features
-!TODO: add gif of CRUD operations, user profile, api link, etc...
-
-## Technology stack and tools
+## Technology stack and tools :mortar_board:
 PERN stack consisting of PostgreSQL, Express.js, React and Node.js
 
 * Backend testing: Jest and Supertest
@@ -29,31 +40,55 @@ PERN stack consisting of PostgreSQL, Express.js, React and Node.js
 * Graph library: Recharts
 * Frontend build tool: Vite
 * Design mockup: Figma
+* Frontend deployment: ?
+* Backend deployment: ?
 
-## Installation guide
+## Installation :arrow_forward:
+### Prerequisites :triangular_flag_on_post:
+[Node.js](https://nodejs.org/en/download)    
+[npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 
-## Testing guide
+### Installation guide :wrench:
+1. Clone the repository from Github:
+    * `git clone https://github.com/Haveadream1/trading-journal.git`
+    * `cd .\trading-journal\`
+2. Install dependencies:
+    * `npm install`
+    * Should I tell to install sever and src dependencies or just this is enough ?
+3. Add environment variables:
+    * Following the `.env.example` file, create a `.env` file and add required variables
+4. Run the application:
+    * `npm run dev`
 
-## Project structure
-trading-journal/
-├─ archive/
-├─ public/
-├─ server/
-    ├── __tests__/
-    ├── routes/
-├─ src/
-    ├── __tests__/
-    ├── assets/
-    ├── components/
-    ├── containers/
-    ├── context/
-    ├── data/
-    ├── hooks/
-    ├── styles/
-│ README.md
+## Testing guide :scissors:
+The project has both testing for backend and frontend.    
+By running the following commands, all test suites will run.    
+(*A possible alternative is to run each test individually*)    
 
+1. Navigate to the project directory
+    * `cd .\trading-journal\`
+2. Run tests with the custom command
+    * `npm run test`
 
-## Queries documentation
+## Project structure :open_file_folder:
+trading-journal/    
+├─ archive/    
+├─ public/     
+├─ server/    
+&nbsp; &nbsp; ├── __tests__/    
+&nbsp; &nbsp; ├── routes/    
+├─ src/    
+&nbsp; &nbsp; ├── __tests__/     
+&nbsp; &nbsp; ├── assets/     
+&nbsp; &nbsp; ├── components/      
+&nbsp; &nbsp; ├── containers/    
+&nbsp; &nbsp; ├── context/    
+&nbsp; &nbsp; ├── data/    
+&nbsp; &nbsp; ├── hooks/    
+&nbsp; &nbsp; ├── styles/     
+│ README.md     
+
+## Queries documentation :bookmark_tabs:
 Here is a list of most of the statisticals columns created with queries for the different routes:
 * total_trades: count all trades
 * total_pnl: sum all net_pnl
@@ -72,7 +107,9 @@ Here is a list of most of the statisticals columns created with queries for the 
 * most_traded_asset_count: number of trades for most traded asset
 * trades: the list of all sorted trades by date
 
-## To-dos
+## To-dos :rotating_light:
+* Enable user to import a profile picture
 
+## Credits :white_check_mark:
+[Emojis](https://gist.github.com/rxaviers/7360908)    
 
-## Credits
