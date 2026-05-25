@@ -11,7 +11,8 @@ export default function FieldsetDiv({
     input,
     datalist,
     listId,
-    defaultValue
+    defaultValue,
+    step
 }) {
     const {valid, errorMessage, onChangeHandler} = useInputValidation();
 
@@ -35,6 +36,7 @@ export default function FieldsetDiv({
                     list={listId}
                     name={id} 
                     id={id} 
+                    step={step}
                     className={valid ? "valid" : "invalid"} 
                     defaultValue={defaultValue} 
                     placeholder={placeholder} 
