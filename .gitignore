@@ -24,6 +24,7 @@ dist-ssr
 
 # Frontend
 .env
+.env.production
 node_modules
 
 # Backend
