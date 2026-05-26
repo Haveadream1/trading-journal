@@ -31,7 +31,7 @@ The web application is composed of 3 main pages:
 * Create and Update personal information in the profile
 * Access recent financials articles that may affect the current market
 
-<img width="1784" height="991" alt="CreateGif" src="https://github.com/user-attachments/assets/e4302c12-0264-404f-a802-8adaf4e5c228" />
+<img width="1785" height="963" alt="ActionsGif" src="https://github.com/user-attachments/assets/c962e99c-6851-432b-94d1-b15f5cea6703" />
 
 ## Technology stack and tools :mortar_board:
 PERN stack consisting of PostgreSQL, Express.js, React and Node.js
