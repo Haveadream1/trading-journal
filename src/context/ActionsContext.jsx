@@ -1,3 +1,5 @@
+import { API_BASE } from "../config";
+
 import { createContext, useContext } from "react";
 
 const ActionsContext = createContext(null);
@@ -6,7 +8,7 @@ export function ActionsProvider({ children }) {
     const deleteTrade = async (id) => {
         try {
             // Pass the id in the route to query the correct trade
-            const response = await fetch(`/api/trades/${id}`, {
+            const response = await fetch(`${API_BASE}/api/trades/${id}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json'
@@ -27,7 +29,7 @@ export function ActionsProvider({ children }) {
 
     const updateTrade = async (id, tradeData) => {
         try {
-            const response = await fetch(`/api/trades/${id}`, {
+            const response = await fetch(`${API_BASE}/api/trades/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'

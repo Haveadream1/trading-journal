@@ -1,4 +1,7 @@
 // Data context with states and functions to handle the form inputs change, validation and storage
+
+import { API_BASE } from "../config";
+
 import { createContext, useContext, useState } from "react";
 
 const FormContext = createContext(null);
@@ -61,7 +64,7 @@ export function FormProvider({ children }) {
     const submitTrade = async (tradeData) => {
         try {
             // Send the form data to API to save it in the database
-            const response = await fetch('/api/trades', {
+            const response = await fetch(`${API_BASE}/api/trades`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json' // Metadata affilied to request to indicate the data type to server

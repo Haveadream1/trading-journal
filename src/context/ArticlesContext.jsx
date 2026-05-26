@@ -1,6 +1,8 @@
 // Fetch the a list of recent financial articles from the *Financial Modeling Prep API*
     // We need to make sure we have only one call when the entire page refresh, put a limit too
 
+import { API_BASE } from "../config";
+
 import { createContext, useContext, useEffect, useState } from "react";
 import { demoArticles } from "../data/DemoArticles";
 
@@ -12,7 +14,7 @@ export function DataProvider({ children }) {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('/api/articles');
+                const response = await fetch(`${API_BASE}/api/articles`);
                 const result = await response.json();
 
                 if (response.ok) {

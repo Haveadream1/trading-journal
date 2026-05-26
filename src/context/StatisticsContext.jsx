@@ -1,6 +1,8 @@
 // Data context for statistics (both dashboard and analytics page)
     // Avoid having to fetch data from the route on 2 different pages
 
+import { API_BASE } from "../config";
+
 import { createContext, useState, useContext, useEffect } from "react";
 import { getDemoStatistics } from "../data/DemoTrades";
 
@@ -15,7 +17,7 @@ export function StatisticsProvider({ children }) {
         const fetchStatistics = async () => {
             setIsLoading(true);
             try {
-                const response = await fetch('/api/statistics');
+                const response = await fetch(`${API_BASE}/api/statistics`);
                 const data = await response.json();
 
                 if (data.totalTrades === 0) {

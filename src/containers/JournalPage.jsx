@@ -1,6 +1,8 @@
 /* Style import */
 import '../styles/JournalStyle.css'
 
+import { API_BASE } from '../config';
+
 import MainHeading from "../components/MainHeading";
 import TableRow from "../components/TableRow";
 import Header from "../components/Header";
@@ -22,7 +24,7 @@ export default function JournalPage() {
         setIsLoading(true);
 
         try {
-            const response = await fetch('/api/trades'); // Simplier form because GET don't need to send data in body
+            const response = await fetch(`${API_BASE}/api/trades`); // Simplier form because GET don't need to send data in body
             const data = await response.json();
             
             if (response.ok) {
