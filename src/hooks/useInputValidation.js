@@ -55,7 +55,11 @@ export const useInputValidation = () => {
         } else if (parseFloat(pnl) < 0) {
             setValid(false);
             modifyInputValidity("net-pnl", false);
-            setErrorMessage("Please do not input a negative value, the conversion is automatically handled")
+            setErrorMessage("Please do not input a negative value, the conversion is automatically handled");
+        } else if (String(pnl).length > 10) {
+            setValid(false);
+            modifyInputValidity("net-pnl", false);
+            setErrorMessage("Please enter a smaller number");
         } else {
             setValid(true);
             modifyInputValidity("net-pnl", true);
