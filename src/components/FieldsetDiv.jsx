@@ -12,7 +12,7 @@ export default function FieldsetDiv({
     datalist,
     listId,
     defaultValue,
-    step
+    step,
 }) {
     const {valid, errorMessage, onChangeHandler} = useInputValidation();
 
@@ -42,6 +42,8 @@ export default function FieldsetDiv({
                     placeholder={placeholder} 
                     aria-label={ariaLabel} 
                     onChange={onChangeHandler} 
+                    // Allow to avoid value change on scroll
+                    onWheel={type === "number" ? (e) => e.target.blur() : undefined}
                     required 
                 />
             )}
