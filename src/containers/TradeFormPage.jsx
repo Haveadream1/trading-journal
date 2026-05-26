@@ -155,7 +155,7 @@ export default function TradeFormPage() {
                         id="net-pnl"
                         label="Net PnL"    
                         type="number"
-                        step="any"
+                        step="0.01"
                         placeholder={selectedUpdateTrade?.net_pnl || 250.51}
                         input="true"
                         ariaLabel="Net PnL input"
