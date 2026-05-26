@@ -1,26 +1,39 @@
-# Trading journal
-A web application used to record trades and display related statistics
+# Trading journal :bar_chart:
+![Static Badge](https://img.shields.io/badge/PostgreSQL-white?logo=postgresql&logoColor=blue&labelColor=white&color=blue)
+![Static Badge](https://img.shields.io/badge/Express-yellow?style=flat&logo=express&labelColor=w)
+![Static Badge](https://img.shields.io/badge/React-black?logo=react)
+![Static Badge](https://img.shields.io/badge/Node.js-%235FA04E?style=flat&logo=nodedotjs&labelColor=white)
 
-## Project description
-The platform is composed of 3 main pages:
+This coding project is used to record trades and display related statistics.    
+The goal is to provide a simple but complete journal that will help enhance personal performance without any paid membership !
+
+## Project description :clipboard:
+The web application is composed of 3 main pages:
 * Dashboard
+    * Displays the main analytics data as well as fetched links to financial articles
 * Journal
+    * Is composed of a table populated by trades ordered by date
 * Statistics
-!TODO: Add screenshots 
+    * Render a graphical representation of data as well as more complex statistics
 
-!TODO: Add gif of responsivenes
+<img width="1784" height="991" alt="PagesGif" src="https://github.com/user-attachments/assets/4b9aea76-9d2b-49e5-ba06-4087640033b1" />
 
-1. The dashboard page displays the main analytics data as well as fetched links to financial articles    
-2. The journal page is composed of a table populated by trades ordered by date. On this same page it is possible to add a new trade by clicking on the + button, redirecting to a form with mandatory inputs    
-3. The statistics page render a graphical representation of data as well as more complex statistics
+## Live Demo :rocket:
+[Discover the application]() (SOON)
 
-## Live Demo
-!LINK
+## Features :round_pushpin:
+* Graphical representation and interpretation of data
+* Implementation of CRUD operations
+    * Create new trades with the form put at disposition
+    * Read displayed trades in the table
+    * Update trades
+    * Delete trades
+* Create and Update personal information in the profile
+* Access recent financials articles that may affect the current market
 
-## Features
-!TODO: add gif of CRUD operations, user profile, api link, etc...
+<img width="1784" height="991" alt="CreateGif" src="https://github.com/user-attachments/assets/e4302c12-0264-404f-a802-8adaf4e5c228" />
 
-## Technology stack and tools
+## Technology stack and tools :mortar_board:
 PERN stack consisting of PostgreSQL, Express.js, React and Node.js
 
 * Backend testing: Jest and Supertest
@@ -29,31 +42,79 @@ PERN stack consisting of PostgreSQL, Express.js, React and Node.js
 * Graph library: Recharts
 * Frontend build tool: Vite
 * Design mockup: Figma
+* Frontend deployment: ? (SOON)
+* Backend deployment: ? (SOON)
 
-## Installation guide
+## Installation :arrow_forward:
+### Prerequisites :triangular_flag_on_post:
+[Node.js](https://nodejs.org/en/download)    
+[npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 
-## Testing guide
+### Installation guide :wrench:
+1. Clone the repository from Github:
+    * `git clone https://github.com/Haveadream1/trading-journal.git`
+    * `cd .\trading-journal\`
+2. Install backend dependencies:
+    * `cd .\server\`
+    * `npm install`
+3. Install frontend dependencies:
+    * `cd ..`
+    * `npm install`
+4. Add environment variables:
+    * Following the `.env.example` file, copy a `.env` file and add required variables
+    * `cp server/.env.example server/.env`
+5. Start PostgreSQL database:
+    * `cd .\server\`
+    * `node server.js`
+6. Start Vite development server
+    * `cd ..`
+    * `npm run dev`
+7. Open the browser
+    * Navigate to `http://localhost:5173`
 
-## Project structure
-trading-journal/
-├─ archive/
-├─ public/
-├─ server/
-    ├── __tests__/
-    ├── routes/
-├─ src/
-    ├── __tests__/
-    ├── assets/
-    ├── components/
-    ├── containers/
-    ├── context/
-    ├── data/
-    ├── hooks/
-    ├── styles/
-│ README.md
+## Testing guide :scissors:
+The project has both testing for backend and frontend.    
+By running the following commands, all test suites will run.    
+(*A possible alternative is to run each test individually*)    
 
+1. Navigate to the project directory
+    * `cd .\trading-journal\`
+2. Run tests with the custom command
+    * `npm run test`
 
-## Queries documentation
+## Project structure :open_file_folder:
+```
+trading-journal/    
+├── archive/    
+├── public/     
+├── server/    
+│   ├── __tests__/    
+│   └── routes/    
+├── src/    
+│   ├── __tests__/     
+│   ├── assets/     
+│   ├── components/      
+│   ├── containers/    
+│   ├── context/    
+│   ├── data/    
+│   ├── hooks/    
+│   └── styles/     
+└── README.md
+```
+
+## API documentation :closed_book:
+Different methods have been implemented for the routes
+1. /api/trades
+   * POST: create a new trade
+   * GET: request and retrieve all trades
+   * PUT: update the trade specified by id
+   * DELETE: delete the trade specified by id
+2. /api/statistics
+   * GET: request and retrieve aggregated data
+3. /api/articles
+   * GET: fetch financial news
+
+## Aggregated queries documentation :bookmark_tabs:
 Here is a list of most of the statisticals columns created with queries for the different routes:
 * total_trades: count all trades
 * total_pnl: sum all net_pnl
@@ -72,7 +133,11 @@ Here is a list of most of the statisticals columns created with queries for the 
 * most_traded_asset_count: number of trades for most traded asset
 * trades: the list of all sorted trades by date
 
-## To-dos
+## To-dos :rotating_light:
+* Enable user to import a profile picture
+* Implement scalable fonts
 
-
-## Credits
+## Credits :white_check_mark:
+[Emojis](https://gist.github.com/rxaviers/7360908)      
+[Simple icons](https://simpleicons.org/)    
+[Bagdes](https://shields.io/)    
