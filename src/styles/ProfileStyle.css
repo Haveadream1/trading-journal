@@ -51,6 +51,10 @@
     min-height: 56.86px; 
     /* Min-height important otherwise the height will be change between pages due to the icon */
 }
+
+.profile-save-button {
+    font-size: 16px;
+}
 .profile-cancel-button {
     background-color: var(--light-red);
 }
