@@ -4,6 +4,7 @@
 }
 table {
   border-collapse: collapse; /* To avoid having double borders */
+  overflow-x: auto; /* Implement a scroll bar */
 }
 thead {
   background-color: var(--light-green);
