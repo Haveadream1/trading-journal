@@ -19,7 +19,7 @@ The web application is composed of 3 main pages:
 <img width="1784" height="991" alt="PagesGif" src="https://github.com/user-attachments/assets/4b9aea76-9d2b-49e5-ba06-4087640033b1" />
 
 ## Live Demo :rocket:
-[Discover the application]() (SOON)
+[Discover the application](https://trading-journal-2jli.vercel.app/)
 
 ## Features :round_pushpin:
 * Graphical representation and interpretation of data
@@ -42,8 +42,8 @@ PERN stack consisting of PostgreSQL, Express.js, React and Node.js
 * Graph library: Recharts
 * Frontend build tool: Vite
 * Design mockup: Figma
-* Frontend deployment: ? (SOON)
-* Backend deployment: ? (SOON)
+* Frontend deployment: Vercel
+* Backend deployment: Render
 
 ## Installation :arrow_forward:
 ### Prerequisites :triangular_flag_on_post:
@@ -53,9 +53,9 @@ PERN stack consisting of PostgreSQL, Express.js, React and Node.js
 ### Installation guide :wrench:
 1. Clone the repository from Github:
     * `git clone https://github.com/Haveadream1/trading-journal.git`
-    * `cd .\trading-journal\`
+    * `cd trading-journal`
 2. Install backend dependencies:
-    * `cd .\server\`
+    * `cd server`
     * `npm install`
 3. Install frontend dependencies:
     * `cd ..`
@@ -64,7 +64,7 @@ PERN stack consisting of PostgreSQL, Express.js, React and Node.js
     * Following the `.env.example` file, copy a `.env` file and add required variables
     * `cp server/.env.example server/.env`
 5. Start PostgreSQL database:
-    * `cd .\server\`
+    * `cd server`
     * `node server.js`
 6. Start Vite development server
     * `cd ..`
@@ -139,5 +139,11 @@ Here is a list of most of the statisticals columns created with queries for the 
 
 ## Credits :white_check_mark:
 [Emojis](https://gist.github.com/rxaviers/7360908)      
-[Simple icons](https://simpleicons.org/)    
+[Icons for badges](https://simpleicons.org/)    
 [Bagdes](https://shields.io/)    
+[Vercel](https://vercel.com/)    
+[Render](https://render.com/)     
+[Neon](https://neon.com/)    
+[Figma](https://www.figma.com)     
+[Icons](https://icons.download/)    
+[FMP api](https://site.financialmodelingprep.com/)     
