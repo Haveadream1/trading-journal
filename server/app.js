@@ -3,7 +3,17 @@ const cors = require('cors');
 const app = express();
 
 // Set up middleware, act as a bridge for communication between Frontend and Backend
-app.use(cors()); // Enable React to communicate with the server
+
+// Enable React to communicate with the server
+app.use(cors({
+  origin: [
+    'http://localhost:5173',
+    'https://trading-journal-2jli.vercel.app',
+    /\.vercel\.app$/
+  ],
+  credentials: true
+}));
+
 app.use(express.json());  // Enable the server to parse(read) JSON data from React
 
 // Set up test route
