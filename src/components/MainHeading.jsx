@@ -1,3 +1,5 @@
+import React from "react";
+
 export default function MainHeading({
     titleValue,
     text
