@@ -1,5 +1,10 @@
 // Unit test to check that the MetricSection component render correctly
 
+// Mock statistics context
+jest.mock('../context/statisticsContext', () => ({
+    useStatistics: jest.fn()
+}))
+
 import React from 'react';
 import '@testing-library/jest-dom';
 
@@ -8,12 +13,7 @@ import { render, screen } from '@testing-library/react';
 import MetricSection from '../components/MetricSection';
 import { useStatistics } from '../context/StatisticsContext';
 
-// Mock statistics context
-jest.mock('../context/statisticsContext', () => ({
-    useStatistics: jest.fn()
-}))
-
-describe('GET metric component', () => {
+describe('Metric component', () => {
     it('displays the title and value of the metric', () => {
 
         // Mock the value fetched from the hook
