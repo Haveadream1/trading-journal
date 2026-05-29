@@ -25,7 +25,7 @@ import { render, screen } from '@testing-library/react';
 import TableRow from '../components/TableRow';
 import { Link, MemoryRouter } from 'react-router';
 
-describe('GET table row component', () => { 
+describe('Table row component', () => { 
     it('displays correctly a winning trade in the table', () => {
         render(
             <table>
