@@ -34,7 +34,7 @@ export const useInputValidation = () => {
         if (chosenDate > todayDate) {
             setValid(false);
             modifyInputValidity("trade-date", false);
-            setErrorMessage("Please enter a date earlier or equal to today");
+            setErrorMessage("Please enter a date that is earlier than or equal to today");
         } else {
             setValid(true);
             modifyInputValidity("trade-date", true);
