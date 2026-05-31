@@ -5,6 +5,7 @@ const app = express();
 // Set up middleware, act as a bridge for communication between Frontend and Backend
 
 // Enable React to communicate with the server
+  // Normally just the following is enough an app.use(cors())
 app.use(cors({
   origin: [
     'http://localhost:5173',
