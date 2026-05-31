@@ -47,8 +47,9 @@ PERN stack consisting of PostgreSQL, Express.js, React and Node.js
 
 ## Installation :arrow_forward:
 ### Prerequisites :triangular_flag_on_post:
-[Node.js](https://nodejs.org/en/download)    
-[npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+[Node.js](https://nodejs.org/en/download) ≥ v24.x.x    
+[npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) ≥ 11.x.x    
+[A Neon database created](https://neon.com/)
 
 ### Installation guide :wrench:
 1. Clone the repository from Github:
@@ -63,13 +64,14 @@ PERN stack consisting of PostgreSQL, Express.js, React and Node.js
 4. Add environment variables:
     * Following the `.env.example` file, copy a `.env` file and add required variables
     * `cp server/.env.example server/.env`
-5. Start PostgreSQL database:
+5. Start backend server:
     * `cd server`
     * `node server.js`
-6. Start Vite development server
-    * `cd ..`
+6. Start Vite development server:
+    * Create a new terminal _(to not kill the process in server)_
+    * `cd trading-journal`
     * `npm run dev`
-7. Open the browser
+7. Open the browser:
     * Navigate to `http://localhost:5173`
 
 ## Testing guide :scissors:
@@ -78,8 +80,8 @@ By running the following commands, all test suites will run.
 (*A possible alternative is to run each test individually*)    
 
 1. Navigate to the project directory
-    * `cd .\trading-journal\`
-2. Run tests with the custom command
+    * `cd trading-journal`
+2. Run all tests (frontend + backend) with the custom command
     * `npm run test`
 
 ## Project structure :open_file_folder:
