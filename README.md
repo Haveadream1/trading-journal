@@ -142,7 +142,7 @@ Here is a list of most of the statisticals columns created with queries for the 
 ## Credits :white_check_mark:
 [Emojis](https://gist.github.com/rxaviers/7360908)      
 [Icons for badges](https://simpleicons.org/)    
-[Bagdes](https://shields.io/)    
+[Badges](https://shields.io/)    
 [Vercel](https://vercel.com/)    
 [Render](https://render.com/)     
 [Neon](https://neon.com/)    
