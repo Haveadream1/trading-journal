@@ -1,5 +1,3 @@
-import React from "react";
-
 // Icon imports
 import editIcon from '../assets/EditTradeIcon.svg';
 import deleteIcon from '../assets/DeleteTradeIcon.svg';
