@@ -1,13 +1,16 @@
-// Test file to verify the delete route
+import { describe, it, expect, beforeEach, jest } from '@jest/globals';
 
-jest.mock('../database', () => ({
-    query: jest.fn()
-}))
+jest.mock("../db/index.js", () => ({
+    pool: {
+        query: jest.fn(),
+        end: jest.fn()
+    }
+}));
 
-const request = require('supertest');
-const app = require('../app');
-const pool = require('../database');
-const { describe, beforeEach } = require('jest-circus');
+import request from "supertest";
+import { app } from "../app.js";
+import { pool } from "../db/index.js";
+import { afterAll } from 'jest-circus';
 
 describe('DELETE route /api/trades/:id', () => {
     beforeEach(() => {
@@ -49,4 +52,9 @@ describe('DELETE route /api/trades/:id', () => {
         expect(response.status).toBe(500);
         expect(response.body.error).toBe('Error deleting trade with id');
     })
+
+    // Clean mock
+    afterAll(async () => {
+        await pool.end();
+    });
 })

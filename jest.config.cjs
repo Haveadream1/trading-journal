@@ -9,7 +9,7 @@ module.exports = {
     {
       displayName: 'frontend',
       testEnvironment: 'jsdom',
-      testMatch: ['<rootDir>/src/**/*.test.js'],
+      testMatch: ['<rootDir>/client/**/*.test.js'],
     },
   ],
 };

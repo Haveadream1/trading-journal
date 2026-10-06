@@ -1,4 +1,3 @@
-import React from "react";
 import { useStatistics } from "../context/StatisticsContext";
 
 export default function MetricSection({

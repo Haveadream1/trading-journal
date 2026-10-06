@@ -1,15 +1,16 @@
-// Unit testing for POST routes
-    // Check that we get notified with an error for undefined input
-    // Check that we get the correct response when succesfully inserted a trade
+import { describe, it, expect, beforeEach, jest } from '@jest/globals';
 
-jest.mock('../database', () => ({
-    query: jest.fn()
-}))
+jest.mock("../db/index.js", () => ({
+    pool: {
+        query: jest.fn(),
+        end: jest.fn()
+    }
+}));
 
-const { describe, beforeEach } = require('jest-circus');
-const request = require('supertest');
-const app = require('../app');
-const pool = require('../database');
+import request from "supertest"
+import { app } from "../app.js";
+import { pool } from "../db/index.js";
+import { afterAll } from 'jest-circus';
 
 describe('POST route for /api/trades', () => {
     // Clean mocks between tests
@@ -39,4 +40,8 @@ describe('POST route for /api/trades', () => {
         expect(response.status).toBe(201) // 201 -> created HTML status code
         expect(response.body.trade_date).toBe('2026/02/21'); // test that the response has the correct inserted value
     })
+
+    afterAll(async () => {
+        await pool.end();
+    });
 })

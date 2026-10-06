@@ -1,6 +1,7 @@
-const express = require('express');
-const router = express.Router();
-const pool = require('../database');
+import { pool } from '../db/index.js';
+import { Router } from "express";
+
+const router = Router();
 
 // Set up GET route to get all trades
   // Use asyncronous function to handle the database query
@@ -128,5 +129,4 @@ router.post('/', async (req, res) => {
     res.status(500).json({ error: 'Error inserting a new trade into database' });
   }
 });
-
-module.exports = router;
+export default router;

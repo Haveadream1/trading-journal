@@ -1,8 +1,8 @@
-const express = require('express');
-const router = express.Router();
-const pool = require('../database');
+import { Router } from 'express';
+import { statisticsQueries } from '../db/queries.js';
+import { pool } from '../db/index.js';
 
-const statisticsQueries = require('../queries');
+const router = Router();
 
 const formatData = (type, value) => {
   const num = Number(value) // Avoid error with JS about retrieved type from PostgreSQL
@@ -68,5 +68,4 @@ router.get('/', async (req, res) => {
     res.status(500).json({ error: 'Error with aggregate functions in database'});
   }
 })
-
-module.exports = router;
+export default router;

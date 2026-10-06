@@ -1,6 +1,6 @@
-const express = require('express');
-const router = express.Router();
-const pool = require('../database'); // Import the database connection pool
+import { Router } from "express";
+
+const router = Router();
 
 // Set up a route to securely fetch articles from API
     // router is a built-in feature that allows to create modular code
@@ -15,4 +15,4 @@ router.get('/', async (req, res) => {
   res.json(articles);
 })
 
-module.exports = router;
+export default router;

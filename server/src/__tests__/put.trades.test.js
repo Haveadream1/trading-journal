@@ -1,13 +1,16 @@
-// Test to verify the update route
+import { describe, it, expect, beforeEach, jest } from '@jest/globals';
 
-jest.mock('../database', () => ({
-    query: jest.fn()
-}))
+jest.mock("../db/index.js", () => ({
+    pool: {
+        query: jest.fn(),
+        end: jest.fn()
+    }
+}));
 
-const request = require('supertest');
-const app = require("../app");
-const pool = require("../database");
-const { describe, beforeEach } = require('jest-circus');
+import request from "supertest"
+import { app } from "../app.js";
+import { pool } from "../db/index.js";
+import { afterAll } from 'jest-circus';
 
 describe("PUT route /api/trades/:id", () => {
     // Clean mock
@@ -61,4 +64,8 @@ describe("PUT route /api/trades/:id", () => {
         expect(response.status).toBe(500);
         expect(response.body.error).toBe("Error editing the trade");
     })
+
+    afterAll(async () => {
+        await pool.end();
+    });
 })

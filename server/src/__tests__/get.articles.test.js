@@ -1,11 +1,16 @@
 // Unit testing API article route
+import { describe, it, expect, jest } from '@jest/globals';
 
-// mock fetching
-global.fetch = jest.fn();
+// Mock fetching process
+globalThis.fetch = jest.fn(() => 
+    Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve([{ title: 'Mock Article' }])
+    })
+);
 
-const request = require('supertest');
-const { describe } = require("jest-circus");
-const app = require('../app');
+import request from "supertest";
+import { app } from "../app.js";
 
 const demoArticles = {
     "title": "Arcus Biosciences, Inc. (NYSE:RCUS) Faces Setback but Remains Focused on Future Developments",
