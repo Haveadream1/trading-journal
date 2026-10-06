@@ -1,7 +1,7 @@
 // Unit test to check that the MetricSection component render correctly
 
 // Mock statistics context
-jest.mock('../context/statisticsContext', () => ({
+jest.mock('../context/StatisticsContext', () => ({
     useStatistics: jest.fn()
 }))
 
