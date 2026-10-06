@@ -1,3 +1,5 @@
+/* global process */
+
 import { app } from "./app.js";
 
 // Fetch from env file or provide default port
