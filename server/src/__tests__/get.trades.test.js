@@ -1,15 +1,16 @@
-// Test to verify if we correctly get the trades from the database
-    // and how it handles errors
+import { describe, it, expect, beforeEach, jest } from '@jest/globals';
 
-// mocking is replacing the database with a simulated one
-jest.mock('../database', () => ({
-    query: jest.fn() // create the fake(mock) function
-}))
+jest.mock("../db/index.js", () => ({
+    pool: {
+        query: jest.fn(),
+        end: jest.fn()
+    }
+}));
 
-const request = require('supertest');
-const { describe, beforeEach } = require("jest-circus");
-const app = require("../app");
-const pool = require('../database');
+import request from "supertest";
+import { app } from "../app.js";
+import { pool } from "../db/index.js";
+import { afterAll } from 'jest-circus';
 
 describe('GET route /api/trades', () => {
     // Clean mocks
@@ -32,4 +33,8 @@ describe('GET route /api/trades', () => {
         expect(response.status).toBe(500) // 500 -> server error status code
         expect(response.body.error).toBe('Error reading all trades from database');
     })
+
+    afterAll(async () => {
+        await pool.end();
+    });
 })
