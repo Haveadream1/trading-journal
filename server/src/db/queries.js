@@ -1,7 +1,7 @@
 // Module used to separate concern in server.js
     // Contains the PostgreSQL queries
 
-const statisticsQueries = {
+export const statisticsQueries = {
   base: `
     SELECT  
       COUNT(*) as total_trades,
@@ -45,5 +45,3 @@ const statisticsQueries = {
     ORDER BY trade_date ASC;
   `
 };
-
-module.exports = statisticsQueries;
