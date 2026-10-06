@@ -9,6 +9,11 @@ on:
 jobs:
     build-and-test:
         runs-on: ubuntu-latest
+        
+        env:
+          DATABASE_URL: "postgresql://dummy:dummy@localhost:5432/dummy"
+          PORT: 3000
+          
         steps:
             - name: Checkout repository
               uses: actions/checkout@v4
@@ -18,12 +23,18 @@ jobs:
               with:
                 node-version: "22"
                 cache: "npm"
-                cache-dependency-path: package-lock.json
+                cache-dependency-path:  |
+                  package-lock.json
+                  server/package-lock.json
         
-            - name: Install dependencies
+            - name: Install root dependencies
               run: npm ci
-            
-            - name: Run test
+
+            - name: Install server dependencies
+              run: npm ci
+              working-directory: ./server
+
+            - name: Run test (Frontend and Backend)
               run: npm run test
             
             - name: Run linter
